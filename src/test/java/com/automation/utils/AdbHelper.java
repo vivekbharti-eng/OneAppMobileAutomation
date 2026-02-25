@@ -23,10 +23,11 @@ public class AdbHelper {
      * @param command ADB command to execute
      * @return Command output
      */
+    @SuppressWarnings("deprecation")
     private static String executeCommand(String command) {
         StringBuilder output = new StringBuilder();
         try {
-            Process process = Runtime.getRuntime().exec(command.split(" "));
+            Process process = Runtime.getRuntime().exec(command);
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             
             String line;
