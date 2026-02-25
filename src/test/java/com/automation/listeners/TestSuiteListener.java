@@ -33,8 +33,8 @@ public class TestSuiteListener implements ISuiteListener {
         int passed = TestResultTracker.getPassed();
         int failed = TestResultTracker.getFailed();
 
-        logger.info(String.format("Suite Summary — Passed: %d | Failed: %d | Total: %d",
-                passed, failed, TestResultTracker.getTotal()));
+        logger.info("Suite Summary — Passed: %d | Failed: %d | Total: %d".formatted(
+            passed, failed, TestResultTracker.getTotal()));
 
         // Send email with the report attached
         String reportPath = ExtentReportManager.getReportPath();

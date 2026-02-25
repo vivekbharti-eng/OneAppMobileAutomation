@@ -14,6 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Map;
@@ -94,7 +95,7 @@ public class DriverFactory {
         String browserStackUrl = BrowserStackCapabilityManager.getBrowserStackUrl();
         
         logger.info("Connecting to BrowserStack...");
-        return new AppiumDriver(new URL(browserStackUrl), capabilities);
+        return new AppiumDriver(URI.create(browserStackUrl).toURL(), capabilities);
     }
     
     /**
@@ -170,7 +171,7 @@ public class DriverFactory {
         // Get Appium server URL
         String appiumUrl = PropertyReader.getConfigProperty("appium.server.url");
         
-        return new AndroidDriver(new URL(appiumUrl), options);
+        return new AndroidDriver(URI.create(appiumUrl).toURL(), options);
     }
     
     /**
@@ -261,6 +262,6 @@ public class DriverFactory {
         // Get Appium server URL
         String appiumUrl = PropertyReader.getConfigProperty("appium.server.url");
         
-        return new IOSDriver(new URL(appiumUrl), options);
+        return new IOSDriver(URI.create(appiumUrl).toURL(), options);
     }
 }

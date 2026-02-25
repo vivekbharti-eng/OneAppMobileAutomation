@@ -158,10 +158,10 @@ public class SendMoneyPage extends BasePage {
             }
             // Strategy 2: XPath — clickable elements containing the number (exclude search field)
             if (contact == null) {
-                By xpath = By.xpath(String.format(
+                By xpath = By.xpath((
                     "//*[starts-with(@resource-id,'contact_item_') and contains(@content-desc,'%s')] | " +
-                    "//*[@clickable='true' and contains(@content-desc,'%s') and not(@resource-id='search_textfield')] | " +
-                    "//*[@clickable='true' and contains(@text,'%s') and not(@resource-id='search_textfield')]",
+                        "//*[@clickable='true' and contains(@content-desc,'%s') and not(@resource-id='search_textfield')] | " +
+                        "//*[@clickable='true' and contains(@text,'%s') and not(@resource-id='search_textfield')]").formatted(
                     number, number, number));
                 contact = WaitHelper.waitForElementToBeVisible(xpath, 8);
                 logger.info("Own-number contact found via XPath: " + number);
@@ -194,7 +194,7 @@ public class SendMoneyPage extends BasePage {
             WebElement toastEl = null;
             while (System.currentTimeMillis() < deadline) {
                 java.util.List<WebElement> els = driver.findElements(locator);
-                if (!els.isEmpty()) { toastEl = els.get(0); break; }
+                if (!els.isEmpty()) { toastEl = els.getFirst(); break; }
                 sleep(300);
             }
             if (toastEl != null) {
@@ -211,8 +211,8 @@ public class SendMoneyPage extends BasePage {
                     "or contains(@content-desc,'not') or contains(@content-desc,'invalid')]");
                 java.util.List<WebElement> fbEls = driver.findElements(fallback);
                 if (!fbEls.isEmpty()) {
-                    String fbText = fbEls.get(0).getAttribute("content-desc");
-                    if (fbText == null || fbText.isBlank()) fbText = fbEls.get(0).getAttribute("text");
+                    String fbText = fbEls.getFirst().getAttribute("content-desc");
+                    if (fbText == null || fbText.isBlank()) fbText = fbEls.getFirst().getAttribute("text");
                     if (fbText != null && !fbText.isBlank()) errorText = fbText;
                 }
                 logger.warn("Toast not found within 6 s. Captured text: " + errorText);
@@ -247,7 +247,7 @@ public class SendMoneyPage extends BasePage {
             By clearBtn = LocatorUtils.getLocator(SEARCH_CLEAR_BUTTON);
             java.util.List<WebElement> btns = driver.findElements(clearBtn);
             if (!btns.isEmpty()) {
-                btns.get(0).click();
+                btns.getFirst().click();
                 sleep(800);
                 logger.info("Tapped search-field clear (X) button");
             } else {
@@ -298,10 +298,10 @@ public class SendMoneyPage extends BasePage {
             // Strategy 2: XPath fallback — exclude search_textfield to avoid re-tapping the input field
             if (contact == null) {
                 By xpathFallback = By.xpath(
-                    String.format(
+                    (
                         "//*[starts-with(@resource-id,'contact_item_') and contains(@content-desc,'%s')] | " +
-                        "//*[@clickable='true' and contains(@content-desc,'%s') and not(@resource-id='search_textfield')] | " +
-                        "//*[@clickable='true' and contains(@text,'%s') and not(@resource-id='search_textfield')]",
+                            "//*[@clickable='true' and contains(@content-desc,'%s') and not(@resource-id='search_textfield')] | " +
+                            "//*[@clickable='true' and contains(@text,'%s') and not(@resource-id='search_textfield')]").formatted(
                         mobileNumber, mobileNumber, mobileNumber)
                 );
                 contact = WaitHelper.waitForElementToBeVisible(xpathFallback, 10);
@@ -706,7 +706,7 @@ public class SendMoneyPage extends BasePage {
             java.util.List<WebElement> bubbles = driver.findElements(locator);
             WebElement recent = bubbles.isEmpty()
                     ? waitForElement(locator, 15)          // fallback: wait for at least one
-                    : bubbles.get(bubbles.size() - 1);    // last = most recent
+                    : bubbles.getLast();    // last = most recent
             org.openqa.selenium.Point p = recent.getLocation();
             org.openqa.selenium.Dimension d = recent.getSize();
             int cx = p.getX() + d.getWidth()  / 2;

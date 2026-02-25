@@ -15,6 +15,7 @@ import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.file.Path;
 import java.util.Map;
 
 /**
@@ -126,8 +127,7 @@ public class Hooks {
                 // Extract via reflection on the underlying delegate object.
                 java.lang.reflect.Method m = scenario.getClass().getMethod("getError");
                 Object result = m.invoke(scenario);
-                if (result instanceof Throwable) {
-                    Throwable t = (Throwable) result;
+                if (result instanceof Throwable t) {
                     String msg = t.getMessage();
                     if (msg != null && msg.length() > 500) {
                         msg = msg.substring(0, 500) + "...(truncated)";
@@ -189,7 +189,7 @@ public class Hooks {
                 // Attach screenshot to Cucumber report
                 if (screenshotPath != null) {
                     byte[] screenshot = java.nio.file.Files.readAllBytes(
-                            java.nio.file.Paths.get(screenshotPath));
+                            Path.of(screenshotPath));
                     scenario.attach(screenshot, "image/png", "Failure Screenshot");
                 }
 

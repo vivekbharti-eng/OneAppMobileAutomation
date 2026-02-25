@@ -41,9 +41,7 @@ public class LoginSteps {
             }
 
             io.appium.java_client.AppiumDriver driver = com.automation.drivers.DriverManager.getDriver();
-            if (driver instanceof io.appium.java_client.android.AndroidDriver) {
-                io.appium.java_client.android.AndroidDriver androidDriver =
-                        (io.appium.java_client.android.AndroidDriver) driver;
+            if (driver instanceof io.appium.java_client.android.AndroidDriver androidDriver) {
                 logger.info("App not on home page — terminating to clear any mid-state from previous test...");
                 androidDriver.terminateApp("com.sasai.sasaipay");
                 Thread.sleep(1500);
@@ -147,8 +145,8 @@ public class LoginSteps {
                         Thread.sleep(2000);
                         // Re-activate app — logout may have exited to Android launcher
                         io.appium.java_client.AppiumDriver driver = com.automation.drivers.DriverManager.getDriver();
-                        if (driver instanceof io.appium.java_client.android.AndroidDriver) {
-                            ((io.appium.java_client.android.AndroidDriver) driver).activateApp("com.sasai.sasaipay");
+                        if (driver instanceof io.appium.java_client.android.AndroidDriver androidDriver) {
+                            androidDriver.activateApp("com.sasai.sasaipay");
                             Thread.sleep(3000);
                             logger.info("App re-activated after logout — should be on login screen");
                         }

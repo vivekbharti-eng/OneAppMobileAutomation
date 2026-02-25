@@ -26,7 +26,7 @@ public class AdbHelper {
     private static String executeCommand(String command) {
         StringBuilder output = new StringBuilder();
         try {
-            Process process = Runtime.getRuntime().exec(command);
+            Process process = Runtime.getRuntime().exec(command.split(" "));
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             
             String line;
@@ -103,7 +103,7 @@ public class AdbHelper {
                     logger.warn("No connected devices found");
                     return deviceInfo;
                 }
-                deviceId = devices.get(0);
+                deviceId = devices.getFirst();
             }
             
             // Get device properties
@@ -139,7 +139,7 @@ public class AdbHelper {
         if (deviceId == null || deviceId.isEmpty()) {
             List<String> devices = getConnectedDevices();
             if (!devices.isEmpty()) {
-                deviceId = devices.get(0);
+                deviceId = devices.getFirst();
             }
         }
         
@@ -158,7 +158,7 @@ public class AdbHelper {
         if (deviceId == null || deviceId.isEmpty()) {
             List<String> devices = getConnectedDevices();
             if (!devices.isEmpty()) {
-                deviceId = devices.get(0);
+                deviceId = devices.getFirst();
             }
         }
         
@@ -286,7 +286,7 @@ public class AdbHelper {
         if (deviceId == null || deviceId.isEmpty()) {
             List<String> devices = getConnectedDevices();
             if (!devices.isEmpty()) {
-                deviceId = devices.get(0);
+                deviceId = devices.getFirst();
             }
         }
         
@@ -314,7 +314,7 @@ public class AdbHelper {
         if (deviceId == null || deviceId.isEmpty()) {
             List<String> devices = getConnectedDevices();
             if (!devices.isEmpty()) {
-                deviceId = devices.get(0);
+                deviceId = devices.getFirst();
             }
         }
         
@@ -392,7 +392,7 @@ public class AdbHelper {
         if (deviceId == null || deviceId.isEmpty()) {
             List<String> devices = getConnectedDevices();
             if (!devices.isEmpty()) {
-                deviceId = devices.get(0);
+                deviceId = devices.getFirst();
             } else {
                 return false;
             }

@@ -82,7 +82,7 @@ public class DeviceManager {
             
             if (realDeviceId == null) {
                 logger.warn("No real device found among connected devices. Using first available device.");
-                realDeviceId = devices.get(0);
+                realDeviceId = devices.getFirst();
             }
             
             // Use configured UDID if provided and connected, otherwise use detected

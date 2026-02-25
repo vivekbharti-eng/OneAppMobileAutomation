@@ -59,11 +59,11 @@ public class EmailReporter {
             }
 
             String dateStr = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss").format(new Date());
-            String subject = String.format("Automation Report | %s | %s | %d Passed / %d Failed",
-                    platform.toUpperCase(), dateStr, passed, failed);
+            String subject = "Automation Report | %s | %s | %d Passed / %d Failed".formatted(
+                platform.toUpperCase(), dateStr, passed, failed);
 
             int total = passed + failed;
-            String passRate = total > 0 ? String.format("%.0f%%", (passed * 100.0 / total)) : "N/A";
+            String passRate = total > 0 ? "%.0f%%".formatted((passed * 100.0 / total)) : "N/A";
             String statusColor = failed > 0 ? "#dc3545" : "#28a745";
             String statusLabel = failed > 0 ? "FAILED" : "PASSED";
 
