@@ -136,13 +136,6 @@ public class SendMoneySteps {
     // Step 8 — Enter PIN
     // -----------------------------------------------------------------------
 
-    @When("I enter transaction PIN {string}")
-    public void iEnterTransactionPIN(String pin) {
-        sendMoneyPage.enterPin(pin);
-        logger.info("Entered transaction PIN");
-        ExtentReportManager.logInfo("Entered transaction PIN");
-    }
-
     @When("I enter transaction PIN from config")
     public void iEnterTransactionPINFromConfig() {
         String pin = PropertyReader.getTestDataProperty("pin");
@@ -154,14 +147,6 @@ public class SendMoneySteps {
     // -----------------------------------------------------------------------
     // Step 9 — Verify confirmation bottom drawer
     // -----------------------------------------------------------------------
-
-    @Then("I should see transaction confirmation bottom drawer")
-    public void iShouldSeeTransactionConfirmationBottomDrawer() {
-        boolean drawerDisplayed = sendMoneyPage.isConfirmationDrawerDisplayed();
-        Assert.assertTrue(drawerDisplayed, "Transaction confirmation bottom drawer is not displayed");
-        logger.info("Transaction confirmation bottom drawer is displayed");
-        ExtentReportManager.logPass("Confirmation bottom drawer displayed");
-    }
 
     // -----------------------------------------------------------------------
     // Step 10 — Transaction details verifications
@@ -176,48 +161,12 @@ public class SendMoneySteps {
             (sendMoneyPage.isTransferSuccessDisplayed() ? "SUCCESS" : "FAILURE"));
     }
 
-    @Then("I should see transaction failure on details page")
-    public void iShouldSeeTransactionFailureOnDetailsPage() {
-        boolean failurePage = sendMoneyPage.isTransferFailureDisplayed();
-        Assert.assertTrue(failurePage, "Transaction failure details page is not displayed");
-        logger.info("Transaction failure details page is displayed");
-        ExtentReportManager.logPass("Transaction failure displayed as expected on details page");
-    }
-
     @Then("I should see transfer success message")
     public void iShouldSeeTransferSuccessMessage() {
         boolean success = sendMoneyPage.isTransferSuccessDisplayed();
         Assert.assertTrue(success, "Transfer success message is not displayed");
         logger.info("Transfer success message is displayed");
         ExtentReportManager.logPass("P2P transfer completed successfully");
-    }
-
-    // -----------------------------------------------------------------------
-    // Negative verifications
-    // -----------------------------------------------------------------------
-
-    @Then("I should see no contact found message")
-    public void iShouldSeeNoContactFoundMessage() {
-        boolean noContact = sendMoneyPage.isNoContactMessageDisplayed();
-        Assert.assertTrue(noContact, "No contact found message is not displayed");
-        logger.info("No contact found message is displayed");
-        ExtentReportManager.logPass("No contact found message displayed for invalid number");
-    }
-
-    @Then("I should see send money error message")
-    public void iShouldSeeSendMoneyErrorMessage() {
-        boolean errorDisplayed = sendMoneyPage.isErrorDisplayed();
-        Assert.assertTrue(errorDisplayed, "Send money error message is not displayed");
-        logger.info("Send money error message is displayed");
-        ExtentReportManager.logPass("Error message displayed as expected: " + sendMoneyPage.getErrorMessageText());
-    }
-
-    @Then("I should see insufficient funds message")
-    public void iShouldSeeInsufficientFundsMessage() {
-        boolean displayed = sendMoneyPage.isInsufficientFundsDisplayed();
-        Assert.assertTrue(displayed, "Insufficient funds message is not displayed");
-        logger.info("Insufficient funds message is displayed");
-        ExtentReportManager.logPass("Insufficient funds message displayed as expected");
     }
 
     // -----------------------------------------------------------------------
@@ -311,14 +260,4 @@ public class SendMoneySteps {
         ExtentReportManager.logPass("Home screen displayed — transaction outcome: " + transactionOutcome + " — test COMPLETE");
     }
 
-    // -----------------------------------------------------------------------
-    // Cancel
-    // -----------------------------------------------------------------------
-
-    @When("I cancel the send money transaction")
-    public void iCancelTheSendMoneyTransaction() {
-        sendMoneyPage.tapCancel();
-        logger.info("Cancelled send money transaction");
-        ExtentReportManager.logInfo("Cancelled send money transaction");
-    }
 }
