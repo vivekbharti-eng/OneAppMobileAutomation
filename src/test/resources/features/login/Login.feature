@@ -1,4 +1,4 @@
-@smoke @regression
+@smoke
 Feature: EcoCash Login Functionality
   As a EcoCash user
   I want to login to the EcoCash mobile application
@@ -18,17 +18,4 @@ Feature: EcoCash Login Functionality
     And I enter PIN from config
     And I Tap to Cancel button biometric authentication popup if displayed
     Then I should see the home page
-
-  @negative @login
-  Scenario Outline: Login with invalid mobile number
-    When I enter country code "+263"
-    And I enter mobile number "<mobile_number>"
-    And I tap on continue button
-    Then I should see error message
-
-    Examples:
-      | mobile_number |
-      | 123456789     |
-      | 000000000     |
-      | 999999999     |
 

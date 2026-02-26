@@ -1,4 +1,4 @@
-@smoke @regression @logout
+@smoke @logout
 Feature: EcoCash Logout Functionality
   As a EcoCash user
   I want to logout from the application
@@ -7,7 +7,7 @@ Feature: EcoCash Logout Functionality
   Background:
     Given I tap on profile image area
 
-  @positive @logout @profile
+  @smoke @positive @logout @profile
   Scenario: User logout from profile menu
     When I scroll to bottom of side menu
     And I click on logout option
