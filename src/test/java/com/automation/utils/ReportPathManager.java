@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -26,6 +28,7 @@ public class ReportPathManager {
     private static String extentReportFile;
     private static String cucumberReportDir;
     private static String screenshotBaseDir;
+    private static final int MAX_RETAINED_RUNS = 20;
     
     /**
      * Initialize report paths with timestamp
@@ -47,6 +50,12 @@ public class ReportPathManager {
         createDirectory(extentReportDir);
         createDirectory(cucumberReportDir);
         createDirectory(screenshotBaseDir);
+
+        // Prune old runs — keep only the latest MAX_RETAINED_RUNS
+        pruneOldDirectories(baseReportDir + "/extent",          MAX_RETAINED_RUNS);
+        pruneOldDirectories(baseReportDir + "/allure",          MAX_RETAINED_RUNS);
+        pruneOldDirectories("test-output/cucumber-reports",     MAX_RETAINED_RUNS);
+        pruneOldDirectories("test-output/screenshots",          MAX_RETAINED_RUNS);
         
         // Update allure.properties dynamically
         updateAllureProperties();
@@ -72,6 +81,47 @@ public class ReportPathManager {
         }
     }
     
+    /**
+     * Delete oldest timestamp sub-directories inside {@code parentPath}, keeping
+     * only the {@code maxKeep} most-recent ones (sorted lexicographically, which
+     * equals chronological order because directories are named yyyyMMdd_HHmmss).
+     *
+     * @param parentPath directory that contains timestamped sub-directories
+     * @param maxKeep    number of most-recent runs to retain
+     */
+    private static void pruneOldDirectories(String parentPath, int maxKeep) {
+        File parent = new File(parentPath);
+        if (!parent.exists() || !parent.isDirectory()) {
+            return;
+        }
+        File[] children = parent.listFiles(File::isDirectory);
+        if (children == null || children.length <= maxKeep) {
+            return;
+        }
+        // Sort oldest first (ascending by name → ascending by creation time)
+        Arrays.sort(children, Comparator.comparing(File::getName));
+        int toDelete = children.length - maxKeep;
+        for (int i = 0; i < toDelete; i++) {
+            deleteDirectory(children[i]);
+            logger.info("Pruned old run directory: " + children[i].getPath());
+        }
+    }
+
+    /** Recursively delete a directory and all its contents. */
+    private static void deleteDirectory(File dir) {
+        File[] files = dir.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                if (f.isDirectory()) {
+                    deleteDirectory(f);
+                } else {
+                    f.delete();
+                }
+            }
+        }
+        dir.delete();
+    }
+
     /**
      * Update allure.properties file with new results directory
      */
