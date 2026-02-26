@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Appium Automation Suite" parallel="tests" thread-count="2" verbose="1" configfailurepolicy="skip">
+<suite name="Appium Automation Suite" parallel="none" verbose="1" preserve-order="true" configfailurepolicy="skip">
 
     <listeners>
         <listener class-name="com.automation.listeners.TestSuiteListener"/>
     </listeners>
-    
-    <!-- Android Test Suite -->
-    <test name="Android Tests" parallel="false" preserve-order="true">
+
+    <!-- 1. Login — runs first; holds @BeforeSuite -->
+    <test name="01 - Login" preserve-order="true">
         <parameter name="platform" value="android"/>
         <classes>
-            <class name="com.automation.runners.TestRunner"/>
+            <class name="com.automation.runners.LoginTestRunner"/>
         </classes>
     </test>
-    
-    <!-- iOS Test Suite - Uncomment to run iOS tests -->
-    <!--
-    <test name="iOS Tests" parallel="false">
-        <parameter name="platform" value="ios"/>
+
+    <!-- 2. SendMoney — runs second (requires logged-in session from Login) -->
+    <test name="02 - SendMoney" preserve-order="true">
+        <parameter name="platform" value="android"/>
         <classes>
-            <class name="com.automation.runners.TestRunner"/>
+            <class name="com.automation.runners.SendMoneyTestRunner"/>
         </classes>
     </test>
-    -->
-    
+
+    <!-- 3. Logout — runs third; holds @AfterSuite -->
+    <test name="03 - Logout" preserve-order="true">
+        <parameter name="platform" value="android"/>
+        <classes>
+            <class name="com.automation.runners.LogoutTestRunner"/>
+        </classes>
+    </test>
+
 </suite>

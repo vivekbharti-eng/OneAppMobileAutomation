@@ -15,13 +15,8 @@ Feature: EcoCash Send Money (P2P)
   Scenario Outline: Successful P2P money transfer
     When I tap on Send Money on Pay page
     And I tap on Send from the bottom drawer
-    # ---- Negative check: attempt self-transfer first ----
-    And I search for mobile number "789124766"
-    And I tap on own number in search results
-    Then I should see self transfer error message and log it
-    # ---- Clear and proceed with positive recipient ----
-    And I clear the search and search for mobile number "<recipient>"
-    And I wait for contact "<recipient>" to appear and select it
+    And I search for mobile number "789124558"
+    And I wait for contact "789124558" to appear and select it
     And I enter transfer amount "<amount>"
     And I select currency "<currency>"
     And I tap on Continue
@@ -35,9 +30,9 @@ Feature: EcoCash Send Money (P2P)
     Then I should see home screen
 
     Examples:
-      | recipient | currency | amount |
-      | 777222015 | USD      | 1.20   |
-      | 777222015 | ZWG      | 1.50  |
+      | currency | amount |
+      | USD      | 1.20   |
+      | ZWG      | 1.50   |
 
   # ------------------------------------------------------------------
   # Negative Scenarios

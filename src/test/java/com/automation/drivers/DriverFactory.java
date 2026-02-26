@@ -127,7 +127,12 @@ public class DriverFactory {
         options.setDeviceName(deviceName);
         options.setPlatformVersion(platformVersion);
         options.setAutomationName(PropertyReader.getConfigProperty("android.automationName"));
-        options.setApp(PropertyReader.getConfigProperty("android.app"));
+        String appPath = PropertyReader.getConfigProperty("android.app");
+        java.io.File appFile = new java.io.File(appPath);
+        if (!appFile.isAbsolute()) {
+            appFile = new java.io.File(System.getProperty("user.dir"), appPath);
+        }
+        options.setApp(appFile.getAbsolutePath());
         options.setAppPackage(PropertyReader.getConfigProperty("android.appPackage"));
         options.setAppActivity(PropertyReader.getConfigProperty("android.appActivity"));
         

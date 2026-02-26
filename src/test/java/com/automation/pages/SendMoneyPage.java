@@ -121,14 +121,25 @@ public class SendMoneyPage extends BasePage {
         try {
             sleep(1500); // wait for search screen
             By locator = LocatorUtils.getLocator(SEARCH_FIELD);
-            // EcoCash renders the search field as ImageView (React Native TextInput)
-            // Click to focus, then sendKeys. Do NOT call clear() — it breaks focus.
+            // EcoCash renders the search field as ImageView (React Native TextInput).
+            // sendKeys fires React Native onChange twice (double-type bug).
+            // Fix: click to focus, clear via UiAutomator2 setText, then use mobile:type.
             WebElement searchField = waitForElement(locator, 15);
             searchField.click();
             sleep(500);
-            searchField.sendKeys(mobileNumber);
+            // Clear any existing text using UiAutomator2 setText before typing
+            try {
+                ((AndroidDriver) driver).executeScript("mobile: clearTextField",
+                        java.util.Map.of("elementId", searchField.getAttribute("id")));
+            } catch (Exception ignored) {
+                try { searchField.clear(); } catch (Exception ignored2) {}
+            }
+            sleep(300);
+            // Use mobile:type — sends raw key events, avoids React Native double-onChange
+            ((AndroidDriver) driver).executeScript("mobile: type",
+                    java.util.Map.of("text", mobileNumber));
             sleep(500);
-            // Dismiss keyboard without adding any extra character (no Keys.ENTER)
+            // Dismiss keyboard without adding any extra character
             try { ((AndroidDriver) driver).hideKeyboard(); } catch (Exception ignored) {}
             sleep(2500); // wait for search results list to load
             logger.info("Searched for mobile number: " + mobileNumber);
@@ -262,12 +273,20 @@ public class SendMoneyPage extends BasePage {
                 sleep(400);
                 logger.info("Cleared search field via CTRL+A + DELETE");
             }
-            // Now type the new search number
+            // Now type the new search number — use mobile:type to avoid React Native double-onChange
             By searchLoc = LocatorUtils.getLocator(SEARCH_FIELD);
             WebElement sf = waitForElement(searchLoc, 8);
             sf.click();
             sleep(400);
-            sf.sendKeys(newNumber);
+            try {
+                ((AndroidDriver) driver).executeScript("mobile: clearTextField",
+                        java.util.Map.of("elementId", sf.getAttribute("id")));
+            } catch (Exception ignored) {
+                try { sf.clear(); } catch (Exception ignored2) {}
+            }
+            sleep(300);
+            ((AndroidDriver) driver).executeScript("mobile: type",
+                    java.util.Map.of("text", newNumber));
             sleep(500);
             try { ((AndroidDriver) driver).hideKeyboard(); } catch (Exception ignored) {}
             sleep(2500);
