@@ -5,14 +5,7 @@ Feature: EcoCash Send Money (P2P)
   So that I can transfer funds peer-to-peer
 
   Background:
-    Given the app is launched
-    When I click on Agree and Continue
-    And I skip login if already logged in
-    And I login with valid credentials from config
-    Then I should see the home page
-    When I dismiss biometric authentication popup if displayed
-    And I press back button to dismiss biometric drawer
-    And I navigate back to home screen
+    Given I should see the home page
 
   # ------------------------------------------------------------------
   # Positive Scenarios
@@ -43,8 +36,8 @@ Feature: EcoCash Send Money (P2P)
 
     Examples:
       | recipient | currency | amount |
-      | 777222015 | USD      | 5.00   |
-      | 777222015 | ZWG      | 10.00  |
+      | 777222015 | USD      | 1.20   |
+      | 777222015 | ZWG      | 1.50  |
 
   # ------------------------------------------------------------------
   # Negative Scenarios

@@ -227,11 +227,27 @@ public class Hooks {
                 ExtentReportManager.logPass("Scenario passed: " + scenario.getName());
             }
 
+            // Derive feature name from scenario URI for per-feature tracking
+            String trackedFeature = "Unknown";
+            try {
+                String uri = scenario.getUri().toString().replace("\\", "/");
+                String[] parts = uri.split("/");
+                if (parts.length >= 2) {
+                    // Use folder name (e.g. "login") capitalised as display name
+                    String folder = parts[parts.length - 2];
+                    trackedFeature = Character.toUpperCase(folder.charAt(0)) + folder.substring(1);
+                }
+            } catch (Exception ex) {
+                logger.warn("Could not derive feature name for tracking: " + ex.getMessage());
+            }
+
             // Track overall pass/fail counts for email summary
             if (scenario.isFailed()) {
                 TestResultTracker.incrementFailed();
+                TestResultTracker.trackFeatureResult(trackedFeature, false);
             } else {
                 TestResultTracker.incrementPassed();
+                TestResultTracker.trackFeatureResult(trackedFeature, true);
             }
 
             // Flush extent report

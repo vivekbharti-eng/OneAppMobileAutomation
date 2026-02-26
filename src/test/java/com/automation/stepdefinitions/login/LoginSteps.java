@@ -21,9 +21,6 @@ public class LoginSteps {
     private LoginPage loginPage;
     private HomePage homePage;
     
-    // Flag to track if user is already logged in (to skip login steps)
-    private static boolean alreadyLoggedIn = false;
-    
     public LoginSteps() {
         loginPage = new LoginPage();
         homePage = new HomePage();
@@ -100,116 +97,6 @@ public class LoginSteps {
         }
     }
     
-    @Given("I skip login if already logged in")
-    public void iSkipLoginIfAlreadyLoggedIn() {
-        try {
-            String featureUri = com.automation.hooks.Hooks.currentFeatureUri.get();
-            String pin = PropertyReader.getTestDataProperty("pin");
-
-            // ---------------------------------------------------------------
-            // Helper: detect PIN re-entry screen (app restarted with active session)
-            // ---------------------------------------------------------------
-            boolean onPinReEntry = homePage.isPinReEntryScreenDisplayed();
-
-            // ---------------------------------------------------------------
-            // LOGIN FEATURE — must always start from the FULL login screen
-            // ---------------------------------------------------------------
-            if (featureUri != null && featureUri.contains("Login.feature")) {
-                logger.info("Login flow detected — ensuring app is on full login screen");
-
-                if (onPinReEntry) {
-                    logger.info("PIN re-entry screen detected — entering PIN to reach home, then will logout");
-                    ExtentReportManager.logInfo("Login feature: PIN re-entry detected, entering PIN then logging out");
-                    try {
-                        loginPage.enterPIN(pin);
-                        Thread.sleep(3000); // wait for biometric popup to appear after PIN
-                        homePage.dismissBiometricPopup(); // click Cancel button on biometric popup
-                        Thread.sleep(1000);
-                        homePage.pressBackOnlyIfBiometricDrawerOpen(); // safe back — only if drawer still open
-                        Thread.sleep(1500);
-                        // Verify we are on the home page before proceeding to logout
-                        if (homePage.isHomePageDisplayedQuick(5)) {
-                            logger.info("Home page confirmed after biometric cancel");
-                        } else {
-                            logger.warn("Home page not detected after biometric cancel — proceeding anyway");
-                        }
-                    } catch (Exception e) {
-                        logger.warn("PIN entry / biometric dismiss before logout failed: " + e.getMessage());
-                    }
-                }
-
-                if (onPinReEntry || homePage.isAlreadyLoggedIn()) {
-                    logger.info("Performing logout so Login test can run from full login screen");
-                    try {
-                        homePage.performLogout();
-                        Thread.sleep(2000);
-                        // Re-activate app — logout may have exited to Android launcher
-                        io.appium.java_client.AppiumDriver driver = com.automation.drivers.DriverManager.getDriver();
-                        if (driver instanceof io.appium.java_client.android.AndroidDriver androidDriver) {
-                            androidDriver.activateApp("com.sasai.sasaipay");
-                            Thread.sleep(3000);
-                            logger.info("App re-activated after logout — should be on login screen");
-                        }
-                    } catch (Exception e) {
-                        logger.warn("Logout before Login test failed (proceeding anyway): " + e.getMessage());
-                    }
-                } else {
-                    logger.info("App is on full login screen — proceeding with Login test");
-                }
-                alreadyLoggedIn = false;
-                return;
-            }
-
-            // ---------------------------------------------------------------
-            // NON-LOGIN FEATURES (SendMoney, Logout, etc.)
-            // ---------------------------------------------------------------
-            logger.info("======================================");
-            logger.info("Checking if user is already logged in");
-            logger.info("======================================");
-
-            if (onPinReEntry) {
-                // App has an active session — enter PIN to resume, dismiss biometric, verify home
-                logger.info("PIN re-entry screen detected — entering PIN to reach home page");
-                ExtentReportManager.logInfo("PIN re-entry screen: entering PIN to resume session");
-                try {
-                    loginPage.enterPIN(pin);
-                    Thread.sleep(3000); // wait for biometric popup to appear after PIN
-                    homePage.dismissBiometricPopup(); // click Cancel on biometric popup
-                    Thread.sleep(1000);
-                    homePage.pressBackOnlyIfBiometricDrawerOpen(); // safe back only if drawer still open
-                    Thread.sleep(1500);
-                    // Only check for welcome/home page — no logout needed
-                    if (homePage.isHomePageDisplayedQuick(5)) {
-                        logger.info("Welcome/home page confirmed after biometric cancel");
-                        ExtentReportManager.logPass("PIN re-entry + biometric dismissed — on home page");
-                    } else {
-                        logger.warn("Home page not detected after biometric cancel — proceeding");
-                    }
-                } catch (Exception e) {
-                    logger.warn("PIN re-entry / biometric dismiss failed: " + e.getMessage());
-                }
-                alreadyLoggedIn = true;
-                return;
-            }
-
-            // Already on home page (e.g. after Login scenario succeeded) — no logout check needed
-            if (homePage.isAlreadyLoggedIn()) {
-                logger.info("✓ User already on home page — skipping login steps");
-                ExtentReportManager.logPass("Home page detected — skipping login");
-                alreadyLoggedIn = true;
-                // Do NOT press back or trigger any logout — biometric/back handled by Background steps
-            } else {
-                logger.info("✗ User is NOT logged in - Will proceed with login steps");
-                ExtentReportManager.logInfo("User not logged in - proceeding with login flow");
-                alreadyLoggedIn = false;
-            }
-        } catch (Exception e) {
-            logger.warn("Could not verify login status: " + e.getMessage());
-            ExtentReportManager.logWarning("Could not verify login status, will attempt login");
-            alreadyLoggedIn = false;
-        }
-    }
-    
     @When("I enter country code {string}")
     public void iEnterCountryCode(String countryCode) {
         loginPage.selectCountryCode(countryCode);
@@ -219,11 +106,6 @@ public class LoginSteps {
     
     @When("I enter country code from config")
     public void iEnterCountryCodeFromConfig() {
-        if (alreadyLoggedIn) {
-            logger.info("⏭ Skipping: User already logged in");
-            ExtentReportManager.logInfo("Skipped - User already logged in");
-            return;
-        }
         String countryCode = PropertyReader.getTestDataProperty("country.code");
         loginPage.selectCountryCode(countryCode);
         logger.info("Selected country code from testdata: " + countryCode);
@@ -239,11 +121,6 @@ public class LoginSteps {
     
     @When("I enter mobile number from config")
     public void iEnterMobileNumberFromConfig() {
-        if (alreadyLoggedIn) {
-            logger.info("⏭ Skipping: User already logged in");
-            ExtentReportManager.logInfo("Skipped - User already logged in");
-            return;
-        }
         String mobileNumber = PropertyReader.getTestDataProperty("mobile.number");
         loginPage.enterMobileNumber(mobileNumber);
         logger.info("Entered mobile number from testdata: " + mobileNumber);
@@ -252,11 +129,6 @@ public class LoginSteps {
     
     @When("I tap on continue button")
     public void iTapOnContinueButton() {
-        if (alreadyLoggedIn) {
-            logger.info("⏭ Skipping: User already logged in");
-            ExtentReportManager.logInfo("Skipped - User already logged in");
-            return;
-        }
         loginPage.clickContinueButton();
         logger.info("Tapped on continue button");
         ExtentReportManager.logInfo("Tapped on continue button");
@@ -271,11 +143,6 @@ public class LoginSteps {
     
     @When("I enter OTP from config")
     public void iEnterOTPFromConfig() {
-        if (alreadyLoggedIn) {
-            logger.info("⏭ Skipping: User already logged in");
-            ExtentReportManager.logInfo("Skipped - User already logged in");
-            return;
-        }
         String otp = PropertyReader.getTestDataProperty("otp");
         loginPage.enterOTP(otp);
         logger.info("Entered OTP from testdata");
@@ -284,11 +151,6 @@ public class LoginSteps {
     
     @When("I tap on verify button")
     public void iTapOnVerifyButton() {
-        if (alreadyLoggedIn) {
-            logger.info("⏭ Skipping: User already logged in");
-            ExtentReportManager.logInfo("Skipped - User already logged in");
-            return;
-        }
         try {
             loginPage.clickVerifyButton();
             logger.info("Tapped on verify button");
@@ -310,11 +172,6 @@ public class LoginSteps {
     
     @When("I enter PIN from config")
     public void iEnterPINFromConfig() {
-        if (alreadyLoggedIn) {
-            logger.info("⏭ Skipping: User already logged in");
-            ExtentReportManager.logInfo("Skipped - User already logged in");
-            return;
-        }
         String pin = PropertyReader.getTestDataProperty("pin");
         loginPage.enterPIN(pin);
         logger.info("Entered PIN from testdata");
@@ -323,11 +180,6 @@ public class LoginSteps {
     
     @When("I login with valid credentials from config")
     public void iLoginWithValidCredentialsFromConfig() {
-        if (alreadyLoggedIn) {
-            logger.info("⏭ Skipping login: User already logged in");
-            ExtentReportManager.logInfo("Skipped login - User already logged in");
-            return;
-        }
         loginPage.loginWithConfigCredentials();
         logger.info("Logged in with valid credentials from config");
         ExtentReportManager.logInfo("Logged in with EcoCash credentials from config");
@@ -335,19 +187,16 @@ public class LoginSteps {
     
     @Then("I should see the home page")
     public void iShouldSeeTheHomePage() {
-        if (alreadyLoggedIn) {
-            logger.info("✓ Already on home page - User was already logged in");
-            ExtentReportManager.logPass("Already on home page - User was already logged in");
-            return;
-        }
         try {
-            Thread.sleep(5000); // Wait for home page to load
+            // If biometric bottom sheet is still open after cancel, press back to close it
+            homePage.pressBackOnlyIfBiometricDrawerOpen();
+            Thread.sleep(3000); // Wait for home page to load after any drawer is dismissed
         } catch (InterruptedException e) {
             logger.error("Thread interrupted: " + e.getMessage());
         }
-        
+
         boolean homePageDisplayed = homePage.isHomePageDisplayed();
-        
+
         Assert.assertTrue(homePageDisplayed, "Home page is not displayed");
         logger.info("Home page is displayed");
         ExtentReportManager.logPass("EcoCash home page is displayed successfully");
@@ -368,8 +217,16 @@ public class LoginSteps {
     public void iDismissBiometricAuthenticationPopup() {
         logger.info("Step: Dismissing biometric authentication popup if displayed");
         ExtentReportManager.logInfo("Checking for biometric authentication popup");
-        homePage.dismissBiometricPopup();
+        loginPage.handleBiometricPopup();
         ExtentReportManager.logPass("Biometric popup handling completed");
+    }
+
+    @When("I Tap to Cancel button biometric authentication popup if displayed")
+    public void iTapToCancelBiometricPopup() {
+        logger.info("Step: Waiting for Enable Biometric bottom sheet and clicking Cancel");
+        ExtentReportManager.logInfo("Waiting for biometric bottom sheet then tapping Cancel");
+        loginPage.handleBiometricPopup();
+        ExtentReportManager.logPass("Biometric Cancel tapped (or popup not shown)");
     }
     
     @When("I click on screen to dismiss any drawer")
@@ -380,18 +237,6 @@ public class LoginSteps {
         ExtentReportManager.logPass("Clicked on screen successfully");
     }
     
-    @When("I press back button to dismiss biometric drawer")
-    public void iPressBackButtonToDismissBiometricDrawer() {
-        logger.info("Step: Pressing back button to dismiss biometric drawer (if still open)");
-        ExtentReportManager.logInfo("Smart back press — only if biometric drawer is still visible");
-        boolean pressed = homePage.pressBackOnlyIfBiometricDrawerOpen();
-        if (pressed) {
-            ExtentReportManager.logPass("Back button pressed — biometric drawer dismissed");
-        } else {
-            ExtentReportManager.logInfo("Back press skipped — no biometric drawer detected");
-        }
-    }
-
     @When("I navigate back to home screen")
     public void iNavigateBackToHomeScreen() {
         logger.info("Navigating back to home screen...");

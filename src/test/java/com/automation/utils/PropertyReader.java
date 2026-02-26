@@ -129,6 +129,21 @@ public class PropertyReader {
         }
         return value;
     }
+
+    /**
+     * Override / inject a config property at runtime (e.g. auto-detected device UDID).
+     * Takes priority over file values for the lifetime of the JVM.
+     *
+     * @param key   Property key
+     * @param value Property value
+     */
+    public static void overrideConfigProperty(String key, String value) {
+        if (configProperties == null) {
+            loadConfigProperties();
+        }
+        configProperties.setProperty(key, value);
+        logger.info("Config property overridden at runtime: {} = {}", key, value);
+    }
     
     /**
      * Get configuration property value with default

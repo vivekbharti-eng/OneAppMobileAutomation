@@ -23,8 +23,6 @@ public class HomePage extends BasePage {
     private static final String LOGOUT_POPUP_TITLE = "home.logout.popup.title.xpath";
     private static final String LOGOUT_ANYWAY_BUTTON = "home.logout.anyway.button.xpath";
     private static final String LOGOUT_CANCEL_BUTTON = "home.logout.cancel.button.xpath";
-    private static final String BIOMETRIC_CANCEL_BUTTON = "login.biometric.cancel.xpath";
-    private static final String BIOMETRIC_POPUP = "login.biometric.popup.xpath";
     
     /**
      * Check if home page is displayed
@@ -40,13 +38,16 @@ public class HomePage extends BasePage {
             logger.info("Home page displayed: " + displayed);
             return displayed;
         } catch (Exception e) {
-            logger.warn("Home page not displayed: " + e.getMessage());
-            // Try alternative check - look for any common home page element
+            logger.warn("Primary home page check failed: " + e.getMessage());
+            // Fallback: check for specific home screen elements only (not generic TextViews)
             try {
-                By anyHomeElement = By.xpath("//android.widget.TextView | //android.view.View[@clickable='true']");
-                boolean anyElementFound = isElementDisplayed(anyHomeElement);
-                if (anyElementFound) {
-                    logger.info("Found some home page element, considering home page as displayed");
+                By homeSpecificElement = By.xpath(
+                    "//*[@content-desc='Send Money' or @text='Send Money']" +
+                    " | //*[contains(@content-desc,'Balance') or contains(@text,'Balance')]" +
+                    " | //*[@resource-id='button_profile_picture']");
+                boolean found = isElementDisplayed(homeSpecificElement, 5);
+                if (found) {
+                    logger.info("Found specific home page element, home page is displayed");
                     return true;
                 }
             } catch (Exception ex) {
@@ -201,30 +202,6 @@ public class HomePage extends BasePage {
             throw new AssertionError("Welcome message does not contain expected greeting. Found: " + welcomeText);
         }
         logger.info("Welcome message verified successfully: " + welcomeText);
-    }
-    
-    /**
-     * Dismiss biometric authentication popup if displayed
-     */
-    public void dismissBiometricPopup() {
-        try {
-            By cancelButtonLocator = LocatorUtils.getLocator(BIOMETRIC_CANCEL_BUTTON);
-            logger.info("Checking for biometric authentication popup...");
-            
-            // Wait for a short time to see if popup appears
-            Thread.sleep(2000);
-            
-            if (isElementDisplayed(cancelButtonLocator, 3)) {
-                logger.info("Biometric popup detected, clicking cancel button...");
-                click(cancelButtonLocator);
-                logger.info("Biometric popup dismissed successfully");
-                Thread.sleep(1000); // Wait for popup to close
-            } else {
-                logger.info("No biometric popup detected");
-            }
-        } catch (Exception e) {
-            logger.warn("Failed to dismiss biometric popup: " + e.getMessage());
-        }
     }
     
     /**
@@ -611,66 +588,146 @@ public class HomePage extends BasePage {
      * @return true if popup displayed, false otherwise
      */
     public boolean isLogoutPopupDisplayed() {
+        logger.info("Checking for logout confirmation popup...");
+
+        // Strategy 1: look for 'Logout anyway' button — definitive indicator the popup is open
+        try {
+            By s1 = By.xpath("//*[contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'anyway') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'anyway')]");
+            if (isElementDisplayed(s1, 8)) {
+                logger.info("Logout popup detected via 'anyway' button");
+                return true;
+            }
+        } catch (Exception e1) {
+            logger.debug("Strategy 1 (anyway button): " + e1.getMessage());
+        }
+
+        // Strategy 2: UIAutomator — description or text contains 'Logout' on popup
+        try {
+            By s2 = io.appium.java_client.AppiumBy.androidUIAutomator(
+                "new UiSelector().descriptionContains(\"Logout\").clickable(true)"
+            );
+            if (isElementDisplayed(s2, 5)) {
+                logger.info("Logout popup detected via UIAutomator clickable Logout");
+                return true;
+            }
+        } catch (Exception e2) {
+            logger.debug("Strategy 2 (UIAutomator Logout clickable): " + e2.getMessage());
+        }
+
+        // Strategy 3: broad popup title — 'Are you sure' or 'Log out'
+        try {
+            By s3 = By.xpath("//*[contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'are you sure') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'are you sure') or contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'log out') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'log out')]");
+            if (isElementDisplayed(s3, 5)) {
+                logger.info("Logout popup detected via 'Are you sure'/'Log out' text");
+                return true;
+            }
+        } catch (Exception e3) {
+            logger.debug("Strategy 3 (Are you sure / Log out): " + e3.getMessage());
+        }
+
+        // Strategy 4: properties-file locator (catch-all)
         try {
             By popupLocator = LocatorUtils.getLocator(LOGOUT_POPUP);
-            logger.info("Checking for logout confirmation popup...");
-            waitForElement(popupLocator, 10);
-            boolean displayed = isElementDisplayed(popupLocator);
-            logger.info("Logout confirmation popup displayed: " + displayed);
-            return displayed;
-        } catch (Exception e) {
-            logger.warn("Logout popup not displayed: " + e.getMessage());
-            return false;
+            if (isElementDisplayed(popupLocator, 5)) {
+                logger.info("Logout popup detected via properties locator");
+                return true;
+            }
+        } catch (Exception e4) {
+            logger.debug("Strategy 4 (properties locator): " + e4.getMessage());
         }
+
+        logger.warn("Logout confirmation popup NOT detected after all strategies");
+        return false;
     }
     
     /**
-     * Click on 'Logout Anyway' button in confirmation popup
+     * Click on 'Logout Anyway' button in confirmation popup.
+     * Tries multiple strategies to handle different label/element-type variants
+     * that the EcoCash app may use for this button.
      */
     public void clickLogoutAnywayButton() {
         try {
             logger.info("Looking for 'Logout Anyway' button on popup...");
 
-            // Strategy 1: content-desc="Logout anyway" (android.view.View)
-            By contentDescAnyway = By.xpath("//android.view.View[@content-desc='Logout anyway']");
-            if (isElementDisplayed(contentDescAnyway, 5)) {
-                click(contentDescAnyway);
-                logger.info("Clicked 'Logout anyway' (content-desc)");
+            // Strategy 1: content-desc="Logout anyway" — exact case (android.view.View)
+            By s1 = By.xpath("//android.view.View[@content-desc='Logout anyway']");
+            if (isElementDisplayed(s1, 5)) {
+                click(s1);
+                logger.info("Clicked 'Logout anyway' (content-desc exact, View)");
                 Thread.sleep(2000);
                 return;
             }
 
-            // Strategy 2: content-desc="Logout" on any View/Button (popup confirm button)
-            By contentDescLogout = By.xpath("//android.view.View[@content-desc='Logout'] | //android.widget.Button[@content-desc='Logout']");
-            if (isElementDisplayed(contentDescLogout, 4)) {
-                click(contentDescLogout);
-                logger.info("Clicked logout confirm (content-desc='Logout')");
+            // Strategy 2: all element types with content-desc containing 'anyway' (case variations)
+            By s2 = By.xpath("//*[contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'anyway')]");
+            if (isElementDisplayed(s2, 4)) {
+                click(s2);
+                logger.info("Clicked 'Logout anyway' (content-desc contains 'anyway')");
                 Thread.sleep(2000);
                 return;
             }
 
-            // Strategy 3: properties locator (Button text fallback)
-            By logoutAnywayLocator = LocatorUtils.getLocator(LOGOUT_ANYWAY_BUTTON);
-            if (isElementDisplayed(logoutAnywayLocator, 4)) {
-                click(logoutAnywayLocator);
-                logger.info("Clicked 'Logout Anyway' button (properties locator)");
+            // Strategy 3: text contains 'anyway' (Button or TextView)
+            By s3 = By.xpath("//*[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'anyway')]");
+            if (isElementDisplayed(s3, 4)) {
+                click(s3);
+                logger.info("Clicked 'Logout anyway' (text contains 'anyway')");
                 Thread.sleep(2000);
                 return;
             }
 
-            // Strategy 4: UIAutomator description match
+            // Strategy 4: UIAutomator — descriptionContains 'anyway' (case-insensitive)
             try {
-                By uia = io.appium.java_client.AppiumBy.androidUIAutomator(
-                    "new UiSelector().descriptionContains(\"Logout\")"
+                By uia1 = io.appium.java_client.AppiumBy.androidUIAutomator(
+                    "new UiSelector().descriptionContains(\"anyway\")"
                 );
-                if (isElementDisplayed(uia, 4)) {
-                    click(uia);
-                    logger.info("Clicked 'Logout' confirm via UIAutomator descriptionContains");
+                if (isElementDisplayed(uia1, 4)) {
+                    click(uia1);
+                    logger.info("Clicked via UIAutomator descriptionContains 'anyway'");
                     Thread.sleep(2000);
                     return;
                 }
-            } catch (Exception eUia) {
-                logger.warn("UIAutomator descriptionContains Logout failed: " + eUia.getMessage());
+            } catch (Exception e1) {
+                logger.warn("UIAutomator descriptionContains 'anyway': " + e1.getMessage());
+            }
+
+            // Strategy 5: UIAutomator — textContains 'Logout' on clickable element
+            try {
+                By uia2 = io.appium.java_client.AppiumBy.androidUIAutomator(
+                    "new UiSelector().textContains(\"Logout\").clickable(true)"
+                );
+                if (isElementDisplayed(uia2, 4)) {
+                    click(uia2);
+                    logger.info("Clicked via UIAutomator textContains 'Logout' clickable");
+                    Thread.sleep(2000);
+                    return;
+                }
+            } catch (Exception e2) {
+                logger.warn("UIAutomator textContains 'Logout': " + e2.getMessage());
+            }
+
+            // Strategy 6: UIAutomator — descriptionContains 'Logout' on clickable element
+            try {
+                By uia3 = io.appium.java_client.AppiumBy.androidUIAutomator(
+                    "new UiSelector().descriptionContains(\"Logout\").clickable(true)"
+                );
+                if (isElementDisplayed(uia3, 4)) {
+                    click(uia3);
+                    logger.info("Clicked via UIAutomator descriptionContains 'Logout' clickable");
+                    Thread.sleep(2000);
+                    return;
+                }
+            } catch (Exception e3) {
+                logger.warn("UIAutomator descriptionContains 'Logout': " + e3.getMessage());
+            }
+
+            // Strategy 7: properties locator (catch-all from android_locators.properties)
+            By propLocator = LocatorUtils.getLocator(LOGOUT_ANYWAY_BUTTON);
+            if (isElementDisplayed(propLocator, 4)) {
+                click(propLocator);
+                logger.info("Clicked 'Logout Anyway' button (properties locator)");
+                Thread.sleep(2000);
+                return;
             }
 
             throw new RuntimeException("Logout anyway button not found on popup after all strategies.");
@@ -721,9 +778,6 @@ public class HomePage extends BasePage {
     public void performLogout() {
         try {
             logger.info("Attempting to logout...");
-            
-            // Dismiss any biometric popup first
-            dismissBiometricPopup();
             
             // Press back to dismiss any drawer
             pressBackButton();

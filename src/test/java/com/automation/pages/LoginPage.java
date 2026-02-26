@@ -279,7 +279,7 @@ public class LoginPage extends BasePage {
             
             // After entering PIN, check if there's a submit button, otherwise wait for auto-submit
             try {
-                By submitButton = By.xpath("//android.widget.Button[@content-desc='Submit' or @content-desc='Continue' or @text='Submit' or @text='Continue']");
+                By submitButton = By.xpath("//android.widget.Button[@content-desc='Submit' or @text='Submit']");
                 if (isElementDisplayed(submitButton, 3)) {
                     click(submitButton);
                     logger.info("Clicked submit button after PIN entry");
@@ -289,12 +289,11 @@ public class LoginPage extends BasePage {
             } catch (Exception e) {
                 logger.info("No submit button, assuming auto-submit after PIN entry");
             }
-            
-            // Handle biometric popup if it appears
-            handleBiometricPopup();
-            
-            Thread.sleep(5000); // Wait for login to complete and home page to load
-            logger.info("Waiting for home page to load after PIN entry...");
+
+            // NOTE: Biometric popup is handled by an explicit step after PIN entry.
+            // Do NOT call handleBiometricPopup() here — keep PIN entry pure.
+            Thread.sleep(2000); // Brief wait for the biometric bottom sheet to appear
+            logger.info("PIN entered — waiting for biometric prompt or home page...");
         } catch (Exception e) {
             logger.error("Failed to enter PIN: " + e.getMessage());
             throw new RuntimeException("Unable to enter PIN", e);
@@ -357,26 +356,89 @@ public class LoginPage extends BasePage {
     }
     
     /**
-     * Handle biometric popup if it appears and click cancel
+     * Wait for the "Enable Biometric" bottom sheet to appear after PIN entry,
+     * then click the CANCEL button (never Continue).
+     * Called automatically after PIN entry and also available as a public step.
      */
-    private void handleBiometricPopup() {
+    public void handleBiometricPopup() {
         try {
-            By biometricCancelLocator = LocatorUtils.getLocator(BIOMETRIC_CANCEL_BUTTON);
-            
-            // Wait briefly for biometric popup to appear (if it does)
-            Thread.sleep(2000);
-            
-            // Check if biometric popup is displayed
-            if (isElementDisplayed(biometricCancelLocator, 3)) {
-                logger.info("Biometric popup detected, clicking cancel button...");
-                click(biometricCancelLocator);
-                logger.info("Clicked cancel on biometric popup");
-                Thread.sleep(1000); // Wait for popup to dismiss
-            } else {
-                logger.info("No biometric popup detected, continuing...");
+            // Step 1: Wait up to 5s for the biometric bottom sheet to appear
+            By popupLocator = LocatorUtils.getLocator(BIOMETRIC_POPUP);
+            boolean popupVisible = isElementDisplayed(popupLocator, 5);
+
+            if (!popupVisible) {
+                // Fallback: look for any biometric-related text on screen
+                By fallbackPopup = By.xpath(
+                    "//*[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'biometric')" +
+                    " or contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'biometric')" +
+                    " or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'fingerprint')" +
+                    " or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'face id')]"
+                );
+                popupVisible = isElementDisplayed(fallbackPopup, 3);
             }
+
+            if (!popupVisible) {
+                logger.info("No biometric popup detected after PIN entry — continuing.");
+                return;
+            }
+
+            logger.info("Biometric bottom sheet detected — looking for Cancel button...");
+
+            // Step 2: Click CANCEL — try most-specific locators first to avoid hitting Continue
+
+            // UIAutomator exact text 'Cancel'
+            try {
+                By uiaCancel = io.appium.java_client.AppiumBy.androidUIAutomator(
+                    "new UiSelector().text(\"Cancel\")"
+                );
+                if (isElementDisplayed(uiaCancel, 3)) {
+                    click(uiaCancel);
+                    logger.info("Clicked Cancel on biometric popup (UIAutomator text='Cancel')");
+                    Thread.sleep(1500);
+                    return;
+                }
+            } catch (Exception e1) {
+                logger.debug("UIAutomator text='Cancel' not found: " + e1.getMessage());
+            }
+
+            // UIAutomator exact content-desc 'Cancel'
+            try {
+                By uiaCancelDesc = io.appium.java_client.AppiumBy.androidUIAutomator(
+                    "new UiSelector().description(\"Cancel\")"
+                );
+                if (isElementDisplayed(uiaCancelDesc, 3)) {
+                    click(uiaCancelDesc);
+                    logger.info("Clicked Cancel on biometric popup (UIAutomator desc='Cancel')");
+                    Thread.sleep(1500);
+                    return;
+                }
+            } catch (Exception e2) {
+                logger.debug("UIAutomator desc='Cancel' not found: " + e2.getMessage());
+            }
+
+            // XPath exact-match Cancel (from locator property)
+            By propLocator = LocatorUtils.getLocator(BIOMETRIC_CANCEL_BUTTON);
+            if (isElementDisplayed(propLocator, 3)) {
+                click(propLocator);
+                logger.info("Clicked Cancel on biometric popup (property locator)");
+                Thread.sleep(1500);
+                return;
+            }
+
+            // Last resort: XPath exact text/desc 'Cancel' across all element types
+            By xpathCancel = By.xpath(
+                "//*[@text='Cancel' or @content-desc='Cancel']"
+            );
+            if (isElementDisplayed(xpathCancel, 3)) {
+                click(xpathCancel);
+                logger.info("Clicked Cancel on biometric popup (XPath exact text/desc)");
+                Thread.sleep(1500);
+                return;
+            }
+
+            logger.warn("Biometric popup visible but Cancel button not found — skipping.");
         } catch (Exception e) {
-            logger.info("No biometric popup found or error handling it: " + e.getMessage());
+            logger.info("Biometric popup handling skipped: " + e.getMessage());
         }
     }
 }

@@ -1,0 +1,1003 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.automation:OneAppAutomation >-------------------
+[INFO] Building Appium Automation Framework 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ OneAppAutomation ---
+[INFO] Deleting C:\Users\vivek.bharti\OneAppAutomation\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ OneAppAutomation ---
+[INFO] skip non existing resourceDirectory C:\Users\vivek.bharti\OneAppAutomation\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ OneAppAutomation ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ OneAppAutomation ---
+[INFO] Copying 9 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ OneAppAutomation ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 27 source files with javac [debug release 21] to target\test-classes
+[INFO] Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+[INFO] 
+[INFO] --- surefire:3.5.0:test (default-test) @ OneAppAutomation ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running TestSuite
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+2026-02-26 14:10:17.198 [main] INFO  com.automation.listeners.TestSuiteListener - Suite started: Appium Automation Suite
+2026-02-26 14:10:17.696 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:10:18.146 [main] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
+2026-02-26 14:10:18.173 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.udid = 10BF7S243X0030Z
+2026-02-26 14:10:18.174 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.platformVersion = 15
+2026-02-26 14:10:18.174 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.deviceName = V2439
+2026-02-26 14:10:18.175 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.deviceType = real
+? Real device detected:  V2439  |  UDID: 10BF7S243X0030Z  |  Android 15
+2026-02-26 14:10:18.177 [main] INFO  com.automation.utils.AppiumServerManager - Auto-detected device ù UDID: 10BF7S243X0030Z | Model: V2439 | Android: 15
+? Appium server already running on port 4723.
+2026-02-26 14:10:18.279 [main] INFO  com.automation.utils.AppiumServerManager - Appium already running ù skipping start.
+2026-02-26 14:10:18.307 [main] INFO  com.automation.utils.ReportPathManager - Created directory: target/reports/allure/20260226_141018/allure-results
+2026-02-26 14:10:18.309 [main] INFO  com.automation.utils.ReportPathManager - Created directory: target/reports/extent/20260226_141018
+2026-02-26 14:10:18.310 [main] INFO  com.automation.utils.ReportPathManager - Created directory: test-output/cucumber-reports/20260226_141018
+2026-02-26 14:10:18.311 [main] INFO  com.automation.utils.ReportPathManager - Created directory: test-output/screenshots/20260226_141018
+2026-02-26 14:10:18.316 [main] INFO  com.automation.utils.ReportPathManager - Updated allure.properties with results directory: target/reports/allure/20260226_141018/allure-results
+2026-02-26 14:10:18.316 [main] INFO  com.automation.utils.ReportPathManager - Report paths initialized with timestamp: 20260226_141018
+2026-02-26 14:10:18.316 [main] INFO  com.automation.utils.ReportPathManager - Allure Results: target/reports/allure/20260226_141018/allure-results
+2026-02-26 14:10:18.316 [main] INFO  com.automation.utils.ReportPathManager - Allure Report: target/reports/allure/20260226_141018/allure-report
+2026-02-26 14:10:18.317 [main] INFO  com.automation.utils.ReportPathManager - Extent Report: target/reports/extent/20260226_141018/ExtentReport_20260226_141018.html
+2026-02-26 14:10:18.318 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report Directory: target/reports/extent/20260226_141018
+2026-02-26 14:10:18.510 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report initialized: target/reports/extent/20260226_141018/ExtentReport_20260226_141018.html
+=========================================
+  MOBILE AUTOMATION TEST SUITE STARTED  
+=========================================
+
+@smoke @regression @smoke @positive @login
+Scenario: Successful login with valid credentials from config            # src/test/resources/features/login/Login.feature:12
+2026-02-26 14:10:19.588 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+2026-02-26 14:10:19.589 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Starting scenario: Successful login with valid credentials from config
+2026-02-26 14:10:19.589 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+
+? Scenario: Successful login with valid credentials from config
+2026-02-26 14:10:19.591 [TestNG-tests-1] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
+2026-02-26 14:10:19.594 [TestNG-tests-1] INFO  com.automation.utils.PropertyReader - Android locators loaded successfully
+2026-02-26 14:10:19.867 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:10:21.736 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:10:21.857 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:10:22.246 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:10:22.864 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:10:23.027 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:10:24.577 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:10:24.689 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:10:25.285 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:10:25.590 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:10:25.998 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:10:26.028 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - 
+==================================================
+DEVICE INFORMATION
+==================================================
+Device ID       : 10BF7S243X0030Z
+Device Type     : Real Device
+Manufacturer    : vivo
+Brand           : vivo
+Model           : V2439
+Device Name     : V2439
+Android Version : 15
+SDK Version     : 35
+Build ID        : AP3A.240905.015.A2_V000L1
+Serial Number   : 10BF7S243X0030Z
+Screen Resolution: 1080x2392
+Battery Level   : 32%
+==================================================
+2026-02-26 14:10:26.028 [TestNG-tests-1] INFO  com.automation.reports.ExtentReportManager - Device information added to extent report
+2026-02-26 14:10:27.605 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Killed stale UiAutomator2 server processes on device
+2026-02-26 14:10:27.606 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Initializing driver for platform: android
+2026-02-26 14:10:27.606 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Execution type: local
+2026-02-26 14:10:27.607 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Creating local Android driver
+2026-02-26 14:10:27.609 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Platform: android, Execution: local, Device Type: real
+2026-02-26 14:10:27.610 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Real Android device execution requested
+2026-02-26 14:10:27.862 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:10:28.351 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:10:28.353 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Real device detected: 10BF7S243X0030Z
+2026-02-26 14:10:28.353 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Using configured UDID: 10BF7S243X0030Z
+2026-02-26 14:10:30.165 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:10:30.166 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Selected Real Device - UDID: 10BF7S243X0030Z, Model: V2439
+2026-02-26 14:10:30.168 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - 
+==================================================
+SELECTED DEVICE INFORMATION
+==================================================
+Device Type     : real
+Device Name     : V2439
+Platform Version: 15
+UDID            : 10BF7S243X0030Z
+Manufacturer    : vivo
+Model           : V2439
+==================================================
+2026-02-26 14:10:30.200 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Using device with UDID: 10BF7S243X0030Z
+2026-02-26 14:10:30.201 [TestNG-tests-1] WARN  com.automation.utils.PropertyReader - Property key not found: android.systemPort
+2026-02-26 14:10:30.201 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Real device capabilities configured
+2026-02-26 14:10:30.201 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Android capabilities configured
+2026-02-26 14:10:57.556 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Driver initialized successfully
+2026-02-26 14:10:57.556 [TestNG-tests-1] INFO  com.automation.reports.ExtentReportManager - Started test: Successful login with valid credentials from config
+2026-02-26 14:10:57.557 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Driver initialized successfully for platform: android
+2026-02-26 14:10:57.626 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - EcoCash app is launched ù checking current app state
+2026-02-26 14:10:57.627 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'home.welcome.xpath': //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:10:57.627 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:10:57.629 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:10:58.717 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay'] displayed: true
+2026-02-26 14:10:58.717 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Quick home page check: VISIBLE (skipping app restart)
+2026-02-26 14:10:58.717 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Home page already visible ù skipping app restart (reusing logged-in session)
+  Given the app is launched                                              # com.automation.stepdefinitions.login.LoginSteps.theAppIsLaunched()
+2026-02-26 14:10:58.722 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.agree.continue.button.xpath': //android.widget.Button[@content-desc='Agree & Continue']
+2026-02-26 14:10:58.722 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.Button[@content-desc='Agree & Continue']
+2026-02-26 14:10:58.722 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.Button[@content-desc='Agree & Continue'] with timeout: 10
+2026-02-26 14:10:58.722 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.Button[@content-desc='Agree & Continue']
+2026-02-26 14:10:59.312 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.Button[@content-desc='Agree & Continue']
+2026-02-26 14:11:00.067 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.Button[@content-desc='Agree & Continue']
+2026-02-26 14:11:00.068 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked Agree and Continue button
+2026-02-26 14:11:00.068 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Clicked on Agree and Continue button
+  When I click on Agree and Continue                                     # com.automation.stepdefinitions.login.LoginSteps.iClickOnAgreeAndContinue()
+2026-02-26 14:11:02.082 [TestNG-tests-1] INFO  com.automation.utils.PropertyReader - Loaded testdata file: src/test/resources/testdata/testdata.properties
+2026-02-26 14:11:02.082 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.countrycode.dropdown.xpath': //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-02-26 14:11:02.083 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-02-26 14:11:02.083 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')] with timeout: 10
+2026-02-26 14:11:02.083 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-02-26 14:11:03.178 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-02-26 14:11:04.115 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-02-26 14:11:04.116 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Step 1: Clicked country code dropdown to open bottom drawer
+2026-02-26 14:11:07.125 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Step 2: Bottom drawer animation complete, list loaded
+2026-02-26 14:11:07.126 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.countrycode.zimbabwe.uiautomator': new UiSelector().resourceId("drop_down_item_ZW")
+2026-02-26 14:11:07.140 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using AndroidUIAutomator locator: new UiSelector().resourceId("drop_down_item_ZW")
+2026-02-26 14:11:07.140 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Step 3: Searching for Zimbabwe (+263) in bottom drawer using content-desc...
+2026-02-26 14:11:07.142 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: AppiumBy.androidUIAutomator: new UiSelector().resourceId("drop_down_item_ZW") with timeout: 15
+2026-02-26 14:11:07.142 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: AppiumBy.androidUIAutomator: new UiSelector().resourceId("drop_down_item_ZW")
+2026-02-26 14:11:07.210 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Step 3: Found Zimbabwe option, clicking now...
+2026-02-26 14:11:07.210 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: AppiumBy.androidUIAutomator: new UiSelector().resourceId("drop_down_item_ZW")
+2026-02-26 14:11:08.053 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: AppiumBy.androidUIAutomator: new UiSelector().resourceId("drop_down_item_ZW")
+2026-02-26 14:11:08.053 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Step 3: Successfully clicked Zimbabwe (+263) from bottom drawer
+2026-02-26 14:11:09.058 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Step 4: Country code selected, drawer closing...
+2026-02-26 14:11:09.059 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Selected country code from testdata: +263
+  When I enter country code from config                                  # com.automation.stepdefinitions.login.LoginSteps.iEnterCountryCodeFromConfig()
+2026-02-26 14:11:09.064 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.mobile.xpath': //android.widget.EditText
+2026-02-26 14:11:09.064 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.EditText
+2026-02-26 14:11:09.064 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Waiting for mobile number field to appear...
+2026-02-26 14:11:09.064 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.EditText with timeout: 10
+2026-02-26 14:11:09.064 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.EditText
+2026-02-26 14:11:10.158 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicking on mobile number field...
+2026-02-26 14:11:10.160 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.EditText
+2026-02-26 14:11:10.359 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.EditText
+2026-02-26 14:11:11.569 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clearing mobile number field...
+2026-02-26 14:11:12.323 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Entering mobile number: 789124766
+2026-02-26 14:11:12.353 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Entered mobile number: 789124766
+2026-02-26 14:11:12.887 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Mobile number field contains: '789124766'
+2026-02-26 14:11:12.887 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Entered mobile number from testdata: 789124766
+  And I enter mobile number from config                                  # com.automation.stepdefinitions.login.LoginSteps.iEnterMobileNumberFromConfig()
+2026-02-26 14:11:12.892 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.continue.button.xpath': //android.widget.Button[@content-desc='Submit']
+2026-02-26 14:11:12.892 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.Button[@content-desc='Submit']
+2026-02-26 14:11:12.892 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.Button[@content-desc='Submit'] with timeout: 10
+2026-02-26 14:11:12.892 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.Button[@content-desc='Submit']
+2026-02-26 14:11:13.490 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.Button[@content-desc='Submit']
+2026-02-26 14:11:15.041 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.Button[@content-desc='Submit']
+2026-02-26 14:11:15.041 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked continue button
+2026-02-26 14:11:17.055 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Tapped on continue button
+  And I tap on continue button                                           # com.automation.stepdefinitions.login.LoginSteps.iTapOnContinueButton()
+2026-02-26 14:11:17.063 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.otp.xpath': //android.widget.EditText
+2026-02-26 14:11:17.063 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.EditText
+2026-02-26 14:11:17.064 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Waiting for OTP field to appear...
+2026-02-26 14:11:17.064 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.EditText with timeout: 15
+2026-02-26 14:11:17.064 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.EditText
+2026-02-26 14:11:18.591 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.EditText
+2026-02-26 14:11:18.830 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.EditText
+2026-02-26 14:11:20.597 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Entered OTP: 123456
+2026-02-26 14:11:20.597 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Entered OTP from testdata
+  And I enter OTP from config                                            # com.automation.stepdefinitions.login.LoginSteps.iEnterOTPFromConfig()
+2026-02-26 14:11:20.600 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.verify.button.xpath': //android.widget.Button[@content-desc='Submit']
+2026-02-26 14:11:20.600 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.Button[@content-desc='Submit']
+2026-02-26 14:11:20.600 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.pin.xpath': //android.widget.EditText
+2026-02-26 14:11:20.600 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.EditText
+2026-02-26 14:11:20.601 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.pin.screen.xpath': //*[@resource-id='enter_your_pin_to_login_text' or @content-desc='Enter your PIN to log in']
+2026-02-26 14:11:20.601 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //*[@resource-id='enter_your_pin_to_login_text' or @content-desc='Enter your PIN to log in']
+2026-02-26 14:11:20.601 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //*[@resource-id='enter_your_pin_to_login_text' or @content-desc='Enter your PIN to log in']
+2026-02-26 14:11:21.912 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element By.xpath: //*[@resource-id='enter_your_pin_to_login_text' or @content-desc='Enter your PIN to log in'] displayed: true
+2026-02-26 14:11:21.912 [TestNG-tests-1] INFO  com.automation.pages.BasePage - App auto-advanced to PIN screen ù Verify button not required
+2026-02-26 14:11:21.912 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Tapped on verify button
+  And I tap on verify button                                             # com.automation.stepdefinitions.login.LoginSteps.iTapOnVerifyButton()
+2026-02-26 14:11:21.914 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.pin.xpath': //android.widget.EditText
+2026-02-26 14:11:21.915 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.EditText
+2026-02-26 14:11:21.915 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Waiting for PIN field to appear...
+2026-02-26 14:11:21.915 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.EditText with timeout: 15
+2026-02-26 14:11:21.915 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.EditText
+2026-02-26 14:11:22.521 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Step 1: Clicking on PIN field...
+2026-02-26 14:11:22.523 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.EditText
+2026-02-26 14:11:22.744 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.EditText
+2026-02-26 14:11:23.340 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Step 2: Clearing PIN field...
+2026-02-26 14:11:23.970 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Step 3: Entering PIN...
+2026-02-26 14:11:24.048 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Entered PIN
+2026-02-26 14:11:24.048 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.Button[@content-desc='Submit' or @text='Submit']
+2026-02-26 14:11:34.109 [TestNG-tests-1] ERROR com.automation.utils.WaitHelper - Element not visible within 3 seconds: By.xpath: //android.widget.Button[@content-desc='Submit' or @text='Submit']
+2026-02-26 14:11:34.109 [TestNG-tests-1] WARN  com.automation.pages.BasePage - Element not displayed: By.xpath: //android.widget.Button[@content-desc='Submit' or @text='Submit']
+2026-02-26 14:11:34.110 [TestNG-tests-1] INFO  com.automation.pages.BasePage - No submit button found, waiting for auto-submit...
+2026-02-26 14:11:36.116 [TestNG-tests-1] INFO  com.automation.pages.BasePage - PIN entered ù waiting for biometric prompt or home page...
+2026-02-26 14:11:36.117 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Entered PIN from testdata
+  And I enter PIN from config                                            # com.automation.stepdefinitions.login.LoginSteps.iEnterPINFromConfig()
+2026-02-26 14:11:36.121 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Step: Waiting for Enable Biometric bottom sheet and clicking Cancel
+2026-02-26 14:11:36.122 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.biometric.popup.xpath': //*[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'biometric') or contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'biometric') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'fingerprint') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'enable biometric') or contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'enable biometric')]
+2026-02-26 14:11:36.122 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //*[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'biometric') or contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'biometric') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'fingerprint') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'enable biometric') or contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'enable biometric')]
+2026-02-26 14:11:36.122 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //*[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'biometric') or contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'biometric') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'fingerprint') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'enable biometric') or contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'enable biometric')]
+2026-02-26 14:11:36.260 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element By.xpath: //*[contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'biometric') or contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'biometric') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'fingerprint') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'enable biometric') or contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'enable biometric')] displayed: true
+2026-02-26 14:11:36.261 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Biometric bottom sheet detected ù looking for Cancel button...
+2026-02-26 14:11:36.261 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: AppiumBy.androidUIAutomator: new UiSelector().text("Cancel")
+2026-02-26 14:11:46.310 [TestNG-tests-1] ERROR com.automation.utils.WaitHelper - Element not visible within 3 seconds: AppiumBy.androidUIAutomator: new UiSelector().text("Cancel")
+2026-02-26 14:11:46.310 [TestNG-tests-1] WARN  com.automation.pages.BasePage - Element not displayed: AppiumBy.androidUIAutomator: new UiSelector().text("Cancel")
+2026-02-26 14:11:46.310 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: AppiumBy.androidUIAutomator: new UiSelector().description("Cancel")
+2026-02-26 14:11:46.428 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element AppiumBy.androidUIAutomator: new UiSelector().description("Cancel") displayed: true
+2026-02-26 14:11:46.429 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: AppiumBy.androidUIAutomator: new UiSelector().description("Cancel")
+2026-02-26 14:11:47.403 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: AppiumBy.androidUIAutomator: new UiSelector().description("Cancel")
+2026-02-26 14:11:47.403 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked Cancel on biometric popup (UIAutomator desc='Cancel')
+  And I Tap to Cancel button biometric authentication popup if displayed # com.automation.stepdefinitions.login.LoginSteps.iTapToCancelBiometricPopup()
+2026-02-26 14:11:48.917 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.Button[@text='Cancel' or @content-desc='Cancel' or contains(@text,'Cancel')]
+2026-02-26 14:11:59.077 [TestNG-tests-1] ERROR com.automation.utils.WaitHelper - Element not visible within 2 seconds: By.xpath: //android.widget.Button[@text='Cancel' or @content-desc='Cancel' or contains(@text,'Cancel')]
+2026-02-26 14:11:59.078 [TestNG-tests-1] WARN  com.automation.pages.BasePage - Element not displayed: By.xpath: //android.widget.Button[@text='Cancel' or @content-desc='Cancel' or contains(@text,'Cancel')]
+2026-02-26 14:11:59.079 [TestNG-tests-1] INFO  com.automation.pages.BasePage - No biometric drawer visible ù skipping back press (staying on home page)
+2026-02-26 14:12:02.091 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'home.welcome.xpath': //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:12:02.092 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:12:02.092 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Checking if home page is displayed...
+2026-02-26 14:12:02.093 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay'] with timeout: 15
+2026-02-26 14:12:02.093 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:12:02.253 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:12:02.399 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay'] displayed: true
+2026-02-26 14:12:02.399 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Home page displayed: true
+2026-02-26 14:12:02.402 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Home page is displayed
+  Then I should see the home page                                        # com.automation.stepdefinitions.login.LoginSteps.iShouldSeeTheHomePage()
+2026-02-26 14:12:02.404 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+2026-02-26 14:12:02.405 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Scenario status: PASSED
+2026-02-26 14:12:02.405 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+? PASSED: Successful login with valid credentials from config
+2026-02-26 14:12:02.843 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Driver quit successfully
+
+@smoke @regression @logout @positive @logout @profile
+Scenario: User logout from profile menu               # src/test/resources/features/logout/Logout.feature:11
+2026-02-26 14:12:02.899 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+2026-02-26 14:12:02.899 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Starting scenario: User logout from profile menu
+2026-02-26 14:12:02.900 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+
+? Scenario: User logout from profile menu
+2026-02-26 14:12:02.901 [TestNG-tests-1] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
+2026-02-26 14:12:02.904 [TestNG-tests-1] INFO  com.automation.utils.PropertyReader - Android locators loaded successfully
+2026-02-26 14:12:03.133 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:04.724 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:12:04.853 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:05.280 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:05.753 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:12:05.883 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:07.553 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:12:07.672 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:08.028 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:08.419 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:08.792 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:12:08.792 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - 
+==================================================
+DEVICE INFORMATION
+==================================================
+Device ID       : 10BF7S243X0030Z
+Device Type     : Real Device
+Manufacturer    : vivo
+Brand           : vivo
+Model           : V2439
+Device Name     : V2439
+Android Version : 15
+SDK Version     : 35
+Build ID        : AP3A.240905.015.A2_V000L1
+Serial Number   : 10BF7S243X0030Z
+Screen Resolution: 1080x2392
+Battery Level   : 32%
+==================================================
+2026-02-26 14:12:08.793 [TestNG-tests-1] INFO  com.automation.reports.ExtentReportManager - Device information added to extent report
+2026-02-26 14:12:10.271 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Killed stale UiAutomator2 server processes on device
+2026-02-26 14:12:10.273 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Initializing driver for platform: android
+2026-02-26 14:12:10.274 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Execution type: local
+2026-02-26 14:12:10.274 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Creating local Android driver
+2026-02-26 14:12:10.274 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Platform: android, Execution: local, Device Type: real
+2026-02-26 14:12:10.274 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Real Android device execution requested
+2026-02-26 14:12:10.543 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:10.867 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:12:10.868 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Real device detected: 10BF7S243X0030Z
+2026-02-26 14:12:10.868 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Using configured UDID: 10BF7S243X0030Z
+2026-02-26 14:12:12.533 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:12:12.533 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Selected Real Device - UDID: 10BF7S243X0030Z, Model: V2439
+2026-02-26 14:12:12.533 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - 
+==================================================
+SELECTED DEVICE INFORMATION
+==================================================
+Device Type     : real
+Device Name     : V2439
+Platform Version: 15
+UDID            : 10BF7S243X0030Z
+Manufacturer    : vivo
+Model           : V2439
+==================================================
+2026-02-26 14:12:12.533 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Using device with UDID: 10BF7S243X0030Z
+2026-02-26 14:12:12.533 [TestNG-tests-1] WARN  com.automation.utils.PropertyReader - Property key not found: android.systemPort
+2026-02-26 14:12:12.534 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Real device capabilities configured
+2026-02-26 14:12:12.534 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Android capabilities configured
+2026-02-26 14:12:19.646 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Driver initialized successfully
+2026-02-26 14:12:19.646 [TestNG-tests-1] INFO  com.automation.reports.ExtentReportManager - Started test: User logout from profile menu
+2026-02-26 14:12:19.647 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Driver initialized successfully for platform: android
+2026-02-26 14:12:19.661 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Step: Tapping on profile image area
+2026-02-26 14:12:19.662 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Tapping profile picture button to open side menu...
+2026-02-26 14:12:19.662 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.ImageView[@resource-id='button_profile_picture']
+2026-02-26 14:12:19.994 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element By.xpath: //android.widget.ImageView[@resource-id='button_profile_picture'] displayed: true
+2026-02-26 14:12:19.994 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.ImageView[@resource-id='button_profile_picture']
+2026-02-26 14:12:20.857 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.ImageView[@resource-id='button_profile_picture']
+2026-02-26 14:12:20.858 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked profile picture via resource-id 'button_profile_picture'
+  Given I tap on profile image area                   # com.automation.stepdefinitions.login.LoginSteps.iTapOnProfileImageArea()
+2026-02-26 14:12:22.871 [TestNG-tests-1] INFO  com.automation.stepdefinitions.logout.LogoutSteps - Step: Scrolling to bottom of side menu
+2026-02-26 14:12:22.872 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Scrolling to bottom of side menu to find Logout...
+2026-02-26 14:12:23.626 [TestNG-tests-1] INFO  com.automation.pages.BasePage - UIAutomator scrollToEnd completed
+  When I scroll to bottom of side menu                # com.automation.stepdefinitions.logout.LogoutSteps.iScrollToBottomOfSideMenu()
+2026-02-26 14:12:24.439 [TestNG-tests-1] INFO  com.automation.stepdefinitions.logout.LogoutSteps - Step: Clicking on logout option
+2026-02-26 14:12:24.440 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Looking for logout option in side menu...
+2026-02-26 14:12:24.441 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@content-desc='Logout']
+2026-02-26 14:12:24.555 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element By.xpath: //android.view.View[@content-desc='Logout'] displayed: true
+2026-02-26 14:12:24.556 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.view.View[@content-desc='Logout']
+2026-02-26 14:12:25.258 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.view.View[@content-desc='Logout']
+2026-02-26 14:12:25.258 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked logout option (content-desc='Logout')
+  And I click on logout option                        # com.automation.stepdefinitions.logout.LogoutSteps.iClickOnLogoutOption()
+2026-02-26 14:12:26.767 [TestNG-tests-1] INFO  com.automation.stepdefinitions.logout.LogoutSteps - Step: Verifying logout confirmation popup
+2026-02-26 14:12:26.768 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Checking for logout confirmation popup...
+2026-02-26 14:12:26.768 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //*[contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'anyway') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'anyway')]
+2026-02-26 14:12:26.907 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element By.xpath: //*[contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'anyway') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'anyway')] displayed: true
+2026-02-26 14:12:26.907 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Logout popup detected via 'anyway' button
+2026-02-26 14:12:26.907 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Logout confirmation popup verified
+  And I verify logout confirmation popup is displayed # com.automation.stepdefinitions.logout.LogoutSteps.iVerifyLogoutConfirmationPopupIsDisplayed()
+2026-02-26 14:12:26.909 [TestNG-tests-1] INFO  com.automation.stepdefinitions.logout.LogoutSteps - Step: Clicking on logout anyway button
+2026-02-26 14:12:26.909 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Looking for 'Logout Anyway' button on popup...
+2026-02-26 14:12:26.909 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@content-desc='Logout anyway']
+2026-02-26 14:12:27.020 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element By.xpath: //android.view.View[@content-desc='Logout anyway'] displayed: true
+2026-02-26 14:12:27.021 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.view.View[@content-desc='Logout anyway']
+2026-02-26 14:12:27.727 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.view.View[@content-desc='Logout anyway']
+2026-02-26 14:12:27.727 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Clicked 'Logout anyway' (content-desc exact, View)
+  And I click on logout anyway button                 # com.automation.stepdefinitions.logout.LogoutSteps.iClickOnLogoutAnywayButton()
+2026-02-26 14:12:29.734 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.countrycode.dropdown.xpath': //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-02-26 14:12:29.735 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-02-26 14:12:29.735 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-02-26 14:12:29.735 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-02-26 14:12:30.834 [TestNG-tests-1] INFO  com.automation.pages.BasePage - EcoCash login page loaded
+2026-02-26 14:12:30.834 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Login page is displayed
+  Then I should see the login page                    # com.automation.stepdefinitions.login.LoginSteps.iShouldSeeTheLoginPage()
+2026-02-26 14:12:30.835 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+2026-02-26 14:12:30.836 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Scenario status: PASSED
+2026-02-26 14:12:30.836 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+? PASSED: User logout from profile menu
+2026-02-26 14:12:31.276 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Driver quit successfully
+
+@regression @sendmoney @smoke @positive @p2p
+Scenario Outline: Successful P2P money transfer                   # src/test/resources/features/sendmoney/SendMoney.feature:39
+2026-02-26 14:12:31.365 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+2026-02-26 14:12:31.366 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Starting scenario: Successful P2P money transfer
+2026-02-26 14:12:31.366 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+
+? Scenario: Successful P2P money transfer
+2026-02-26 14:12:31.367 [TestNG-tests-1] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
+2026-02-26 14:12:31.368 [TestNG-tests-1] INFO  com.automation.utils.PropertyReader - Android locators loaded successfully
+2026-02-26 14:12:31.591 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:33.181 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:12:33.295 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:33.653 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:34.321 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:12:34.466 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:36.210 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:12:36.337 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:36.705 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:37.133 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:37.610 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:12:37.611 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - 
+==================================================
+DEVICE INFORMATION
+==================================================
+Device ID       : 10BF7S243X0030Z
+Device Type     : Real Device
+Manufacturer    : vivo
+Brand           : vivo
+Model           : V2439
+Device Name     : V2439
+Android Version : 15
+SDK Version     : 35
+Build ID        : AP3A.240905.015.A2_V000L1
+Serial Number   : 10BF7S243X0030Z
+Screen Resolution: 1080x2392
+Battery Level   : 32%
+==================================================
+2026-02-26 14:12:37.611 [TestNG-tests-1] INFO  com.automation.reports.ExtentReportManager - Device information added to extent report
+2026-02-26 14:12:39.096 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Killed stale UiAutomator2 server processes on device
+2026-02-26 14:12:39.098 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Initializing driver for platform: android
+2026-02-26 14:12:39.099 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Execution type: local
+2026-02-26 14:12:39.099 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Creating local Android driver
+2026-02-26 14:12:39.100 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Platform: android, Execution: local, Device Type: real
+2026-02-26 14:12:39.100 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Real Android device execution requested
+2026-02-26 14:12:39.369 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:12:39.817 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:12:39.817 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Real device detected: 10BF7S243X0030Z
+2026-02-26 14:12:39.817 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Using configured UDID: 10BF7S243X0030Z
+2026-02-26 14:12:41.438 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:12:41.438 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Selected Real Device - UDID: 10BF7S243X0030Z, Model: V2439
+2026-02-26 14:12:41.438 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - 
+==================================================
+SELECTED DEVICE INFORMATION
+==================================================
+Device Type     : real
+Device Name     : V2439
+Platform Version: 15
+UDID            : 10BF7S243X0030Z
+Manufacturer    : vivo
+Model           : V2439
+==================================================
+2026-02-26 14:12:41.439 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Using device with UDID: 10BF7S243X0030Z
+2026-02-26 14:12:41.439 [TestNG-tests-1] WARN  com.automation.utils.PropertyReader - Property key not found: android.systemPort
+2026-02-26 14:12:41.439 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Real device capabilities configured
+2026-02-26 14:12:41.439 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Android capabilities configured
+2026-02-26 14:12:47.386 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Driver initialized successfully
+2026-02-26 14:12:47.386 [TestNG-tests-1] INFO  com.automation.reports.ExtentReportManager - Started test: Successful P2P money transfer
+2026-02-26 14:12:47.388 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Driver initialized successfully for platform: android
+2026-02-26 14:12:47.400 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.Button[@text='Cancel' or @content-desc='Cancel' or contains(@text,'Cancel')]
+2026-02-26 14:12:57.485 [TestNG-tests-1] ERROR com.automation.utils.WaitHelper - Element not visible within 2 seconds: By.xpath: //android.widget.Button[@text='Cancel' or @content-desc='Cancel' or contains(@text,'Cancel')]
+2026-02-26 14:12:57.486 [TestNG-tests-1] WARN  com.automation.pages.BasePage - Element not displayed: By.xpath: //android.widget.Button[@text='Cancel' or @content-desc='Cancel' or contains(@text,'Cancel')]
+2026-02-26 14:12:57.486 [TestNG-tests-1] INFO  com.automation.pages.BasePage - No biometric drawer visible ù skipping back press (staying on home page)
+2026-02-26 14:13:00.490 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'home.welcome.xpath': //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:13:00.491 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:13:00.491 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Checking if home page is displayed...
+2026-02-26 14:13:00.491 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay'] with timeout: 15
+2026-02-26 14:13:00.492 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:13:01.181 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:13:01.321 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay'] displayed: true
+2026-02-26 14:13:01.322 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Home page displayed: true
+2026-02-26 14:13:01.322 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Home page is displayed
+  Given I should see the home page                                # com.automation.stepdefinitions.login.LoginSteps.iShouldSeeTheHomePage()
+2026-02-26 14:13:01.324 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'sendmoney.button.xpath': //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')]
+2026-02-26 14:13:01.324 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')]
+2026-02-26 14:13:01.324 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')] with timeout: 15
+2026-02-26 14:13:01.324 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')]
+2026-02-26 14:13:22.004 [TestNG-tests-1] ERROR com.automation.utils.WaitHelper - Element not visible within 15 seconds: By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')]
+2026-02-26 14:13:22.006 [TestNG-tests-1] ERROR com.automation.pages.BasePage - Failed to tap Send Money: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:app: C:/Users/vivek.bharti/Downl..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:/Users/vivek.bharti/Downl..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: V2439, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: false, skipServerInstallation: false, udid: 10BF7S243X0030Z}, appium:deviceApiLevel: 35, appium:deviceManufacturer: vivo, appium:deviceModel: V2439, appium:deviceName: 10BF7S243X0030Z, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2392, appium:deviceUDID: 10BF7S243X0030Z, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 15, appium:skipDeviceInitialization: false, appium:skipServerInstallation: false, appium:statBarHeight: 105, appium:takesScreenshot: true, appium:udid: 10BF7S243X0030Z, appium:viewportRect: {height: 2287, left: 0, top: 105, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: 66b3a4ee-6a73-4cb3-a06c-77f0203bf1ff
+  When I tap on Send Money on Pay page                            # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendMoneyOnPayPage()
+      java.lang.RuntimeException: Send Money button not found on Pay page
+	at com.automation.pages.SendMoneyPage.tapSendMoneyOnPayPage(SendMoneyPage.java:94)
+	at com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendMoneyOnPayPage(SendMoneySteps.java:31)
+	at ?.I tap on Send Money on Pay page(file:///C:/Users/vivek.bharti/OneAppAutomation/src/test/resources/features/sendmoney/SendMoney.feature:16)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:app: C:/Users/vivek.bharti/Downl..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:/Users/vivek.bharti/Downl..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: V2439, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: false, skipServerInstallation: false, udid: 10BF7S243X0030Z}, appium:deviceApiLevel: 35, appium:deviceManufacturer: vivo, appium:deviceModel: V2439, appium:deviceName: 10BF7S243X0030Z, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2392, appium:deviceUDID: 10BF7S243X0030Z, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 15, appium:skipDeviceInitialization: false, appium:skipServerInstallation: false, appium:statBarHeight: 105, appium:takesScreenshot: true, appium:udid: 10BF7S243X0030Z, appium:viewportRect: {height: 2287, left: 0, top: 105, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: 66b3a4ee-6a73-4cb3-a06c-77f0203bf1ff
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at com.automation.utils.WaitHelper.waitForElementToBeVisible(WaitHelper.java:43)
+	at com.automation.pages.BasePage.waitForElement(BasePage.java:201)
+	at com.automation.pages.SendMoneyPage.tapSendMoneyOnPayPage(SendMoneyPage.java:88)
+	at com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendMoneyOnPayPage(SendMoneySteps.java:31)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:81)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:53)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:136)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:136)
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+	at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
+2026-02-26 14:13:22.020 [TestNG-tests-1] ERROR com.automation.hooks.Hooks - Step failed ù scenario: 'Successful P2P money transfer' | error: Step failed ù screenshot captured for diagnosis
+  And I tap on Send from the bottom drawer                        # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendFromTheBottomDrawer()
+  And I search for mobile number "789124766"                      # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iSearchForMobileNumber(java.lang.String)
+  And I tap on own number in search results                       # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnOwnNumberInSearchResults()
+  Then I should see self transfer error message and log it        # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeSelfTransferErrorMessageAndLogIt()
+  And I clear the search and search for mobile number "777222015" # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iClearTheSearchAndSearchForMobileNumber(java.lang.String)
+  And I wait for contact "777222015" to appear and select it      # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iWaitForContactToAppearAndSelectIt(java.lang.String)
+  And I enter transfer amount "1.20"                              # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iEnterTransferAmount(java.lang.String)
+  And I select currency "USD"                                     # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iSelectCurrency(java.lang.String)
+  And I tap on Continue                                           # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnContinue()
+  Then I should see the PIN verification page                     # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeThePINVerificationPage()
+  When I enter transaction PIN from config                        # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iEnterTransactionPINFromConfig()
+  Then I should see a transaction chat bubble                     # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeATransactionChatBubble()
+  When I tap on the recent chat bubble                            # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnTheRecentChatBubble()
+  Then I should see transaction details page with receipt         # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeTransactionDetailsPageWithReceipt()
+  And I verify transaction outcome on details page                # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iVerifyTransactionOutcomeOnDetailsPage()
+  When I navigate back to home screen from details                # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iNavigateBackToHomeScreenFromDetails()
+  Then I should see home screen                                   # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeHomeScreen()
+2026-02-26 14:13:22.041 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+2026-02-26 14:13:22.041 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Scenario status: FAILED
+2026-02-26 14:13:22.042 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+? FAILED: Successful P2P money transfer
+2026-02-26 14:13:22.042 [TestNG-tests-1] ERROR com.automation.hooks.Hooks - Scenario failed: Successful P2P money transfer
+2026-02-26 14:13:22.043 [TestNG-tests-1] INFO  com.automation.utils.ReportPathManager - Created directory: test-output/screenshots/20260226_141018/sendmoney
+2026-02-26 14:13:22.760 [TestNG-tests-1] INFO  com.automation.utils.ScreenshotUtils - Failure screenshot saved: test-output\screenshots\20260226_141018\sendmoney\Successful_P2P_money_transfer_141322.png
+
+    Embedding Failure Screenshot [image/png 132267 bytes]
+
+? Screenshot: test-output\screenshots\20260226_141018\sendmoney\Successful_P2P_money_transfer_141322.png
+2026-02-26 14:13:23.217 [TestNG-tests-1] DEBUG com.automation.hooks.Hooks - Page source at failure:
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<hierarchy index="0" class="hierarchy" rotation="0" width="1080" height="2173">
+  <android.widget.FrameLayout index="0" package="com.sasai.sasaipay" class="android.widget.FrameLayout" text="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+    <android.widget.LinearLayout index="0" package="com.sasai.sasaipay" class="android.widget.LinearLayout" text="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+      <android.widget.FrameLayout index="0" package="com.sasai.sasaipay" class="android.widget.FrameLayout" text="" resource-id="android:id/content" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+        <android.widget.FrameLayout index="0" package="com.sasai.sasaipay" class="android.widget.FrameLayout" text="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+          <android.widget.FrameLayout index="0" package="com.sasai.sasaipay" class="android.widget.FrameLayout" text="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="true" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+            <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+              <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+                <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+                  <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+                    <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="common_scaffold_pop" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+                      <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,105][1080,2144]" displayed="true">
+                        <android.widget.ImageView index="0" package="com.sasai.sasaipay" class="android.widget.ImageView" text="" resource-id="image_logo_sasai" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,237][407,303]" displayed="true" />
+                        <android.view.View index="1" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Skip" resource-id="skip" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[871,221][1036,320]" displayed="true" />
+                        <android.view.View index="2" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Login or Create account" resource-id="label_title_login" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,457][576,523]" displayed="true" />
+                        <android.view.View index="3" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Your mobile number will be used only for authentication" resource-id="label_title_mobile_authentication" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,545][975,595]" displayed="true" />
+                        <android.widget.ImageView index="4" package="com.sasai.sasaipay" class="android.widget.ImageView" text="" content-desc="Country Code *&#10;+263" resource-id="dropdown_ZW" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,672][388,823]" displayed="true" />
+                        <android.widget.EditText index="5" package="com.sasai.sasaipay" class="android.widget.EditText" text="" resource-id="text_field_[&lt;'label_text_mobile_number_key'&gt;]" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[416,672][1036,817]" displayed="true" hint="Mobile Number" />
+                        <android.view.View index="6" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="term_and_condition" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,889][1036,988]" displayed="true">
+                          <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,889][1036,988]" displayed="true">
+                            <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="placeholder_text_by_proceeding_accept" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[33,878][514,949]" displayed="true" />
+                            <android.widget.Button index="1" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Terms and Conditions" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[490,878][886,949]" displayed="true" />
+                            <android.view.View index="2" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc=" and " resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[861,878][968,949]" displayed="true" />
+                            <android.widget.Button index="3" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Privacy Policy." resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[33,927][297,999]" displayed="true" />
+                          </android.view.View>
+                        </android.view.View>
+                        <android.widget.Button index="7" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Submit" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,1054][1036,1186]" displayed="true" />
+                        <android.view.View index="8" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="label_referral" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,1186][1036,1340]" displayed="true">
+                          <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[319,1274][761,1340]" displayed="true">
+                            <android.widget.Button index="0" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Apply Referral Code" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[308,1263][773,1351]" displayed="true" />
+                          </android.view.View>
+                        </android.view.View>
+                      </android.view.View>
+                      <android.widget.ImageView index="1" package="com.sasai.sasaipay" class="android.widget.ImageView" text="" content-desc="Help &amp; Support" resource-id="help_support" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,2144][1080,2276]" displayed="true" />
+                    </android.view.View>
+                  </android.view.View>
+                </android.view.View>
+              </android.view.View>
+            </android.view.View>
+          </android.widget.FrameLayout>
+        </android.widget.FrameLayout>
+      </android.widget.FrameLayout>
+    </android.widget.LinearLayout>
+  </android.widget.FrameLayout>
+</hierarchy>
+2026-02-26 14:13:23.633 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Driver quit successfully
+
+@regression @sendmoney @smoke @positive @p2p
+Scenario Outline: Successful P2P money transfer                   # src/test/resources/features/sendmoney/SendMoney.feature:40
+2026-02-26 14:13:23.671 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+2026-02-26 14:13:23.671 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Starting scenario: Successful P2P money transfer
+2026-02-26 14:13:23.671 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+
+? Scenario: Successful P2P money transfer
+2026-02-26 14:13:23.672 [TestNG-tests-1] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
+2026-02-26 14:13:23.674 [TestNG-tests-1] INFO  com.automation.utils.PropertyReader - Android locators loaded successfully
+2026-02-26 14:13:23.913 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:13:25.329 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:13:25.445 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:13:25.757 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:13:26.220 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:13:26.350 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:13:27.817 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:13:27.949 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:13:28.249 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:13:28.553 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:13:28.903 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:13:28.904 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - 
+==================================================
+DEVICE INFORMATION
+==================================================
+Device ID       : 10BF7S243X0030Z
+Device Type     : Real Device
+Manufacturer    : vivo
+Brand           : vivo
+Model           : V2439
+Device Name     : V2439
+Android Version : 15
+SDK Version     : 35
+Build ID        : AP3A.240905.015.A2_V000L1
+Serial Number   : 10BF7S243X0030Z
+Screen Resolution: 1080x2392
+Battery Level   : 32%
+==================================================
+2026-02-26 14:13:28.904 [TestNG-tests-1] INFO  com.automation.reports.ExtentReportManager - Device information added to extent report
+2026-02-26 14:13:30.422 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Killed stale UiAutomator2 server processes on device
+2026-02-26 14:13:30.422 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Initializing driver for platform: android
+2026-02-26 14:13:30.422 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Execution type: local
+2026-02-26 14:13:30.422 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Creating local Android driver
+2026-02-26 14:13:30.422 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Platform: android, Execution: local, Device Type: real
+2026-02-26 14:13:30.422 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Real Android device execution requested
+2026-02-26 14:13:30.692 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-02-26 14:13:31.128 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device 10BF7S243X0030Z detected as real device
+2026-02-26 14:13:31.128 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Real device detected: 10BF7S243X0030Z
+2026-02-26 14:13:31.128 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Using configured UDID: 10BF7S243X0030Z
+2026-02-26 14:13:32.657 [TestNG-tests-1] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: vivo V2439 (Android 15)
+2026-02-26 14:13:32.658 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - Selected Real Device - UDID: 10BF7S243X0030Z, Model: V2439
+2026-02-26 14:13:32.658 [TestNG-tests-1] INFO  com.automation.utils.DeviceManager - 
+==================================================
+SELECTED DEVICE INFORMATION
+==================================================
+Device Type     : real
+Device Name     : V2439
+Platform Version: 15
+UDID            : 10BF7S243X0030Z
+Manufacturer    : vivo
+Model           : V2439
+==================================================
+2026-02-26 14:13:32.658 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Using device with UDID: 10BF7S243X0030Z
+2026-02-26 14:13:32.658 [TestNG-tests-1] WARN  com.automation.utils.PropertyReader - Property key not found: android.systemPort
+2026-02-26 14:13:32.658 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Real device capabilities configured
+2026-02-26 14:13:32.658 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Android capabilities configured
+2026-02-26 14:13:38.366 [TestNG-tests-1] INFO  com.automation.drivers.DriverFactory - Driver initialized successfully
+2026-02-26 14:13:38.366 [TestNG-tests-1] INFO  com.automation.reports.ExtentReportManager - Started test: Successful P2P money transfer
+2026-02-26 14:13:38.366 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Driver initialized successfully for platform: android
+2026-02-26 14:13:38.377 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.Button[@text='Cancel' or @content-desc='Cancel' or contains(@text,'Cancel')]
+2026-02-26 14:13:48.451 [TestNG-tests-1] ERROR com.automation.utils.WaitHelper - Element not visible within 2 seconds: By.xpath: //android.widget.Button[@text='Cancel' or @content-desc='Cancel' or contains(@text,'Cancel')]
+2026-02-26 14:13:48.451 [TestNG-tests-1] WARN  com.automation.pages.BasePage - Element not displayed: By.xpath: //android.widget.Button[@text='Cancel' or @content-desc='Cancel' or contains(@text,'Cancel')]
+2026-02-26 14:13:48.451 [TestNG-tests-1] INFO  com.automation.pages.BasePage - No biometric drawer visible ù skipping back press (staying on home page)
+2026-02-26 14:13:51.456 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'home.welcome.xpath': //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:13:51.457 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:13:51.457 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Checking if home page is displayed...
+2026-02-26 14:13:51.457 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay'] with timeout: 15
+2026-02-26 14:13:51.458 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:13:51.571 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-02-26 14:13:51.689 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Element By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay'] displayed: true
+2026-02-26 14:13:51.690 [TestNG-tests-1] INFO  com.automation.pages.BasePage - Home page displayed: true
+2026-02-26 14:13:51.690 [TestNG-tests-1] INFO  com.automation.stepdefinitions.login.LoginSteps - Home page is displayed
+  Given I should see the home page                                # com.automation.stepdefinitions.login.LoginSteps.iShouldSeeTheHomePage()
+2026-02-26 14:13:51.692 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'sendmoney.button.xpath': //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')]
+2026-02-26 14:13:51.692 [TestNG-tests-1] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')]
+2026-02-26 14:13:51.692 [TestNG-tests-1] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')] with timeout: 15
+2026-02-26 14:13:51.692 [TestNG-tests-1] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')]
+2026-02-26 14:14:12.358 [TestNG-tests-1] ERROR com.automation.utils.WaitHelper - Element not visible within 15 seconds: By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')]
+2026-02-26 14:14:12.358 [TestNG-tests-1] ERROR com.automation.pages.BasePage - Failed to tap Send Money: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:app: C:/Users/vivek.bharti/Downl..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:/Users/vivek.bharti/Downl..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: V2439, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: false, skipServerInstallation: false, udid: 10BF7S243X0030Z}, appium:deviceApiLevel: 35, appium:deviceManufacturer: vivo, appium:deviceModel: V2439, appium:deviceName: 10BF7S243X0030Z, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2392, appium:deviceUDID: 10BF7S243X0030Z, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 15, appium:skipDeviceInitialization: false, appium:skipServerInstallation: false, appium:statBarHeight: 105, appium:takesScreenshot: true, appium:udid: 10BF7S243X0030Z, appium:viewportRect: {height: 2287, left: 0, top: 105, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: 637861d7-0b99-4f65-9880-0b6db5f58191
+  When I tap on Send Money on Pay page                            # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendMoneyOnPayPage()
+      java.lang.RuntimeException: Send Money button not found on Pay page
+	at com.automation.pages.SendMoneyPage.tapSendMoneyOnPayPage(SendMoneyPage.java:94)
+	at com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendMoneyOnPayPage(SendMoneySteps.java:31)
+	at ?.I tap on Send Money on Pay page(file:///C:/Users/vivek.bharti/OneAppAutomation/src/test/resources/features/sendmoney/SendMoney.feature:16)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:app: C:/Users/vivek.bharti/Downl..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:/Users/vivek.bharti/Downl..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: V2439, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: false, skipServerInstallation: false, udid: 10BF7S243X0030Z}, appium:deviceApiLevel: 35, appium:deviceManufacturer: vivo, appium:deviceModel: V2439, appium:deviceName: 10BF7S243X0030Z, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2392, appium:deviceUDID: 10BF7S243X0030Z, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 15, appium:skipDeviceInitialization: false, appium:skipServerInstallation: false, appium:statBarHeight: 105, appium:takesScreenshot: true, appium:udid: 10BF7S243X0030Z, appium:viewportRect: {height: 2287, left: 0, top: 105, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: 637861d7-0b99-4f65-9880-0b6db5f58191
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at com.automation.utils.WaitHelper.waitForElementToBeVisible(WaitHelper.java:43)
+	at com.automation.pages.BasePage.waitForElement(BasePage.java:201)
+	at com.automation.pages.SendMoneyPage.tapSendMoneyOnPayPage(SendMoneyPage.java:88)
+	at com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendMoneyOnPayPage(SendMoneySteps.java:31)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:81)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:53)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:136)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:136)
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+	at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
+2026-02-26 14:14:12.364 [TestNG-tests-1] ERROR com.automation.hooks.Hooks - Step failed ù scenario: 'Successful P2P money transfer' | error: Step failed ù screenshot captured for diagnosis
+  And I tap on Send from the bottom drawer                        # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendFromTheBottomDrawer()
+  And I search for mobile number "789124766"                      # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iSearchForMobileNumber(java.lang.String)
+  And I tap on own number in search results                       # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnOwnNumberInSearchResults()
+  Then I should see self transfer error message and log it        # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeSelfTransferErrorMessageAndLogIt()
+  And I clear the search and search for mobile number "777222015" # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iClearTheSearchAndSearchForMobileNumber(java.lang.String)
+  And I wait for contact "777222015" to appear and select it      # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iWaitForContactToAppearAndSelectIt(java.lang.String)
+  And I enter transfer amount "1.50"                              # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iEnterTransferAmount(java.lang.String)
+  And I select currency "ZWG"                                     # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iSelectCurrency(java.lang.String)
+  And I tap on Continue                                           # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnContinue()
+  Then I should see the PIN verification page                     # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeThePINVerificationPage()
+  When I enter transaction PIN from config                        # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iEnterTransactionPINFromConfig()
+  Then I should see a transaction chat bubble                     # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeATransactionChatBubble()
+  When I tap on the recent chat bubble                            # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnTheRecentChatBubble()
+  Then I should see transaction details page with receipt         # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeTransactionDetailsPageWithReceipt()
+  And I verify transaction outcome on details page                # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iVerifyTransactionOutcomeOnDetailsPage()
+  When I navigate back to home screen from details                # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iNavigateBackToHomeScreenFromDetails()
+  Then I should see home screen                                   # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeHomeScreen()
+2026-02-26 14:14:12.386 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+2026-02-26 14:14:12.388 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Scenario status: FAILED
+2026-02-26 14:14:12.388 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - ========================================
+? FAILED: Successful P2P money transfer
+2026-02-26 14:14:12.388 [TestNG-tests-1] ERROR com.automation.hooks.Hooks - Scenario failed: Successful P2P money transfer
+2026-02-26 14:14:12.810 [TestNG-tests-1] INFO  com.automation.utils.ScreenshotUtils - Failure screenshot saved: test-output\screenshots\20260226_141018\sendmoney\Successful_P2P_money_transfer_141412.png
+
+    Embedding Failure Screenshot [image/png 131735 bytes]
+
+? Screenshot: test-output\screenshots\20260226_141018\sendmoney\Successful_P2P_money_transfer_141412.png
+2026-02-26 14:14:13.279 [TestNG-tests-1] DEBUG com.automation.hooks.Hooks - Page source at failure:
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<hierarchy index="0" class="hierarchy" rotation="0" width="1080" height="2173">
+  <android.widget.FrameLayout index="0" package="com.sasai.sasaipay" class="android.widget.FrameLayout" text="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+    <android.widget.LinearLayout index="0" package="com.sasai.sasaipay" class="android.widget.LinearLayout" text="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+      <android.widget.FrameLayout index="0" package="com.sasai.sasaipay" class="android.widget.FrameLayout" text="" resource-id="android:id/content" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+        <android.widget.FrameLayout index="0" package="com.sasai.sasaipay" class="android.widget.FrameLayout" text="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+          <android.widget.FrameLayout index="0" package="com.sasai.sasaipay" class="android.widget.FrameLayout" text="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="true" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+            <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+              <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+                <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+                  <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+                    <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="common_scaffold_pop" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2392]" displayed="true">
+                      <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,105][1080,2144]" displayed="true">
+                        <android.widget.ImageView index="0" package="com.sasai.sasaipay" class="android.widget.ImageView" text="" resource-id="image_logo_sasai" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,237][407,303]" displayed="true" />
+                        <android.view.View index="1" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Skip" resource-id="skip" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[871,221][1036,320]" displayed="true" />
+                        <android.view.View index="2" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Login or Create account" resource-id="label_title_login" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,457][576,523]" displayed="true" />
+                        <android.view.View index="3" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Your mobile number will be used only for authentication" resource-id="label_title_mobile_authentication" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,545][975,595]" displayed="true" />
+                        <android.widget.ImageView index="4" package="com.sasai.sasaipay" class="android.widget.ImageView" text="" content-desc="Country Code *&#10;+263" resource-id="dropdown_ZW" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,672][388,823]" displayed="true" />
+                        <android.widget.EditText index="5" package="com.sasai.sasaipay" class="android.widget.EditText" text="" resource-id="text_field_[&lt;'label_text_mobile_number_key'&gt;]" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[416,672][1036,817]" displayed="true" hint="Mobile Number" />
+                        <android.view.View index="6" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="term_and_condition" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,889][1036,988]" displayed="true">
+                          <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,889][1036,988]" displayed="true">
+                            <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="placeholder_text_by_proceeding_accept" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[33,878][514,949]" displayed="true" />
+                            <android.widget.Button index="1" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Terms and Conditions" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[490,878][886,949]" displayed="true" />
+                            <android.view.View index="2" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc=" and " resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[861,878][968,949]" displayed="true" />
+                            <android.widget.Button index="3" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Privacy Policy." resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[33,927][297,999]" displayed="true" />
+                          </android.view.View>
+                        </android.view.View>
+                        <android.widget.Button index="7" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Submit" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,1054][1036,1186]" displayed="true" />
+                        <android.view.View index="8" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="label_referral" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[44,1186][1036,1340]" displayed="true">
+                          <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[319,1274][761,1340]" displayed="true">
+                            <android.widget.Button index="0" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Apply Referral Code" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[308,1263][773,1351]" displayed="true" />
+                          </android.view.View>
+                        </android.view.View>
+                      </android.view.View>
+                      <android.widget.ImageView index="1" package="com.sasai.sasaipay" class="android.widget.ImageView" text="" content-desc="Help &amp; Support" resource-id="help_support" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,2144][1080,2276]" displayed="true" />
+                    </android.view.View>
+                  </android.view.View>
+                </android.view.View>
+              </android.view.View>
+            </android.view.View>
+          </android.widget.FrameLayout>
+        </android.widget.FrameLayout>
+      </android.widget.FrameLayout>
+    </android.widget.LinearLayout>
+  </android.widget.FrameLayout>
+</hierarchy>
+2026-02-26 14:14:13.728 [TestNG-tests-1] INFO  com.automation.hooks.Hooks - Driver quit successfully
+2026-02-26 14:14:14.377 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report flushed: target/reports/extent/20260226_141018/ExtentReport_20260226_141018.html
+2026-02-26 14:14:16.071 [main] INFO  com.automation.reports.CucumberReportGenerator - Cucumber HTML report generated: C:\Users\vivek.bharti\OneAppAutomation\test-output\cucumber-reports\20260226_141018
+  ? Cucumber HTML Report generated at: C:\Users\vivek.bharti\OneAppAutomation\test-output\cucumber-reports\20260226_141018/cucumber-html-reports/overview-features.html
+=========================================
+  TEST SUITE COMPLETED  
+=========================================
+Reports Generated:
+  ? Extent Report:   target/reports/extent/20260226_141018/ExtentReport_20260226_141018.html
+  ? Cucumber Report: test-output/cucumber-reports/20260226_141018/cucumber-html-reports/overview-features.html
+  ? Allure Results:  target/reports/allure/20260226_141018/allure-results
+=========================================
+To view Allure report, run:
+  allure serve target/reports/allure/20260226_141018/allure-results
+=========================================
+2026-02-26 14:14:16.072 [main] INFO  com.automation.listeners.TestSuiteListener - Suite finished: Appium Automation Suite
+2026-02-26 14:14:16.158 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report flushed: target/reports/extent/20260226_141018/ExtentReport_20260226_141018.html
+2026-02-26 14:14:16.159 [main] INFO  com.automation.listeners.TestSuiteListener - Suite Summary ù Passed: 2 | Failed: 2 | Total: 4
+2026-02-26 14:14:16.160 [main] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
+2026-02-26 14:14:16.160 [main] INFO  com.automation.reports.EmailReporter - Email reporting disabled (email.enabled=false)
+[ERROR] Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 240.9 s <<< FAILURE! -- in TestSuite
+[ERROR] com.automation.runners.TestRunner.runScenario["Successful P2P money transfer", "EcoCash Send Money (P2P)"](3) -- Time elapsed: 52.33 s <<< FAILURE!
+java.lang.RuntimeException: Send Money button not found on Pay page
+	at com.automation.pages.SendMoneyPage.tapSendMoneyOnPayPage(SendMoneyPage.java:94)
+	at com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendMoneyOnPayPage(SendMoneySteps.java:31)
+	at ?.I tap on Send Money on Pay page(file:///C:/Users/vivek.bharti/OneAppAutomation/src/test/resources/features/sendmoney/SendMoney.feature:16)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:app: C:/Users/vivek.bharti/Downl..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:/Users/vivek.bharti/Downl..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: V2439, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: false, skipServerInstallation: false, udid: 10BF7S243X0030Z}, appium:deviceApiLevel: 35, appium:deviceManufacturer: vivo, appium:deviceModel: V2439, appium:deviceName: 10BF7S243X0030Z, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2392, appium:deviceUDID: 10BF7S243X0030Z, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 15, appium:skipDeviceInitialization: false, appium:skipServerInstallation: false, appium:statBarHeight: 105, appium:takesScreenshot: true, appium:udid: 10BF7S243X0030Z, appium:viewportRect: {height: 2287, left: 0, top: 105, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: 66b3a4ee-6a73-4cb3-a06c-77f0203bf1ff
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at com.automation.utils.WaitHelper.waitForElementToBeVisible(WaitHelper.java:43)
+	at com.automation.pages.BasePage.waitForElement(BasePage.java:201)
+	at com.automation.pages.SendMoneyPage.tapSendMoneyOnPayPage(SendMoneyPage.java:88)
+	at com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendMoneyOnPayPage(SendMoneySteps.java:31)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:81)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:53)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:136)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:136)
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+	at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
+[ERROR] com.automation.runners.TestRunner.runScenario["Successful P2P money transfer", "EcoCash Send Money (P2P)"](4) -- Time elapsed: 50.09 s <<< FAILURE!
+java.lang.RuntimeException: Send Money button not found on Pay page
+	at com.automation.pages.SendMoneyPage.tapSendMoneyOnPayPage(SendMoneyPage.java:94)
+	at com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendMoneyOnPayPage(SendMoneySteps.java:31)
+	at ?.I tap on Send Money on Pay page(file:///C:/Users/vivek.bharti/OneAppAutomation/src/test/resources/features/sendmoney/SendMoney.feature:16)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@content-desc='Send Money' or @text='Send Money'] | //*[contains(@content-desc,'Send Money')] | //android.widget.TextView[contains(@text,'Send Money')] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:app: C:/Users/vivek.bharti/Downl..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:/Users/vivek.bharti/Downl..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: V2439, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: false, skipServerInstallation: false, udid: 10BF7S243X0030Z}, appium:deviceApiLevel: 35, appium:deviceManufacturer: vivo, appium:deviceModel: V2439, appium:deviceName: 10BF7S243X0030Z, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2392, appium:deviceUDID: 10BF7S243X0030Z, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 15, appium:skipDeviceInitialization: false, appium:skipServerInstallation: false, appium:statBarHeight: 105, appium:takesScreenshot: true, appium:udid: 10BF7S243X0030Z, appium:viewportRect: {height: 2287, left: 0, top: 105, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: 637861d7-0b99-4f65-9880-0b6db5f58191
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+	at com.automation.utils.WaitHelper.waitForElementToBeVisible(WaitHelper.java:43)
+	at com.automation.pages.BasePage.waitForElement(BasePage.java:201)
+	at com.automation.pages.SendMoneyPage.tapSendMoneyOnPayPage(SendMoneyPage.java:88)
+	at com.automation.stepdefinitions.sendmoney.SendMoneySteps.iTapOnSendMoneyOnPayPage(SendMoneySteps.java:31)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
+	at io.cucumber.java.Invoker.invoke(Invoker.java:24)
+	at io.cucumber.java.AbstractGlueDefinition.invokeMethod(AbstractGlueDefinition.java:47)
+	at io.cucumber.java.JavaStepDefinition.execute(JavaStepDefinition.java:29)
+	at io.cucumber.core.runner.CoreStepDefinition.execute(CoreStepDefinition.java:66)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:63)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:81)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:53)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.testng.TestNGCucumberRunner.lambda$runScenario$1(TestNGCucumberRunner.java:132)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:136)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:136)
+	at io.cucumber.testng.TestNGCucumberRunner.runScenario(TestNGCucumberRunner.java:129)
+	at io.cucumber.testng.AbstractTestNGCucumberTests.runScenario(AbstractTestNGCucumberTests.java:35)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+	at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   TestRunner.runScenario ╗ Runtime Send Money button not found on Pay page
+[ERROR]   TestRunner.runScenario ╗ Runtime Send Money button not found on Pay page
+[INFO] 
+[ERROR] Tests run: 4, Failures: 2, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  04:14 min
+[INFO] Finished at: 2026-02-26T14:14:17+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.0:test (default-test) on project OneAppAutomation: There are test failures.
+[ERROR] 
+[ERROR] Please refer to C:\Users\vivek.bharti\OneAppAutomation\target\surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

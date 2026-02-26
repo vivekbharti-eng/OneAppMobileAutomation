@@ -2,6 +2,7 @@ package com.automation.listeners;
 
 import com.automation.reports.EmailReporter;
 import com.automation.reports.ExtentReportManager;
+import com.automation.utils.AppiumServerManager;
 import com.automation.utils.TestResultTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,6 +22,9 @@ public class TestSuiteListener implements ISuiteListener {
     public void onStart(ISuite suite) {
         TestResultTracker.reset();
         logger.info("Suite started: " + suite.getName());
+
+        // Auto-detect real device via ADB and start Appium server
+        AppiumServerManager.start();
     }
 
     @Override
@@ -39,5 +43,8 @@ public class TestSuiteListener implements ISuiteListener {
         // Send email with the report attached
         String reportPath = ExtentReportManager.getReportPath();
         EmailReporter.sendReport(reportPath, passed, failed);
+
+        // Stop Appium server if it was started by this run
+        AppiumServerManager.stop();
     }
 }

@@ -12,9 +12,9 @@ import org.testng.annotations.DataProvider;
  */
 @CucumberOptions(
         features = {
-                "src/test/resources/features/login",      // 1. Login
-                "src/test/resources/features/sendmoney",  // 2. SendMoney
-                "src/test/resources/features/logout"      // 3. Logout
+                "src/test/resources/features/login/Login.feature",      // 1. Login
+                "src/test/resources/features/sendmoney/SendMoney.feature",  // 2. SendMoney
+                "src/test/resources/features/logout/Logout.feature"      // 3. Logout
         },
         glue = "com.automation",
         plugin = {

@@ -7,7 +7,6 @@ Feature: EcoCash Login Functionality
   Background:
     Given the app is launched
     When I click on Agree and Continue
-    And I skip login if already logged in
 
   @smoke @positive @login
   Scenario: Successful login with valid credentials from config
@@ -17,9 +16,8 @@ Feature: EcoCash Login Functionality
     And I enter OTP from config
     And I tap on verify button
     And I enter PIN from config
+    And I Tap to Cancel button biometric authentication popup if displayed
     Then I should see the home page
-    When I dismiss biometric authentication popup if displayed
-    And I press back button to dismiss biometric drawer
 
   @negative @login
   Scenario Outline: Login with invalid mobile number
