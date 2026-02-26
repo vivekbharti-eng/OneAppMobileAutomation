@@ -97,13 +97,6 @@ public class LoginSteps {
         }
     }
     
-    @When("I enter country code {string}")
-    public void iEnterCountryCode(String countryCode) {
-        loginPage.selectCountryCode(countryCode);
-        logger.info("Selected country code: " + countryCode);
-        ExtentReportManager.logInfo("Selected country code: " + countryCode);
-    }
-    
     @When("I enter country code from config")
     public void iEnterCountryCodeFromConfig() {
         String countryCode = PropertyReader.getTestDataProperty("country.code");
@@ -287,15 +280,6 @@ public class LoginSteps {
             ExtentReportManager.logFail("Welcome message verification failed: " + e.getMessage());
             throw e;
         }
-    }
-    
-    @Then("I should see error message")
-    public void iShouldSeeErrorMessage() {
-        boolean errorDisplayed = loginPage.isErrorMessageDisplayed();
-        
-        Assert.assertTrue(errorDisplayed, "Error message is not displayed");
-        logger.info("Error message is displayed");
-        ExtentReportManager.logPass("Error message is displayed for invalid credentials");
     }
     
     @Then("I should see the login page")
