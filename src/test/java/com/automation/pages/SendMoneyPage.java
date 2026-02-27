@@ -79,6 +79,24 @@ public class SendMoneyPage extends BasePage {
     }
 
     // -----------------------------------------------------------------------
+    // Terms & Conditions popup handler (appears on virtual device first run)
+    // -----------------------------------------------------------------------
+
+    public void dismissTermsAndConditionsIfPresent() {
+        try {
+            By agreeBtn = LocatorUtils.getLocator("login.agree.continue.button.xpath");
+            WebElement btn = WaitHelper.waitForElementToBeVisible(agreeBtn, 4);
+            if (btn != null && btn.isDisplayed()) {
+                btn.click();
+                sleep(2000);
+                logger.info("Dismissed Terms & Conditions popup (Agree & Continue)");
+            }
+        } catch (Exception ignored) {
+            logger.debug("No Terms & Conditions popup detected — continuing");
+        }
+    }
+
+    // -----------------------------------------------------------------------
     // Step 1 — Tap Send Money tile on Home / Pay page
     // -----------------------------------------------------------------------
 
@@ -88,6 +106,7 @@ public class SendMoneyPage extends BasePage {
             waitForElement(locator, 15);
             click(locator);
             sleep(2000); // wait for bottom drawer animation
+            dismissTermsAndConditionsIfPresent(); // handle T&C on virtual device
             logger.info("Tapped Send Money on Pay page");
         } catch (Exception e) {
             logger.error("Failed to tap Send Money: " + e.getMessage());
@@ -102,10 +121,12 @@ public class SendMoneyPage extends BasePage {
     public void tapSendFromBottomDrawer() {
         try {
             sleep(2000); // wait for drawer to fully render
+            dismissTermsAndConditionsIfPresent(); // T&C may appear before drawer
             By locator = LocatorUtils.getLocator(DRAWER_SEND_OPTION);
             waitForElement(locator, 15);
             click(locator);
             sleep(2000); // wait for contact search screen
+            dismissTermsAndConditionsIfPresent(); // T&C may appear after tapping Send
             logger.info("Tapped Send from bottom drawer");
         } catch (Exception e) {
             logger.error("Failed to tap Send from drawer: " + e.getMessage());
