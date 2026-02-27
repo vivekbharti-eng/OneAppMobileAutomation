@@ -180,13 +180,13 @@ public class LoginSteps {
     
     @Then("I should see the home page")
     public void iShouldSeeTheHomePage() {
-        try {
+      /*  try {
             // If biometric bottom sheet is still open after cancel, press back to close it
             homePage.pressBackOnlyIfBiometricDrawerOpen();
             Thread.sleep(3000); // Wait for home page to load after any drawer is dismissed
         } catch (InterruptedException e) {
             logger.error("Thread interrupted: " + e.getMessage());
-        }
+        }*/
 
         boolean homePageDisplayed = homePage.isHomePageDisplayed();
 

@@ -218,4 +218,28 @@ public class PropertyReader {
     public static String getPlatform() {
         return getConfigProperty("platform");
     }
+
+    /**
+     * Resolve execution target from Y/N switches.
+     * Reads run.virtual.device, run.real.device, run.browserstack.
+     * Only ONE should be Y at a time.
+     * Falls back to legacy execution.type + android.deviceType if no switch is set.
+     *
+     * @return "virtual", "real", or "browserstack"
+     */
+    public static String getExecutionTarget() {
+        String virtual     = getProperty("run.virtual.device",  "N");
+        String real        = getProperty("run.real.device",     "N");
+        String browserstack = getProperty("run.browserstack",   "N");
+
+        if ("Y".equalsIgnoreCase(virtual))      return "virtual";
+        if ("Y".equalsIgnoreCase(real))         return "real";
+        if ("Y".equalsIgnoreCase(browserstack)) return "browserstack";
+
+        // Legacy fallback
+        String execType   = getProperty("execution.type",   "local");
+        if ("browserstack".equalsIgnoreCase(execType)) return "browserstack";
+        String deviceType = getProperty("android.deviceType", "real");
+        return "emulator".equalsIgnoreCase(deviceType) ? "virtual" : "real";
+    }
 }

@@ -33,16 +33,35 @@ public class DriverFactory {
      */
     public static AppiumDriver initializeDriver() {
         String platform = PropertyReader.getPlatform();
-        String executionType = PropertyReader.getConfigProperty("execution.type");
-        
+
         logger.info("Initializing driver for platform: " + platform);
-        logger.info("Execution type: " + executionType);
-        
+
         AppiumDriver driver;
-        
+
+        // Resolve target from Y/N switches
+        String target = PropertyReader.getExecutionTarget();
+        logger.info("Execution target (from switch): " + target);
+
+        // Inject deviceType override so DeviceManager picks correct config
+        if ("virtual".equals(target)) {
+            PropertyReader.overrideConfigProperty("android.deviceType", "emulator");
+            PropertyReader.overrideConfigProperty("android.deviceName",    PropertyReader.getProperty("android.emulator.deviceName",    "emulator"));
+            PropertyReader.overrideConfigProperty("android.platformVersion",PropertyReader.getProperty("android.emulator.platformVersion","15"));
+            PropertyReader.overrideConfigProperty("android.udid",          PropertyReader.getProperty("android.emulator.udid",          "emulator-5554"));
+            logger.info("[SWITCH] Running on VIRTUAL DEVICE (emulator)");
+        } else if ("real".equals(target)) {
+            PropertyReader.overrideConfigProperty("android.deviceType", "real");
+            PropertyReader.overrideConfigProperty("android.deviceName",    PropertyReader.getProperty("android.real.deviceName",    "device"));
+            PropertyReader.overrideConfigProperty("android.platformVersion",PropertyReader.getProperty("android.real.platformVersion","15"));
+            PropertyReader.overrideConfigProperty("android.udid",          PropertyReader.getProperty("android.real.udid",          ""));
+            logger.info("[SWITCH] Running on REAL DEVICE");
+        } else {
+            logger.info("[SWITCH] Running on BROWSERSTACK");
+        }
+
         try {
-            // Determine execution type: local or browserstack
-            if (executionType.equalsIgnoreCase("browserstack")) {
+            // Determine execution type from resolved target
+            if ("browserstack".equals(target)) {
                 driver = createBrowserStackDriver(platform);
             } else {
                 // Local execution
