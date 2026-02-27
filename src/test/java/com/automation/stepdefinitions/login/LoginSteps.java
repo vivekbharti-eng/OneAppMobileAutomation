@@ -216,6 +216,11 @@ public class LoginSteps {
 
     @When("I Tap to Cancel button biometric authentication popup if displayed")
     public void iTapToCancelBiometricPopup() {
+        if ("virtual".equalsIgnoreCase(PropertyReader.getExecutionTarget())) {
+            logger.info("Step: Virtual device — skipping biometric popup handling");
+            ExtentReportManager.logInfo("Virtual device: biometric popup step skipped");
+            return;
+        }
         logger.info("Step: Waiting for Enable Biometric bottom sheet and clicking Cancel");
         ExtentReportManager.logInfo("Waiting for biometric bottom sheet then tapping Cancel");
         loginPage.handleBiometricPopup();

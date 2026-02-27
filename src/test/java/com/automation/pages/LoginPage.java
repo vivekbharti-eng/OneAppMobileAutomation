@@ -361,6 +361,11 @@ public class LoginPage extends BasePage {
      * Called automatically after PIN entry and also available as a public step.
      */
     public void handleBiometricPopup() {
+        // Virtual device (emulator) does not show biometric prompt — skip entirely
+        if ("virtual".equalsIgnoreCase(PropertyReader.getExecutionTarget())) {
+            logger.info("Virtual device detected — biometric popup handling skipped");
+            return;
+        }
         try {
             // Step 1: Wait up to 5s for the biometric bottom sheet to appear
             By popupLocator = LocatorUtils.getLocator(BIOMETRIC_POPUP);
