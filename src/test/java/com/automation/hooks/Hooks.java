@@ -8,6 +8,7 @@ import com.automation.reports.ExtentReportManager;
 import com.automation.utils.AdbHelper;
 import com.automation.utils.PropertyReader;
 import com.automation.utils.ScreenshotUtils;
+import com.automation.utils.SuiteState;
 import io.appium.java_client.AppiumDriver;
 import com.automation.utils.TestResultTracker;
 import io.cucumber.java.After;
@@ -16,6 +17,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.SkipException;
 
 import java.nio.file.Path;
 import java.util.Map;
@@ -48,6 +50,13 @@ public class Hooks {
      */
     @Before
     public void setUp(Scenario scenario) {
+        // If a previous scenario failed and fail.fast=true, skip all remaining scenarios
+        if (SuiteState.isAborted()) {
+            String msg = "[FAIL FAST] Suite aborted — skipping: " + scenario.getName();
+            logger.warn(msg);
+            System.out.println(ANSI_YELLOW + msg + ANSI_RESET);
+            throw new SkipException(msg);
+        }
         try {
             logger.info("========================================");
             logger.info("Starting scenario: " + scenario.getName());
@@ -221,7 +230,9 @@ public class Hooks {
                 String failFast = PropertyReader.getProperty("fail.fast", "false");
                 if ("true".equalsIgnoreCase(failFast)) {
                     logger.error("FAIL FAST: scenario '{}' failed — stopping suite and generating reports", scenario.getName());
-                    DriverManager.quitDriver();
+
+                    // Signal all subsequent scenarios to skip
+                    SuiteState.abort();
 
                     // 1. Flush Extent Report to disk
                     ExtentReportManager.flushReport();
@@ -231,17 +242,17 @@ public class Hooks {
                         logger.warn("Cucumber report generation failed: " + ex.getMessage());
                     }
 
-                    // 3. Send email with report
+                    // 3. Send email
                     try {
                         int passed = TestResultTracker.getPassed();
-                        int failed = TestResultTracker.getFailed() + 1; // include current
+                        int failed = TestResultTracker.getFailed();
                         EmailReporter.sendReport(ExtentReportManager.getReportPath(), passed, failed);
                     } catch (Exception ex) {
                         logger.warn("Email send failed: " + ex.getMessage());
                     }
 
-                    System.out.println("\u001B[31m\u001B[1m[FAIL FAST] Suite stopped after first failure — reports generated\u001B[0m");
-                    System.exit(1);
+                    System.out.println(ANSI_RED + ANSI_BOLD +
+                        "[FAIL FAST] Suite stopped after first failure — reports generated" + ANSI_RESET);
                 }
             } else {
                 ExtentReportManager.logPass("Scenario passed: " + scenario.getName());
@@ -279,6 +290,8 @@ public class Hooks {
             // Quit driver
             DriverManager.quitDriver();
             logger.info("Driver quit successfully");
+            // Brief cooldown so Appium cleans up the session before the next scenario starts
+            try { Thread.sleep(3000); } catch (InterruptedException ignored) {}
         }
     }
 }

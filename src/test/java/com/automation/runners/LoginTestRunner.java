@@ -3,6 +3,7 @@ package com.automation.runners;
 import com.automation.reports.ExtentReportManager;
 import com.automation.utils.PropertyReader;
 import com.automation.utils.ReportPathManager;
+import com.automation.utils.SuiteState;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.apache.logging.log4j.LogManager;
@@ -39,6 +40,7 @@ public class LoginTestRunner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite
     public void beforeSuite() {
+        SuiteState.reset(); // clear any leftover abort flag from a previous run
         ReportPathManager.initializeReportPaths();
         ExtentReportManager.initReport();
         System.out.println(ANSI_CYAN + ANSI_BOLD + "=========================================" + ANSI_RESET);

@@ -3,6 +3,7 @@ package com.automation.listeners;
 import com.automation.reports.EmailReporter;
 import com.automation.reports.ExtentReportManager;
 import com.automation.utils.AppiumServerManager;
+import com.automation.utils.SuiteState;
 import com.automation.utils.TestResultTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,6 +21,7 @@ public class TestSuiteListener implements ISuiteListener {
 
     @Override
     public void onStart(ISuite suite) {
+        SuiteState.reset();
         TestResultTracker.reset();
         logger.info("Suite started: " + suite.getName());
 
