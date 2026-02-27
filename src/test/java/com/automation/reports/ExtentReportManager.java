@@ -48,7 +48,7 @@ public class ExtentReportManager {
             
             // Set system information
             extent.setSystemInfo("Platform", PropertyReader.getPlatform());
-            extent.setSystemInfo("Execution Type", PropertyReader.getConfigProperty("execution.type"));
+            extent.setSystemInfo("Execution Type", PropertyReader.getExecutionTarget());
             extent.setSystemInfo("Environment", "QA");
             extent.setSystemInfo("Tester", System.getProperty("user.name"));
             extent.setSystemInfo("Java Version", System.getProperty("java.version"));

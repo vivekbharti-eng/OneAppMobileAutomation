@@ -67,8 +67,8 @@ public class Hooks {
             }
             
             // Get and log device information for Android local execution
-            String executionType = PropertyReader.getConfigProperty("execution.type");
-            if (platform.equalsIgnoreCase("android") && executionType.equalsIgnoreCase("local")) {
+            String executionTarget = PropertyReader.getExecutionTarget();
+            if (platform.equalsIgnoreCase("android") && !executionTarget.equals("browserstack")) {
                 if (AdbHelper.isAdbAvailable()) {
                     Map<String, String> deviceInfo = AdbHelper.getDeviceInfo(null);
                     if (!deviceInfo.isEmpty()) {

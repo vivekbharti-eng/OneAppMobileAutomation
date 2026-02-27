@@ -23,13 +23,13 @@ public class DeviceManager {
      */
     public static Map<String, String> getDevice() {
         String platform = PropertyReader.getConfigProperty("platform");
-        String executionType = PropertyReader.getConfigProperty("execution.type");
+        String executionTarget = PropertyReader.getExecutionTarget();
         String deviceType = PropertyReader.getConfigProperty(platform + ".deviceType");
         
-        logger.info("Platform: " + platform + ", Execution: " + executionType + ", Device Type: " + deviceType);
-        
+        logger.info("Platform: " + platform + ", Execution target: " + executionTarget + ", Device Type: " + deviceType);
+
         // For BrowserStack, return configured details
-        if (executionType.equalsIgnoreCase("browserstack")) {
+        if ("browserstack".equals(executionTarget)) {
             logger.info("BrowserStack execution - using cloud devices");
             return getBrowserStackDevice(platform);
         }
