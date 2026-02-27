@@ -2,6 +2,8 @@ package com.automation.hooks;
 
 import com.automation.drivers.DriverFactory;
 import com.automation.drivers.DriverManager;
+import com.automation.reports.CucumberReportGenerator;
+import com.automation.reports.EmailReporter;
 import com.automation.reports.ExtentReportManager;
 import com.automation.utils.AdbHelper;
 import com.automation.utils.PropertyReader;
@@ -215,12 +217,30 @@ public class Hooks {
                     logger.warn("Could not capture page source: " + e.getMessage());
                 }
 
-                // Fail Fast
+                // Fail Fast — stop suite, generate all reports, send email
                 String failFast = PropertyReader.getProperty("fail.fast", "false");
                 if ("true".equalsIgnoreCase(failFast)) {
-                    logger.error("FAIL FAST ENABLED: Exiting test run due to failure");
+                    logger.error("FAIL FAST: scenario '{}' failed — stopping suite and generating reports", scenario.getName());
                     DriverManager.quitDriver();
+
+                    // 1. Flush Extent Report to disk
                     ExtentReportManager.flushReport();
+
+                    // 2. Generate Cucumber HTML report
+                    try { CucumberReportGenerator.generateReport(); } catch (Exception ex) {
+                        logger.warn("Cucumber report generation failed: " + ex.getMessage());
+                    }
+
+                    // 3. Send email with report
+                    try {
+                        int passed = TestResultTracker.getPassed();
+                        int failed = TestResultTracker.getFailed() + 1; // include current
+                        EmailReporter.sendReport(ExtentReportManager.getReportPath(), passed, failed);
+                    } catch (Exception ex) {
+                        logger.warn("Email send failed: " + ex.getMessage());
+                    }
+
+                    System.out.println("\u001B[31m\u001B[1m[FAIL FAST] Suite stopped after first failure — reports generated\u001B[0m");
                     System.exit(1);
                 }
             } else {
