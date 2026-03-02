@@ -92,14 +92,14 @@ public class LoginTestRunner extends AbstractTestNGCucumberTests {
 
     // ── Helpers ─────────────────────────────────────────────────────────────
 
-    /** Returns true if the given UDID appears in 'adb devices' output. */
+    /** Returns true if the given UDID appears in 'adb devices' output as 'device' (not offline/unauthorized). */
     private boolean isDeviceConnected(String udid) {
         try {
             Process proc = Runtime.getRuntime().exec(new String[]{"adb", "devices"});
             try (BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()))) {
                 String line;
                 while ((line = br.readLine()) != null) {
-                    if (line.startsWith(udid) && line.contains("device")) {
+                    if (line.startsWith(udid) && line.contains("device") && !line.contains("offline") && !line.contains("unauthorized")) {
                         return true;
                     }
                 }
@@ -112,7 +112,24 @@ public class LoginTestRunner extends AbstractTestNGCucumberTests {
     }
 
     /**
-     * Waits up to 90 seconds for the emulator to appear in 'adb devices'.
+     * Verifies ADB shell is fully responsive on the device (not just 'device' in adb devices).
+     * Runs 'adb -s <udid> shell echo ok' and checks response is 'ok'.
+     */
+    private boolean isAdbShellReady(String udid) {
+        try {
+            Process proc = Runtime.getRuntime().exec(new String[]{"adb", "-s", udid, "shell", "echo", "ok"});
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()))) {
+                String line = br.readLine();
+                return "ok".equalsIgnoreCase(line != null ? line.trim() : "");
+            }
+        } catch (Exception e) {
+            logger.debug("[DEVICE CHECK] ADB shell echo failed: {}", e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Waits up to 90 seconds for the emulator to appear in 'adb devices' AND for ADB shell to be responsive.
      * If not found after waiting, attempts to launch it via 'emulator -avd <name>'.
      * Throws SkipException (stops suite) if device is still absent after all retries.
      */
@@ -120,40 +137,43 @@ public class LoginTestRunner extends AbstractTestNGCucumberTests {
         final int waitSeconds = 90;
         final int pollInterval = 5;
 
-        // First quick check
-        if (isDeviceConnected(udid)) {
-            logger.info("[DEVICE CHECK] Emulator '{}' is already running.", udid);
+        // First quick check: device listed AND shell responsive
+        if (isDeviceConnected(udid) && isAdbShellReady(udid)) {
+            logger.info("[DEVICE CHECK] Emulator '{}' is already running and ADB shell is ready.", udid);
             return;
         }
 
-        // Try launching the emulator
-        String avdName = PropertyReader.getProperty("android.emulator.deviceName", "Pixel_8_API_35");
-        logger.warn("[DEVICE CHECK] Emulator '{}' not found — attempting to launch AVD '{}'...", udid, avdName);
-        System.out.println(ANSI_CYAN + "[Suite Setup] Emulator not running — starting AVD '" + avdName + "'..." + ANSI_RESET);
-        try {
-            // Start emulator in background
-            new ProcessBuilder("emulator", "-avd", avdName, "-no-snapshot-load")
-                    .redirectErrorStream(true)
-                    .start();
-        } catch (Exception e) {
-            logger.warn("[DEVICE CHECK] Could not launch emulator: {}", e.getMessage());
+        // Try launching the emulator if not visible at all
+        if (!isDeviceConnected(udid)) {
+            String avdName = PropertyReader.getProperty("android.emulator.deviceName", "Pixel_8_API_35");
+            logger.warn("[DEVICE CHECK] Emulator '{}' not found — attempting to launch AVD '{}'...", udid, avdName);
+            System.out.println(ANSI_CYAN + "[Suite Setup] Emulator not running — starting AVD '" + avdName + "'..." + ANSI_RESET);
+            try {
+                new ProcessBuilder("emulator", "-avd", avdName, "-no-snapshot-load")
+                        .redirectErrorStream(true)
+                        .start();
+            } catch (Exception e) {
+                logger.warn("[DEVICE CHECK] Could not launch emulator: {}", e.getMessage());
+            }
+        } else {
+            logger.warn("[DEVICE CHECK] Emulator '{}' is listed in adb devices but ADB shell not ready yet — waiting...", udid);
         }
 
-        // Wait for device to appear
+        // Wait for device to appear AND ADB shell to be responsive
         for (int elapsed = 0; elapsed < waitSeconds; elapsed += pollInterval) {
             try { Thread.sleep(pollInterval * 1000L); } catch (InterruptedException ignored) {}
-            if (isDeviceConnected(udid)) {
-                // Wait a few more seconds for ADB to be fully ready
+            if (isDeviceConnected(udid) && isAdbShellReady(udid)) {
+                // Extra buffer to let ADB fully stabilise before Appium connects
                 try { Thread.sleep(5000); } catch (InterruptedException ignored) {}
-                logger.info("[DEVICE CHECK] Emulator '{}' is now ready.", udid);
+                logger.info("[DEVICE CHECK] Emulator '{}' is now ready (ADB shell responsive).", udid);
                 System.out.println(ANSI_GREEN + "[Suite Setup] Emulator '" + udid + "' is ready." + ANSI_RESET);
                 return;
             }
-            logger.info("[DEVICE CHECK] Waiting for emulator '{}' ... {}s elapsed", udid, elapsed + pollInterval);
+            logger.info("[DEVICE CHECK] Waiting for emulator '{}' ADB shell... {}s elapsed", udid, elapsed + pollInterval);
         }
 
-        // Still not found after waiting
-        throw new SkipException("[DEVICE CHECK] Emulator '" + udid + "' not available after " + waitSeconds + "s. Start the emulator and retry.");
+        // Still not ready after waiting
+        throw new SkipException("[DEVICE CHECK] Emulator '" + udid + "' ADB shell not responsive after " + waitSeconds + "s. Restart the emulator and retry.");
     }
 
     // ────────────────────────────────────────────────────────────────────────

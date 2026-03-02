@@ -277,12 +277,66 @@ public class HomePage extends BasePage {
     }
     
     /**
+     * Ensure the app is on the Home screen before tapping the profile button.
+     * Presses Back repeatedly until {@code button_profile_picture} is visible or max attempts exhausted.
+     */
+    private void ensureOnHomeScreen() {
+        By profileBtn = By.xpath("//android.widget.ImageView[@resource-id='button_profile_picture']");
+        By homeIndicator = By.xpath(
+            "//*[@content-desc='Send Money' or @text='Send Money']" +
+            " | //*[contains(@content-desc,'Balance') or contains(@text,'Balance')]" +
+            " | //*[@resource-id='button_profile_picture']");
+
+        // Already on home? — fast path
+        if (isElementDisplayed(homeIndicator, 3)) {
+            logger.info("Already on home screen — no navigation needed");
+            return;
+        }
+
+        logger.warn("Not on home screen — pressing Back up to 5 times to navigate home...");
+        for (int i = 0; i < 5; i++) {
+            try {
+                driver.navigate().back();
+                Thread.sleep(1500);
+            } catch (Exception ignored) {}
+            if (isElementDisplayed(homeIndicator, 3)) {
+                logger.info("Reached home screen after " + (i + 1) + " back press(es)");
+                return;
+            }
+        }
+
+        // Last resort: activate the app to bring it to foreground home tab
+        try {
+            logger.warn("Back presses did not reach home — activating app package...");
+            if (driver instanceof io.appium.java_client.android.AndroidDriver androidDriver) {
+                String appPackage = androidDriver.getCurrentPackage();
+                if (appPackage != null && !appPackage.isBlank()) {
+                    androidDriver.activateApp(appPackage);
+                    Thread.sleep(2000);
+                }
+            }
+        } catch (Exception ex) {
+            logger.warn("App activate failed: " + ex.getMessage());
+        }
+
+        // Wait one more time for home indicators
+        if (isElementDisplayed(homeIndicator, 5)) {
+            logger.info("Home screen reached after app activation");
+        } else {
+            logger.warn("Could not confirm home screen — proceeding with profile tap anyway");
+        }
+    }
+
+    /**
      * Tap profile picture button (resource-id: button_profile_picture) to open side menu.
-     * Falls back to UIAutomator resource-id, then coordinate tap.
+     * Navigates to home screen first if needed, then falls back through multiple strategies.
      */
     public void tapProfileImageArea() {
         try {
             logger.info("Tapping profile picture button to open side menu...");
+
+            // Ensure we are on the home screen before attempting the tap
+            ensureOnHomeScreen();
 
             // Strategy 1: resource-id — most reliable
             By byResourceId = By.xpath("//android.widget.ImageView[@resource-id='button_profile_picture']");
@@ -290,6 +344,14 @@ public class HomePage extends BasePage {
                 click(byResourceId);
                 logger.info("Clicked profile picture via resource-id 'button_profile_picture'");
                 Thread.sleep(2000);
+                // Verify side menu opened (look for any menu element)
+                By sideMenuCheck = By.xpath(
+                    "//*[@content-desc='Logout' or @content-desc='Profile' or @content-desc='Settings']");
+                if (!isElementDisplayed(sideMenuCheck, 4)) {
+                    logger.warn("Side menu may not have opened after click — retrying once...");
+                    click(byResourceId);
+                    Thread.sleep(2000);
+                }
                 return;
             }
             logger.warn("Strategy 1 (resource-id) not found, trying UIAutomator...");
@@ -309,7 +371,26 @@ public class HomePage extends BasePage {
                 logger.warn("Strategy 2 (UIAutomator resourceId) failed: " + e2.getMessage());
             }
 
-            // Strategy 3: coordinate tap at known profile icon position
+            // Strategy 3: XPath on any clickable ImageView in top-left quadrant
+            try {
+                By topLeftImg = By.xpath(
+                    "//android.widget.ImageView[@clickable='true' and @bounds]");
+                java.util.List<org.openqa.selenium.WebElement> imgs = driver.findElements(topLeftImg);
+                for (org.openqa.selenium.WebElement img : imgs) {
+                    int x = img.getLocation().getX();
+                    int y = img.getLocation().getY();
+                    if (x < 200 && y < 300) { // top-left area
+                        img.click();
+                        logger.info("Clicked top-left ImageView at (" + x + "," + y + ") as profile button");
+                        Thread.sleep(2000);
+                        return;
+                    }
+                }
+            } catch (Exception e3) {
+                logger.warn("Strategy 3 (top-left ImageView) failed: " + e3.getMessage());
+            }
+
+            // Strategy 4: coordinate tap at known profile icon position
             logger.warn("Falling back to coordinate tap at profile picture area...");
             tapAtCoordinates(60, 220);
             logger.info("Tapped at profile picture coordinates (60, 220)");
