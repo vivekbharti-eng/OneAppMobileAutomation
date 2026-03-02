@@ -356,7 +356,25 @@ public class SendMoneyPage extends BasePage {
             // Step 0: Dismiss keyboard before searching.
             // Keep timeouts SHORT — long XPath waits stress UiAutomator2 and cause it to crash.
             try { ((AndroidDriver) driver).hideKeyboard(); } catch (Exception ignored) {}
-            sleep(2000); // allow contact list to render after keyboard hides
+            sleep(3000); // allow contact list to render after keyboard hides
+
+            // UA2 health check — a crashed/stale instrumentation returns immediately on any XPath query.
+            // If unhealthy wait up to 10s for it to auto-recover before trying XPath searches.
+            boolean ua2Alive = false;
+            for (int healthCheck = 0; healthCheck < 5; healthCheck++) {
+                try {
+                    ((AndroidDriver) driver).isKeyboardShown(); // lightweight UA2 ping
+                    ua2Alive = true;
+                    logger.info("UA2 health check passed (attempt {})", healthCheck + 1);
+                    break;
+                } catch (Exception ua2Ex) {
+                    logger.warn("UA2 health check {} failed: {}. Waiting 2s...", healthCheck + 1, ua2Ex.getMessage());
+                    sleep(2000);
+                }
+            }
+            if (!ua2Alive) {
+                logger.warn("UA2 unresponsive after 10s — skipping XPath search, proceeding with coordinate tap");
+            }
 
             logger.info("Searching for contact result element for: " + mobileNumber);
             WebElement contact = null;
@@ -367,7 +385,7 @@ public class SendMoneyPage extends BasePage {
                 "//*[contains(@content-desc,'" + mobileNumber + "') and not(contains(@resource-id,'search_textfield')) and not(contains(@resource-id,'input'))]" +
                 " | //*[contains(@text,'" + mobileNumber + "') and not(contains(@resource-id,'search_textfield')) and not(contains(@resource-id,'input'))]"
             );
-            try {
+            if (ua2Alive) try {
                 // Short timeout (3s) — keeps UiAutomator2 stable between attempts
                 contact = WaitHelper.waitForElementToBeVisible(xpath1, 3);
                 logger.info("Contact found via broad XPath (pass 1): " + mobileNumber);
@@ -377,7 +395,7 @@ public class SendMoneyPage extends BasePage {
             }
 
             // Pass 2: try again after extra wait — list may still be loading
-            if (contact == null) {
+            if (contact == null && ua2Alive) {
                 try {
                     contact = WaitHelper.waitForElementToBeVisible(xpath1, 3);
                     logger.info("Contact found via XPath pass 2 (after extra wait): " + mobileNumber);
@@ -386,49 +404,41 @@ public class SendMoneyPage extends BasePage {
                 }
             }
 
-            // Pass 3: coordinate tap fallback — use Appium JS 'mobile: tap' (survives UA2 instability)
-            // Tap at the first result row position: x=540 centre, y tries 500→600→700→800
+            // Pass 3: coordinate tap fallback — use 'mobile: clickGesture' (IS supported by UA2).
+            // 'mobile: tap' is NOT listed in UiAutomator2 supported commands; clickGesture IS.
+            // Tap at the first result row: x=540 centre, try y=550→650→750
             if (contact == null) {
-                logger.warn("XPath contact search failed for {}. Using coordinate tap fallback.", mobileNumber);
-                int[] yPositions = {500, 600, 700, 800};
+                logger.warn("XPath contact search failed for {}. Using coordinate clickGesture fallback.", mobileNumber);
+                int[] yPositions = {550, 650, 750, 600};
                 boolean tapped = false;
                 for (int yPos : yPositions) {
                     try {
-                        // 'mobile: tap' is more resilient than PointerInput when UA2 is under stress
-                        ((AndroidDriver) driver).executeScript("mobile: tap",
+                        ((AndroidDriver) driver).executeScript("mobile: clickGesture",
                             java.util.Map.of("x", 540, "y", yPos));
-                        logger.info("Coordinate tap dispatched at (540, {}) for contact result", yPos);
-                        sleep(1500);
-                        // Check if keyboard appeared — means we tapped the contact correctly
-                        try {
-                            if (((AndroidDriver) driver).isKeyboardShown()) {
-                                logger.info("Keyboard appeared after tap at y={} — contact selected!", yPos);
-                                tapped = true;
-                                break;
-                            }
-                        } catch (Exception ignored) {}
+                        logger.info("clickGesture dispatched at (540, {})", yPos);
+                        sleep(2000);
+                        tapped = true;
+                        break;
                     } catch (Exception tapEx) {
-                        logger.warn("Coordinate tap at y={} failed: {}", yPos, tapEx.getMessage());
+                        logger.warn("clickGesture at y={} failed: {}. Trying PointerInput...", yPos, tapEx.getMessage());
+                        try {
+                            PointerInput f = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                            Sequence s = new Sequence(f, 0);
+                            s.addAction(f.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), 540, yPos));
+                            s.addAction(f.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                            s.addAction(f.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                            driver.perform(Arrays.asList(s));
+                            logger.info("PointerInput tap at (540, {})", yPos);
+                            sleep(2000);
+                            tapped = true;
+                            break;
+                        } catch (Exception piEx) {
+                            logger.warn("PointerInput at y={} also failed: {}", yPos, piEx.getMessage());
+                        }
                     }
                 }
-                if (!tapped) {
-                    // Last resort: PointerInput tap at y=600
-                    try {
-                        logger.info("Attempting PointerInput tap at (540, 600) as last resort...");
-                        PointerInput f = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-                        Sequence s = new Sequence(f, 0);
-                        s.addAction(f.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), 540, 600));
-                        s.addAction(f.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-                        s.addAction(f.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-                        driver.perform(Arrays.asList(s));
-                        logger.info("PointerInput tap dispatched at (540, 600)");
-                    } catch (Exception pointerEx) {
-                        logger.warn("PointerInput tap also failed: {}", pointerEx.getMessage());
-                    }
-                }
-                sleep(2000);
-                logger.info("Coordinate fallback complete for: " + mobileNumber);
-                return; // proceed — amount entry will reveal if contact was tapped correctly
+                logger.info("Coordinate fallback complete (tapped={}), proceeding...", tapped);
+                return; // proceed — amount screen should be active if contact was tapped
             }
 
             // Coordinate-based tap on found element (React Native touch targets need this)
@@ -437,10 +447,10 @@ public class SendMoneyPage extends BasePage {
             if (cy < 300) { cy = 600; } // guard: don't tap inside search bar
             logger.info("Tapping contact element at ({}, {})", cx, cy);
             try {
-                ((AndroidDriver) driver).executeScript("mobile: tap", java.util.Map.of("x", cx, "y", cy));
-                logger.info("Contact tapped via mobile:tap at ({}, {})", cx, cy);
+                ((AndroidDriver) driver).executeScript("mobile: clickGesture", java.util.Map.of("x", cx, "y", cy));
+                logger.info("Contact tapped via mobile:clickGesture at ({}, {})", cx, cy);
             } catch (Exception tapEx) {
-                logger.warn("mobile:tap failed ({}), trying PointerInput...", tapEx.getMessage());
+                logger.warn("clickGesture failed ({}), trying PointerInput...", tapEx.getMessage());
                 PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
                 Sequence tap = new Sequence(finger, 0);
                 tap.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), cx, cy));
