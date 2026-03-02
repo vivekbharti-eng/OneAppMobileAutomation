@@ -143,6 +143,25 @@ public class LoginTestRunner extends AbstractTestNGCucumberTests {
             return;
         }
 
+        // If shell is not ready (device listed but 'still authorizing'), restart ADB server once
+        if (isDeviceConnected(udid) && !isAdbShellReady(udid)) {
+            logger.warn("[DEVICE CHECK] Emulator '{}' in adb devices but shell not ready — restarting ADB server...", udid);
+            try {
+                Runtime.getRuntime().exec(new String[]{"adb", "kill-server"}).waitFor();
+                Thread.sleep(2000);
+                Runtime.getRuntime().exec(new String[]{"adb", "start-server"}).waitFor();
+                Thread.sleep(3000);
+                logger.info("[DEVICE CHECK] ADB server restarted.");
+            } catch (Exception e) {
+                logger.warn("[DEVICE CHECK] ADB server restart failed: {}", e.getMessage());
+            }
+            // Re-check after restart
+            if (isDeviceConnected(udid) && isAdbShellReady(udid)) {
+                logger.info("[DEVICE CHECK] Emulator '{}' ready after ADB server restart.", udid);
+                return;
+            }
+        }
+
         // Try launching the emulator if not visible at all
         if (!isDeviceConnected(udid)) {
             String avdName = PropertyReader.getProperty("android.emulator.deviceName", "Pixel_8_API_35");
