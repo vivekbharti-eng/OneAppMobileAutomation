@@ -5,9 +5,6 @@ import com.automation.utils.PropertyReader;
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
-import java.time.Duration;
 
 /**
  * EcoCash Login page object
@@ -60,97 +57,63 @@ public class LoginPage extends BasePage {
             Thread.sleep(3000);
             logger.info("Step 2: Bottom drawer animation complete");
 
-            // Step 3: Locate Zimbabwe — list is alphabetical, ZW is near the bottom.
+            // Step 3: Select Zimbabwe (+263) by typing in the search field — NO scrolling.
             if (countryCode.equals("+263")) {
 
-                // Strategy A: UiScrollable scrollIntoView by resource-id
-                // IMPORTANT: actual resource-id format is "dropdown_ZW" (e.g., India = "dropdown_IN")
+                // Strategy A: Type "263" in the drawer's search/filter EditText, then click result directly.
+                // This filters the list so Zimbabwe is immediately visible without any scroll.
+                boolean selectedViaSearch = false;
                 try {
-                    By scrollLocator = AppiumBy.androidUIAutomator(
-                        "new UiScrollable(new UiSelector().scrollable(true))" +
-                        ".setMaxSearchSwipes(20)" +
-                        ".scrollIntoView(new UiSelector().resourceId(\"dropdown_ZW\"))");
-                    logger.info("Step 3-A: Scrolling list to find dropdown_ZW...");
-                    WebElement item = waitForElement(scrollLocator, 20);
+                    By searchField = By.xpath(
+                        "//android.widget.EditText | " +
+                        "//*[@content-desc='Search' or contains(@resource-id,'search') or contains(@resource-id,'filter')]");
+                    logger.info("Step 3-A: Looking for search field in country picker drawer...");
+                    WebElement search = waitForElement(searchField, 5);
+                    search.click();
+                    Thread.sleep(300);
+                    search.clear();
+                    search.sendKeys("263");
+                    logger.info("Step 3-A: Typed '263' in search field — waiting for Zimbabwe to appear...");
+                    Thread.sleep(1500); // allow list to filter
+
+                    // Click the Zimbabwe result that appears
+                    By zwResult = By.xpath(
+                        "//*[@resource-id='dropdown_ZW' or contains(@content-desc,'+263') or contains(@content-desc,'Zimbabwe')]");
+                    WebElement item = waitForElement(zwResult, 8);
                     item.click();
-                    logger.info("Step 3-A: Selected Zimbabwe via UiScrollable (resourceId=dropdown_ZW)");
-                    Thread.sleep(4000); // allow bottom drawer close animation to complete
-                    return;
+                    logger.info("Step 3-A: Selected Zimbabwe via search field + direct click");
+                    selectedViaSearch = true;
                 } catch (Exception e1) {
-                    logger.warn("Step 3-A UiScrollable/resourceId failed: {}", e1.getMessage());
+                    logger.warn("Step 3-A search-field approach failed: {}", e1.getMessage());
                 }
 
-                // Strategy B: UiScrollable by content-desc containing "+263"
-                // (content-desc format is "Country Code *\n+263", NOT the country name)
-                try {
-                    By scrollLocator2 = AppiumBy.androidUIAutomator(
-                        "new UiScrollable(new UiSelector().scrollable(true))" +
-                        ".setMaxSearchSwipes(20)" +
-                        ".scrollIntoView(new UiSelector().descriptionContains(\"+263\"))");
-                    logger.info("Step 3-B: Scrolling list to find item with content-desc containing +263...");
-                    WebElement item = waitForElement(scrollLocator2, 20);
-                    item.click();
-                    logger.info("Step 3-B: Selected Zimbabwe via UiScrollable (descriptionContains +263)");
-                    Thread.sleep(4000);
-                    return;
-                } catch (Exception e2) {
-                    logger.warn("Step 3-B UiScrollable/content-desc(+263) failed: {}", e2.getMessage());
-                }
-
-                // Strategy C: Manual swipe-scroll to bottom of list, then XPath scan.
-                // UiScrollable sometimes picks the wrong container — manual swipes are more reliable.
-                logger.info("Step 3-C: Manual swipe scroll to bring Zimbabwe into view...");
-                try {
-                    // Swipe up repeatedly (content moves up → we scroll toward bottom/Z entries)
-                    // Screen: 1080x2400, status bar 132px. Bottom sheet list occupies ~y=800 to y=2268.
-                    PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-                    for (int swipeNum = 0; swipeNum < 10; swipeNum++) {
-                        // Check if Zimbabwe is visible after each swipe
-                        try {
-                            By zwXpath = By.xpath(
-                                "//*[contains(@content-desc,'+263') or @resource-id='dropdown_ZW']");
-                            java.util.List<WebElement> found =
-                                driver.findElements(zwXpath);
-                            if (!found.isEmpty() && found.get(0).isDisplayed()) {
-                                found.get(0).click();
-                                logger.info("Step 3-C: Selected Zimbabwe after {} manual swipes", swipeNum);
-                                Thread.sleep(4000);
-                                return;
-                            }
-                        } catch (Exception ignored) {}
-
-                        // Swipe from y=1800 up to y=900 (scroll list downward)
-                        Sequence swipe = new Sequence(finger, 0);
-                        swipe.addAction(finger.createPointerMove(Duration.ZERO,
-                            PointerInput.Origin.viewport(), 540, 1800));
-                        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-                        swipe.addAction(finger.createPointerMove(java.time.Duration.ofMillis(400),
-                            PointerInput.Origin.viewport(), 540, 900));
-                        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-                        driver.perform(java.util.Arrays.asList(swipe));
-                        Thread.sleep(500);
+                if (!selectedViaSearch) {
+                    // Strategy B: Direct click by resource-id — works if item is already visible
+                    // (resource-id pattern: dropdown_ZW, as observed from India = dropdown_IN)
+                    try {
+                        By zwDirect = By.xpath("//*[@resource-id='dropdown_ZW']");
+                        logger.info("Step 3-B: Direct XPath click on dropdown_ZW...");
+                        WebElement item = waitForElement(zwDirect, 5);
+                        item.click();
+                        logger.info("Step 3-B: Selected Zimbabwe via direct resource-id click");
+                        selectedViaSearch = true;
+                    } catch (Exception e2) {
+                        logger.warn("Step 3-B direct resource-id failed: {}", e2.getMessage());
                     }
-
-                    // Final XPath check after all swipes
-                    By zwXpathFinal = By.xpath(
-                        "//*[contains(@content-desc,'+263') or @resource-id='dropdown_ZW'" +
-                        " or contains(@content-desc,'Zimbabwe') or contains(@text,'+263')]");
-                    WebElement item = waitForElement(zwXpathFinal, 5);
-                    item.click();
-                    logger.info("Step 3-C: Selected Zimbabwe via XPath after manual scroll");
-                    Thread.sleep(4000);
-                    return;
-                } catch (Exception e3) {
-                    logger.warn("Step 3-C manual swipe+XPath failed: {}", e3.getMessage());
                 }
 
-                // Strategy D: Last resort — direct resourceId "dropdown_ZW"
-                By zimbabweLocator = AppiumBy.androidUIAutomator(
-                    "new UiSelector().resourceId(\"dropdown_ZW\")");
-                logger.info("Step 3-D: Last resort — direct resourceId(dropdown_ZW) lookup...");
-                waitForElement(zimbabweLocator, 10);
-                click(zimbabweLocator);
-                logger.info("Step 3-D: Selected Zimbabwe via direct resourceId(dropdown_ZW)");
+                if (!selectedViaSearch) {
+                    // Strategy C: UIAutomator direct lookup (no scrolling)
+                    By zwUiAuto = AppiumBy.androidUIAutomator(
+                        "new UiSelector().resourceId(\"dropdown_ZW\")");
+                    logger.info("Step 3-C: UIAutomator direct resourceId lookup (no scroll)...");
+                    WebElement item = waitForElement(zwUiAuto, 8);
+                    item.click();
+                    logger.info("Step 3-C: Selected Zimbabwe via UIAutomator direct lookup");
+                }
+
+                Thread.sleep(4000); // allow bottom drawer close animation to complete
+                return;
 
             } else {
                 // For other country codes, scroll to content-desc matching the code
