@@ -100,10 +100,19 @@ public class Hooks {
             
             // Kill any stale UiAutomator2 server on device to ensure a clean session
             try {
-                Runtime.getRuntime().exec(new String[]{"adb", "-s", "10BF7S243X0030Z", "shell", "am", "force-stop", "io.appium.uiautomator2.server"}).waitFor();
-                Runtime.getRuntime().exec(new String[]{"adb", "-s", "10BF7S243X0030Z", "shell", "am", "force-stop", "io.appium.uiautomator2.server.test"}).waitFor();
+                String executionTarget2 = PropertyReader.getExecutionTarget();
+                String udidForKill;
+                if ("virtual".equalsIgnoreCase(executionTarget2)) {
+                    udidForKill = PropertyReader.getConfigProperty("android.emulator.udid");
+                    if (udidForKill == null || udidForKill.isBlank()) udidForKill = "emulator-5554";
+                } else {
+                    udidForKill = PropertyReader.getConfigProperty("android.real.udid");
+                    if (udidForKill == null || udidForKill.isBlank()) udidForKill = "10BF7S243X0030Z";
+                }
+                Runtime.getRuntime().exec(new String[]{"adb", "-s", udidForKill, "shell", "am", "force-stop", "io.appium.uiautomator2.server"}).waitFor();
+                Runtime.getRuntime().exec(new String[]{"adb", "-s", udidForKill, "shell", "am", "force-stop", "io.appium.uiautomator2.server.test"}).waitFor();
                 Thread.sleep(1000);
-                logger.info("Killed stale UiAutomator2 server processes on device");
+                logger.info("Killed stale UiAutomator2 server processes on device: " + udidForKill);
             } catch (Exception ignored) {
                 logger.debug("UiAutomator2 server cleanup skipped: " + ignored.getMessage());
             }
@@ -181,6 +190,15 @@ public class Hooks {
             if (scenario.isFailed()) {
                 logger.error("Scenario failed: " + scenario.getName());
 
+                // ── FAIL FAST: signal abort FIRST (before any operations that may throw) ──
+                String failFast = PropertyReader.getProperty("fail.fast", "false");
+                if ("true".equalsIgnoreCase(failFast)) {
+                    SuiteState.abort();
+                    logger.error("FAIL FAST: scenario '{}' failed — aborting suite", scenario.getName());
+                    System.out.println(ANSI_RED + ANSI_BOLD +
+                        "[FAIL FAST] Suite stopped after first failure" + ANSI_RESET);
+                }
+
                 // Derive feature name from scenario URI  e.g. ".../features/login/Login.feature" → "login"
                 String featureName = "unknown";
                 try {
@@ -195,25 +213,38 @@ public class Hooks {
                 }
 
                 // Capture screenshot → test-output/screenshots/{runTimestamp}/{feature}/
-                String screenshotPath = ScreenshotUtils.captureFailureScreenshot(scenario.getName(), featureName);
+                String screenshotPath = null;
+                try {
+                    screenshotPath = ScreenshotUtils.captureFailureScreenshot(scenario.getName(), featureName);
+                } catch (Exception ex) {
+                    logger.warn("Screenshot capture failed (driver may be dead): " + ex.getMessage());
+                }
 
                 // Attach screenshot to Cucumber report
                 if (screenshotPath != null) {
-                    byte[] screenshot = java.nio.file.Files.readAllBytes(
-                            Path.of(screenshotPath));
-                    scenario.attach(screenshot, "image/png", "Failure Screenshot");
+                    try {
+                        byte[] screenshot = java.nio.file.Files.readAllBytes(Path.of(screenshotPath));
+                        scenario.attach(screenshot, "image/png", "Failure Screenshot");
+                    } catch (Exception ex) {
+                        logger.warn("Could not attach screenshot to Cucumber report: " + ex.getMessage());
+                    }
                 }
 
                 // Add screenshot to Extent Report
-                String base64Screenshot = ScreenshotUtils.getBase64Screenshot();
-                if (base64Screenshot != null) {
-                    ExtentReportManager.attachScreenshot(base64Screenshot);
+                try {
+                    String base64Screenshot = ScreenshotUtils.getBase64Screenshot();
+                    if (base64Screenshot != null) {
+                        ExtentReportManager.attachScreenshot(base64Screenshot);
+                    }
+                } catch (Exception ex) {
+                    logger.warn("Could not attach base64 screenshot: " + ex.getMessage());
                 }
 
                 ExtentReportManager.logFail("<b>Scenario Failed:</b> " + scenario.getName());
-                ExtentReportManager.logFail("<b>Screenshot:</b> " + screenshotPath);
-
-                System.out.println(ANSI_RED + "✗ Screenshot: " + screenshotPath + ANSI_RESET);
+                if (screenshotPath != null) {
+                    ExtentReportManager.logFail("<b>Screenshot:</b> " + screenshotPath);
+                    System.out.println(ANSI_RED + "✗ Screenshot: " + screenshotPath + ANSI_RESET);
+                }
 
                 // Capture page source for debugging
                 try {
@@ -226,16 +257,12 @@ public class Hooks {
                     logger.warn("Could not capture page source: " + e.getMessage());
                 }
 
-                // Fail Fast — stop suite, generate all reports, send email
-                String failFast = PropertyReader.getProperty("fail.fast", "false");
+                // Generate reports after abort (if fail-fast enabled)
                 if ("true".equalsIgnoreCase(failFast)) {
-                    logger.error("FAIL FAST: scenario '{}' failed — stopping suite and generating reports", scenario.getName());
-
-                    // Signal all subsequent scenarios to skip
-                    SuiteState.abort();
-
                     // 1. Flush Extent Report to disk
-                    ExtentReportManager.flushReport();
+                    try { ExtentReportManager.flushReport(); } catch (Exception ex) {
+                        logger.warn("Extent report flush failed: " + ex.getMessage());
+                    }
 
                     // 2. Generate Cucumber HTML report
                     try { CucumberReportGenerator.generateReport(); } catch (Exception ex) {
@@ -250,9 +277,6 @@ public class Hooks {
                     } catch (Exception ex) {
                         logger.warn("Email send failed: " + ex.getMessage());
                     }
-
-                    System.out.println(ANSI_RED + ANSI_BOLD +
-                        "[FAIL FAST] Suite stopped after first failure — reports generated" + ANSI_RESET);
                 }
             } else {
                 ExtentReportManager.logPass("Scenario passed: " + scenario.getName());

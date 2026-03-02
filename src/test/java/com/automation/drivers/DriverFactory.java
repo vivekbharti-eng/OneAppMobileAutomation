@@ -171,7 +171,7 @@ public class DriverFactory {
         
         // Real device specific settings
         String deviceType = device.get("deviceType");
-        if ("real".equalsIgnoreCase(deviceType)) {
+        if ("real".equalsIgnoreCase(deviceType) || "emulator".equalsIgnoreCase(deviceType)) {
             String skipDeviceInit = PropertyReader.getConfigProperty("android.skipDeviceInitialization");
             if (skipDeviceInit != null && !skipDeviceInit.isEmpty()) {
                 options.setCapability("skipDeviceInitialization", Boolean.parseBoolean(skipDeviceInit));
@@ -187,7 +187,12 @@ public class DriverFactory {
                 options.setSystemPort(Integer.parseInt(systemPort));
             }
             
-            logger.info("Real device capabilities configured");
+            if ("real".equalsIgnoreCase(deviceType)) {
+                logger.info("Real device capabilities configured");
+            } else {
+                logger.info("Emulator capabilities configured (skipDeviceInit={}, skipServerInstall={})",
+                        skipDeviceInit, skipServerInstall);
+            }
         }
         
         logger.info("Android capabilities configured");

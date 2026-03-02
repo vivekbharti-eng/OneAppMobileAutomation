@@ -322,17 +322,19 @@ public class SendMoneyPage extends BasePage {
         try {
             sleep(2000); // wait for search results to populate
 
-            // Strategy 1: UIAutomator — match contact_item_* whose content-desc contains the number
-            // The number appears as "+263789124766" so partial match on last 9 digits works.
+            // Strategy 1: UIAutomator — simple descriptionContains, no regex (resourceIdMatches is crash-prone)
+            // Only run if the contact list appears to be loaded.
             WebElement contact = null;
             try {
                 By uiAuto = AppiumBy.androidUIAutomator(
-                    "new UiSelector().resourceIdMatches(\"contact_item_.*\").descriptionContains(\"" + mobileNumber + "\")"
+                    "new UiSelector().descriptionContains(\"" + mobileNumber + "\").clickable(true)"
                 );
-                contact = WaitHelper.waitForElementToBeVisible(uiAuto, 10);
-                logger.info("Contact found via UIAutomator: " + mobileNumber);
+                contact = WaitHelper.waitForElementToBeVisible(uiAuto, 5);
+                logger.info("Contact found via UIAutomator descriptionContains: " + mobileNumber);
             } catch (Exception ignored) {
                 logger.warn("UIAutomator contact search failed, falling back to XPath");
+                // Brief pause to allow UiAutomator2 server to stabilise after timeout
+                try { Thread.sleep(2000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
             }
 
             // Strategy 2: XPath fallback — exclude search_textfield to avoid re-tapping the input field
