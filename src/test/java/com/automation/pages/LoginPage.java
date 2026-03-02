@@ -2,6 +2,7 @@ package com.automation.pages;
 
 import com.automation.utils.LocatorUtils;
 import com.automation.utils.PropertyReader;
+import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -51,28 +52,87 @@ public class LoginPage extends BasePage {
             waitForElement(dropdownLocator, 10);
             click(dropdownLocator);
             logger.info("Step 1: Clicked country code dropdown to open bottom drawer");
-            
-            // Step 2: Wait for the drawer to animate up from bottom and list to load
+
+            // Step 2: Wait for the drawer to animate up and list to render
             Thread.sleep(3000);
-            logger.info("Step 2: Bottom drawer animation complete, list loaded");
-            
-            // Step 3: Locate and tap on the Zimbabwe option from the drawer list
+            logger.info("Step 2: Bottom drawer animation complete");
+
+            // Step 3: Locate Zimbabwe — list is alphabetical, ZW is near the bottom.
+            //         Use UiScrollable.scrollIntoView so we don't depend on the item being visible.
             if (countryCode.equals("+263")) {
+
+                // Strategy A: UiScrollable scrollIntoView by resource-id (most reliable)
+                try {
+                    By scrollLocator = AppiumBy.androidUIAutomator(
+                        "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".setMaxSearchSwipes(15)" +
+                        ".scrollIntoView(new UiSelector().resourceId(\"drop_down_item_ZW\"))");
+                    logger.info("Step 3-A: Scrolling list to find drop_down_item_ZW...");
+                    WebElement item = waitForElement(scrollLocator, 20);
+                    item.click();
+                    logger.info("Step 3-A: Selected Zimbabwe via UiScrollable (resourceId)");
+                    Thread.sleep(1000);
+                    return;
+                } catch (Exception e1) {
+                    logger.warn("Step 3-A UiScrollable/resourceId failed: {}", e1.getMessage());
+                }
+
+                // Strategy B: Scroll by content-desc containing "Zimbabwe" or "263"
+                try {
+                    By scrollLocator2 = AppiumBy.androidUIAutomator(
+                        "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".setMaxSearchSwipes(15)" +
+                        ".scrollIntoView(new UiSelector().descriptionContains(\"Zimbabwe\"))");
+                    logger.info("Step 3-B: Scrolling list to find Zimbabwe by content-desc...");
+                    WebElement item = waitForElement(scrollLocator2, 20);
+                    item.click();
+                    logger.info("Step 3-B: Selected Zimbabwe via UiScrollable (content-desc)");
+                    Thread.sleep(1000);
+                    return;
+                } catch (Exception e2) {
+                    logger.warn("Step 3-B UiScrollable/content-desc failed: {}", e2.getMessage());
+                }
+
+                // Strategy C: XPath content-desc / text fallback (no scrolling — item may be partially visible)
+                try {
+                    By xpathLocator = By.xpath(
+                        "//*[contains(@content-desc,'263') or contains(@content-desc,'Zimbabwe')" +
+                        " or contains(@text,'Zimbabwe') or contains(@text,'+263')]");
+                    logger.info("Step 3-C: Trying XPath for Zimbabwe/+263...");
+                    WebElement item = waitForElement(xpathLocator, 10);
+                    item.click();
+                    logger.info("Step 3-C: Selected Zimbabwe via XPath");
+                    Thread.sleep(1000);
+                    return;
+                } catch (Exception e3) {
+                    logger.warn("Step 3-C XPath fallback failed: {}", e3.getMessage());
+                }
+
+                // Strategy D: Original direct resourceId (last resort if list loaded fully)
                 By zimbabweLocator = LocatorUtils.getLocator(COUNTRY_CODE_ZIMBABWE);
-                logger.info("Step 3: Searching for Zimbabwe (+263) in bottom drawer using content-desc...");
-                waitForElement(zimbabweLocator, 15);
-                logger.info("Step 3: Found Zimbabwe option, clicking now...");
+                logger.info("Step 3-D: Last resort — direct resourceId lookup...");
+                waitForElement(zimbabweLocator, 10);
                 click(zimbabweLocator);
-                logger.info("Step 3: Successfully clicked Zimbabwe (+263) from bottom drawer");
+                logger.info("Step 3-D: Selected Zimbabwe via direct resourceId");
+
             } else {
-                // For other country codes, use a generic xpath
-                By countryLocator = By.xpath("//android.view.View[contains(@content-desc, '" + countryCode + "')]");
-                logger.info("Step 3: Looking for country code " + countryCode + " option in the drawer...");
-                waitForElement(countryLocator, 15);
-                click(countryLocator);
-                logger.info("Step 3: Tapped on country code " + countryCode + " option from drawer");
+                // For other country codes, scroll to content-desc matching the code
+                try {
+                    By scrollLocator = AppiumBy.androidUIAutomator(
+                        "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".setMaxSearchSwipes(15)" +
+                        ".scrollIntoView(new UiSelector().descriptionContains(\"" + countryCode + "\"))");
+                    WebElement item = waitForElement(scrollLocator, 20);
+                    item.click();
+                    logger.info("Step 3: Selected country code {} via UiScrollable", countryCode);
+                } catch (Exception e) {
+                    By countryLocator = By.xpath("//android.view.View[contains(@content-desc, '" + countryCode + "')]");
+                    waitForElement(countryLocator, 15);
+                    click(countryLocator);
+                    logger.info("Step 3: Tapped on country code {} option from drawer", countryCode);
+                }
             }
-            
+
             // Step 4: Wait for drawer to close after selection
             Thread.sleep(1000);
             logger.info("Step 4: Country code selected, drawer closing...");
@@ -447,3 +507,4 @@ public class LoginPage extends BasePage {
         }
     }
 }
+
