@@ -74,7 +74,7 @@ public class LoginPage extends BasePage {
                     WebElement item = waitForElement(scrollLocator, 20);
                     item.click();
                     logger.info("Step 3-A: Selected Zimbabwe via UiScrollable (resourceId=dropdown_ZW)");
-                    Thread.sleep(1000);
+                    Thread.sleep(4000); // allow bottom drawer close animation to complete
                     return;
                 } catch (Exception e1) {
                     logger.warn("Step 3-A UiScrollable/resourceId failed: {}", e1.getMessage());
@@ -91,7 +91,7 @@ public class LoginPage extends BasePage {
                     WebElement item = waitForElement(scrollLocator2, 20);
                     item.click();
                     logger.info("Step 3-B: Selected Zimbabwe via UiScrollable (descriptionContains +263)");
-                    Thread.sleep(1000);
+                    Thread.sleep(4000);
                     return;
                 } catch (Exception e2) {
                     logger.warn("Step 3-B UiScrollable/content-desc(+263) failed: {}", e2.getMessage());
@@ -114,7 +114,7 @@ public class LoginPage extends BasePage {
                             if (!found.isEmpty() && found.get(0).isDisplayed()) {
                                 found.get(0).click();
                                 logger.info("Step 3-C: Selected Zimbabwe after {} manual swipes", swipeNum);
-                                Thread.sleep(1000);
+                                Thread.sleep(4000);
                                 return;
                             }
                         } catch (Exception ignored) {}
@@ -138,7 +138,7 @@ public class LoginPage extends BasePage {
                     WebElement item = waitForElement(zwXpathFinal, 5);
                     item.click();
                     logger.info("Step 3-C: Selected Zimbabwe via XPath after manual scroll");
-                    Thread.sleep(1000);
+                    Thread.sleep(4000);
                     return;
                 } catch (Exception e3) {
                     logger.warn("Step 3-C manual swipe+XPath failed: {}", e3.getMessage());
@@ -196,7 +196,7 @@ public class LoginPage extends BasePage {
         try {
             By mobileLocator = LocatorUtils.getLocator(MOBILE_NUMBER_FIELD);
             logger.info("Waiting for mobile number field to appear...");
-            waitForElement(mobileLocator, 10);
+            waitForElement(mobileLocator, 25); // allow up to 25s for drawer to close and field to render
             Thread.sleep(1000); // Wait for field to be fully ready
             
             // Step 1: Click on mobile number field first

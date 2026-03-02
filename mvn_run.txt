@@ -35,54 +35,54 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running TestSuite
-2026-03-02 15:05:44.437 [main] INFO  com.automation.listeners.TestSuiteListener - Suite started: Appium Automation Suite
-2026-03-02 15:05:44.877 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
-2026-03-02 15:05:45.392 [main] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
-2026-03-02 15:05:45.411 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.udid = emulator-5554
-2026-03-02 15:05:45.412 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.platformVersion = 15
-2026-03-02 15:05:45.412 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.deviceName = sdk_gphone64_x86_64
-2026-03-02 15:05:45.413 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.deviceType = real
+2026-03-02 15:16:46.070 [main] INFO  com.automation.listeners.TestSuiteListener - Suite started: Appium Automation Suite
+2026-03-02 15:16:46.533 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-03-02 15:16:47.024 [main] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
+2026-03-02 15:16:47.039 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.udid = emulator-5554
+2026-03-02 15:16:47.040 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.platformVersion = 15
+2026-03-02 15:16:47.040 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.deviceName = sdk_gphone64_x86_64
+2026-03-02 15:16:47.041 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.deviceType = real
 ? Real device detected:  sdk_gphone64_x86_64  |  UDID: emulator-5554  |  Android 15
-2026-03-02 15:05:45.414 [main] INFO  com.automation.utils.AppiumServerManager - Auto-detected device ù UDID: emulator-5554 | Model: sdk_gphone64_x86_64 | Android: 15
+2026-03-02 15:16:47.043 [main] INFO  com.automation.utils.AppiumServerManager - Auto-detected device ù UDID: emulator-5554 | Model: sdk_gphone64_x86_64 | Android: 15
 ? Appium server already running on port 4723.
-2026-03-02 15:05:45.477 [main] INFO  com.automation.utils.AppiumServerManager - Appium already running ù skipping start.
-2026-03-02 15:05:46.002 [main] INFO  com.automation.runners.LoginTestRunner - [DEVICE CHECK] Emulator 'emulator-5554' is already running and ADB shell is ready.
-2026-03-02 15:05:46.014 [main] INFO  com.automation.utils.ReportPathManager - Created directory: target/reports/allure/20260302_150546/allure-results
-2026-03-02 15:05:46.017 [main] INFO  com.automation.utils.ReportPathManager - Created directory: target/reports/extent/20260302_150546
-2026-03-02 15:05:46.018 [main] INFO  com.automation.utils.ReportPathManager - Created directory: test-output/cucumber-reports/20260302_150546
-2026-03-02 15:05:46.020 [main] INFO  com.automation.utils.ReportPathManager - Created directory: test-output/screenshots/20260302_150546
-2026-03-02 15:05:46.043 [main] INFO  com.automation.utils.ReportPathManager - Updated allure.properties with results directory: target/reports/allure/20260302_150546/allure-results
-2026-03-02 15:05:46.043 [main] INFO  com.automation.utils.ReportPathManager - Report paths initialized with timestamp: 20260302_150546
-2026-03-02 15:05:46.044 [main] INFO  com.automation.utils.ReportPathManager - Allure Results: target/reports/allure/20260302_150546/allure-results
-2026-03-02 15:05:46.044 [main] INFO  com.automation.utils.ReportPathManager - Allure Report: target/reports/allure/20260302_150546/allure-report
-2026-03-02 15:05:46.044 [main] INFO  com.automation.utils.ReportPathManager - Extent Report: target/reports/extent/20260302_150546/ExtentReport_20260302_150546.html
-2026-03-02 15:05:46.047 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report Directory: target/reports/extent/20260302_150546
-2026-03-02 15:05:46.378 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report initialized: target/reports/extent/20260302_150546/ExtentReport_20260302_150546.html
+2026-03-02 15:16:47.093 [main] INFO  com.automation.utils.AppiumServerManager - Appium already running ù skipping start.
+2026-03-02 15:16:47.537 [main] INFO  com.automation.runners.LoginTestRunner - [DEVICE CHECK] Emulator 'emulator-5554' is already running and ADB shell is ready.
+2026-03-02 15:16:47.546 [main] INFO  com.automation.utils.ReportPathManager - Created directory: target/reports/allure/20260302_151647/allure-results
+2026-03-02 15:16:47.554 [main] INFO  com.automation.utils.ReportPathManager - Created directory: target/reports/extent/20260302_151647
+2026-03-02 15:16:47.556 [main] INFO  com.automation.utils.ReportPathManager - Created directory: test-output/cucumber-reports/20260302_151647
+2026-03-02 15:16:47.558 [main] INFO  com.automation.utils.ReportPathManager - Created directory: test-output/screenshots/20260302_151647
+2026-03-02 15:16:47.578 [main] INFO  com.automation.utils.ReportPathManager - Updated allure.properties with results directory: target/reports/allure/20260302_151647/allure-results
+2026-03-02 15:16:47.578 [main] INFO  com.automation.utils.ReportPathManager - Report paths initialized with timestamp: 20260302_151647
+2026-03-02 15:16:47.579 [main] INFO  com.automation.utils.ReportPathManager - Allure Results: target/reports/allure/20260302_151647/allure-results
+2026-03-02 15:16:47.579 [main] INFO  com.automation.utils.ReportPathManager - Allure Report: target/reports/allure/20260302_151647/allure-report
+2026-03-02 15:16:47.579 [main] INFO  com.automation.utils.ReportPathManager - Extent Report: target/reports/extent/20260302_151647/ExtentReport_20260302_151647.html
+2026-03-02 15:16:47.582 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report Directory: target/reports/extent/20260302_151647
+2026-03-02 15:16:47.915 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report initialized: target/reports/extent/20260302_151647/ExtentReport_20260302_151647.html
 =========================================
   MOBILE AUTOMATION TEST SUITE STARTED  
 =========================================
-2026-03-02 15:05:48.545 [main] INFO  com.automation.runners.LoginTestRunner - [BeforeSuite] ADB uninstall 'com.sasai.sasaipay' on 'emulator-5554' ? exit 0
+2026-03-02 15:16:48.248 [main] INFO  com.automation.runners.LoginTestRunner - [BeforeSuite] ADB uninstall 'com.sasai.sasaipay' on 'emulator-5554' ? exit 1
 [Suite Setup] App uninstalled for fresh install ? com.sasai.sasaipay
 
 @smoke @smoke @positive @login
 Scenario: Successful login with valid credentials from config            # src/test/resources/features/login/Login.feature:12
-2026-03-02 15:05:50.547 [main] INFO  com.automation.hooks.Hooks - ========================================
-2026-03-02 15:05:50.549 [main] INFO  com.automation.hooks.Hooks - Starting scenario: Successful login with valid credentials from config
-2026-03-02 15:05:50.549 [main] INFO  com.automation.hooks.Hooks - ========================================
+2026-03-02 15:16:50.575 [main] INFO  com.automation.hooks.Hooks - ========================================
+2026-03-02 15:16:50.575 [main] INFO  com.automation.hooks.Hooks - Starting scenario: Successful login with valid credentials from config
+2026-03-02 15:16:50.576 [main] INFO  com.automation.hooks.Hooks - ========================================
 
 ? Scenario: Successful login with valid credentials from config
-2026-03-02 15:05:50.553 [main] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
-2026-03-02 15:05:50.557 [main] INFO  com.automation.utils.PropertyReader - Android locators loaded successfully
-2026-03-02 15:05:51.166 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
-2026-03-02 15:05:53.741 [main] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: Google sdk_gphone64_x86_64 (Android 15)
-2026-03-02 15:05:54.240 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
-2026-03-02 15:05:55.063 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
-2026-03-02 15:05:55.751 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
-2026-03-02 15:05:57.699 [main] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: Google sdk_gphone64_x86_64 (Android 15)
-2026-03-02 15:05:57.895 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
-2026-03-02 15:05:58.348 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
-2026-03-02 15:05:58.775 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
-2026-03-02 15:05:58.791 [main] INFO  com.automation.utils.AdbHelper - 
+2026-03-02 15:16:50.579 [main] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
+2026-03-02 15:16:50.582 [main] INFO  com.automation.utils.PropertyReader - Android locators loaded successfully
+2026-03-02 15:16:51.046 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-03-02 15:16:54.583 [main] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: Google sdk_gphone64_x86_64 (Android 15)
+2026-03-02 15:16:54.808 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-03-02 15:16:55.375 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-03-02 15:16:55.954 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-03-02 15:16:57.774 [main] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: Google sdk_gphone64_x86_64 (Android 15)
+2026-03-02 15:16:57.967 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-03-02 15:16:58.423 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-03-02 15:16:58.827 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-03-02 15:16:58.843 [main] INFO  com.automation.utils.AdbHelper - 
 ==================================================
 DEVICE INFORMATION
 ==================================================
@@ -99,22 +99,22 @@ Serial Number   : emulator-5554
 Screen Resolution: 1080x2400
 Battery Level   : 100%
 ==================================================
-2026-03-02 15:05:58.792 [main] INFO  com.automation.reports.ExtentReportManager - Device information added to extent report
-2026-03-02 15:06:00.493 [main] INFO  com.automation.hooks.Hooks - Killed stale UiAutomator2 server processes on device: emulator-5554
-2026-03-02 15:06:00.494 [main] INFO  com.automation.drivers.DriverFactory - Initializing driver for platform: android
-2026-03-02 15:06:00.494 [main] INFO  com.automation.drivers.DriverFactory - Execution target (from switch): virtual
-2026-03-02 15:06:00.494 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.deviceType = emulator
-2026-03-02 15:06:00.494 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.deviceName = Pixel_8_API_35
-2026-03-02 15:06:00.494 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.platformVersion = 15
-2026-03-02 15:06:00.495 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.udid = emulator-5554
-2026-03-02 15:06:00.495 [main] INFO  com.automation.drivers.DriverFactory - [SWITCH] Running on VIRTUAL DEVICE (emulator)
-2026-03-02 15:06:00.495 [main] INFO  com.automation.drivers.DriverFactory - Creating local Android driver
-2026-03-02 15:06:00.496 [main] INFO  com.automation.utils.DeviceManager - Platform: android, Execution target: virtual, Device Type: emulator
-2026-03-02 15:06:00.496 [main] INFO  com.automation.utils.DeviceManager - Emulator execution
-2026-03-02 15:06:00.802 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
-2026-03-02 15:06:00.802 [main] INFO  com.automation.utils.DeviceManager - Emulator detected: emulator-5554
-2026-03-02 15:06:02.471 [main] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: Google sdk_gphone64_x86_64 (Android 15)
-2026-03-02 15:06:02.476 [main] INFO  com.automation.utils.DeviceManager - 
+2026-03-02 15:16:58.844 [main] INFO  com.automation.reports.ExtentReportManager - Device information added to extent report
+2026-03-02 15:17:00.401 [main] INFO  com.automation.hooks.Hooks - Killed stale UiAutomator2 server processes on device: emulator-5554
+2026-03-02 15:17:00.401 [main] INFO  com.automation.drivers.DriverFactory - Initializing driver for platform: android
+2026-03-02 15:17:00.402 [main] INFO  com.automation.drivers.DriverFactory - Execution target (from switch): virtual
+2026-03-02 15:17:00.402 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.deviceType = emulator
+2026-03-02 15:17:00.402 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.deviceName = Pixel_8_API_35
+2026-03-02 15:17:00.402 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.platformVersion = 15
+2026-03-02 15:17:00.403 [main] INFO  com.automation.utils.PropertyReader - Config property overridden at runtime: android.udid = emulator-5554
+2026-03-02 15:17:00.403 [main] INFO  com.automation.drivers.DriverFactory - [SWITCH] Running on VIRTUAL DEVICE (emulator)
+2026-03-02 15:17:00.403 [main] INFO  com.automation.drivers.DriverFactory - Creating local Android driver
+2026-03-02 15:17:00.404 [main] INFO  com.automation.utils.DeviceManager - Platform: android, Execution target: virtual, Device Type: emulator
+2026-03-02 15:17:00.404 [main] INFO  com.automation.utils.DeviceManager - Emulator execution
+2026-03-02 15:17:00.737 [main] INFO  com.automation.utils.AdbHelper - Found 1 connected device(s)
+2026-03-02 15:17:00.737 [main] INFO  com.automation.utils.DeviceManager - Emulator detected: emulator-5554
+2026-03-02 15:17:02.469 [main] INFO  com.automation.utils.AdbHelper - Device Info Retrieved: Google sdk_gphone64_x86_64 (Android 15)
+2026-03-02 15:17:02.475 [main] INFO  com.automation.utils.DeviceManager - 
 ==================================================
 SELECTED DEVICE INFORMATION
 ==================================================
@@ -125,98 +125,74 @@ UDID            : emulator-5554
 Manufacturer    : N/A
 Model           : N/A
 ==================================================
-2026-03-02 15:06:02.526 [main] INFO  com.automation.drivers.DriverFactory - Using device with UDID: emulator-5554
-2026-03-02 15:06:02.527 [main] WARN  com.automation.utils.PropertyReader - Property key not found: android.systemPort
-2026-03-02 15:06:02.527 [main] INFO  com.automation.drivers.DriverFactory - Emulator capabilities configured (skipDeviceInit=true, skipServerInstall=true)
-2026-03-02 15:06:02.528 [main] INFO  com.automation.drivers.DriverFactory - Android capabilities configured
-2026-03-02 15:06:44.573 [main] INFO  com.automation.drivers.DriverFactory - Driver initialized successfully
-2026-03-02 15:06:44.574 [main] INFO  com.automation.reports.ExtentReportManager - Started test: Successful login with valid credentials from config
-2026-03-02 15:06:44.575 [main] INFO  com.automation.hooks.Hooks - Driver initialized successfully for platform: android
-2026-03-02 15:06:44.779 [main] INFO  com.automation.stepdefinitions.login.LoginSteps - EcoCash app is launched ù checking current app state
-2026-03-02 15:06:44.782 [main] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'home.welcome.xpath': //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
-2026-03-02 15:06:44.783 [main] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
-2026-03-02 15:06:44.791 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
-2026-03-02 15:06:47.651 [main] INFO  com.automation.pages.BasePage - Element By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay'] displayed: true
-2026-03-02 15:06:47.651 [main] INFO  com.automation.pages.BasePage - Quick home page check: VISIBLE (skipping app restart)
-2026-03-02 15:06:47.651 [main] INFO  com.automation.stepdefinitions.login.LoginSteps - Home page already visible ù skipping app restart (reusing logged-in session)
+2026-03-02 15:17:02.533 [main] INFO  com.automation.drivers.DriverFactory - Using device with UDID: emulator-5554
+2026-03-02 15:17:02.534 [main] WARN  com.automation.utils.PropertyReader - Property key not found: android.systemPort
+2026-03-02 15:17:02.535 [main] INFO  com.automation.drivers.DriverFactory - Emulator capabilities configured (skipDeviceInit=true, skipServerInstall=true)
+2026-03-02 15:17:02.535 [main] INFO  com.automation.drivers.DriverFactory - Android capabilities configured
+2026-03-02 15:17:44.292 [main] INFO  com.automation.drivers.DriverFactory - Driver initialized successfully
+2026-03-02 15:17:44.294 [main] INFO  com.automation.reports.ExtentReportManager - Started test: Successful login with valid credentials from config
+2026-03-02 15:17:44.295 [main] INFO  com.automation.hooks.Hooks - Driver initialized successfully for platform: android
+2026-03-02 15:17:44.603 [main] INFO  com.automation.stepdefinitions.login.LoginSteps - EcoCash app is launched ù checking current app state
+2026-03-02 15:17:44.605 [main] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'home.welcome.xpath': //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-03-02 15:17:44.606 [main] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-03-02 15:17:44.614 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay']
+2026-03-02 15:17:47.375 [main] INFO  com.automation.pages.BasePage - Element By.xpath: //android.view.View[@package='com.sasai.sasaipay'] | //android.widget.TextView[@package='com.sasai.sasaipay'] | //android.widget.Button[@package='com.sasai.sasaipay'] displayed: true
+2026-03-02 15:17:47.376 [main] INFO  com.automation.pages.BasePage - Quick home page check: VISIBLE (skipping app restart)
+2026-03-02 15:17:47.376 [main] INFO  com.automation.stepdefinitions.login.LoginSteps - Home page already visible ù skipping app restart (reusing logged-in session)
   Given the app is launched                                              # com.automation.stepdefinitions.login.LoginSteps.theAppIsLaunched()
-2026-03-02 15:06:47.661 [main] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.agree.continue.button.xpath': //android.widget.Button[@content-desc='Agree & Continue']
-2026-03-02 15:06:47.661 [main] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.Button[@content-desc='Agree & Continue']
-2026-03-02 15:06:47.662 [main] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.Button[@content-desc='Agree & Continue'] with timeout: 10
-2026-03-02 15:06:47.662 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.Button[@content-desc='Agree & Continue']
-2026-03-02 15:06:49.904 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.Button[@content-desc='Agree & Continue']
-2026-03-02 15:06:50.438 [main] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.Button[@content-desc='Agree & Continue']
-2026-03-02 15:06:50.438 [main] INFO  com.automation.pages.BasePage - Clicked Agree and Continue button
-2026-03-02 15:06:50.439 [main] INFO  com.automation.stepdefinitions.login.LoginSteps - Clicked on Agree and Continue button
+2026-03-02 15:17:47.384 [main] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.agree.continue.button.xpath': //android.widget.Button[@content-desc='Agree & Continue']
+2026-03-02 15:17:47.384 [main] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.Button[@content-desc='Agree & Continue']
+2026-03-02 15:17:47.384 [main] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.Button[@content-desc='Agree & Continue'] with timeout: 10
+2026-03-02 15:17:47.385 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.Button[@content-desc='Agree & Continue']
+2026-03-02 15:17:51.140 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.Button[@content-desc='Agree & Continue']
+2026-03-02 15:17:51.863 [main] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.Button[@content-desc='Agree & Continue']
+2026-03-02 15:17:51.863 [main] INFO  com.automation.pages.BasePage - Clicked Agree and Continue button
+2026-03-02 15:17:51.863 [main] INFO  com.automation.stepdefinitions.login.LoginSteps - Clicked on Agree and Continue button
   When I click on Agree and Continue                                     # com.automation.stepdefinitions.login.LoginSteps.iClickOnAgreeAndContinue()
-2026-03-02 15:06:52.459 [main] INFO  com.automation.utils.PropertyReader - Loaded testdata file: src/test/resources/testdata/testdata.properties
-2026-03-02 15:06:52.459 [main] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.countrycode.dropdown.xpath': //android.widget.ImageView[contains(@content-desc,'Country Code')]
-2026-03-02 15:06:52.459 [main] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.ImageView[contains(@content-desc,'Country Code')]
-2026-03-02 15:06:52.460 [main] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')] with timeout: 10
-2026-03-02 15:06:52.460 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
-2026-03-02 15:06:52.671 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
-2026-03-02 15:06:53.569 [main] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
-2026-03-02 15:06:53.570 [main] INFO  com.automation.pages.BasePage - Step 1: Clicked country code dropdown to open bottom drawer
-2026-03-02 15:06:56.584 [main] INFO  com.automation.pages.BasePage - Step 2: Bottom drawer animation complete
-2026-03-02 15:06:56.591 [main] INFO  com.automation.pages.BasePage - Step 3-A: Scrolling list to find drop_down_item_ZW...
-2026-03-02 15:06:56.591 [main] DEBUG com.automation.pages.BasePage - Waiting for element: AppiumBy.androidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).setMaxSearchSwipes(15).scrollIntoView(new UiSelector().resourceId("drop_down_item_ZW")) with timeout: 20
-2026-03-02 15:06:56.591 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: AppiumBy.androidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).setMaxSearchSwipes(15).scrollIntoView(new UiSelector().resourceId("drop_down_item_ZW"))
-2026-03-02 15:07:19.367 [main] ERROR com.automation.utils.WaitHelper - Element not visible within 20 seconds: AppiumBy.androidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).setMaxSearchSwipes(15).scrollIntoView(new UiSelector().resourceId("drop_down_item_ZW"))
-2026-03-02 15:07:19.369 [main] WARN  com.automation.pages.BasePage - Step 3-A UiScrollable/resourceId failed: Expected condition failed: waiting for visibility of element located by AppiumBy.androidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).setMaxSearchSwipes(15).scrollIntoView(new UiSelector().resourceId("drop_down_item_ZW")) (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: '4.13.0', revision: 'ba948ece5b*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appium:app: C:\Users\vivek.bharti\OneAp..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\vivek.bharti\OneAp..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: sdk_gphone64_x86_64, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: true, skipServerInstallation: true, udid: emulator-5554}, appium:deviceApiLevel: 35, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.625, appium:platformVersion: 15, appium:skipDeviceInitialization: true, appium:skipServerInstallation: true, appium:statBarHeight: 132, appium:takesScreenshot: true, appium:udid: emulator-5554, appium:viewportRect: {height: 2268, left: 0, top: 132, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 2925d97a-523e-48b6-8f17-fe7d18b78bf2
-2026-03-02 15:07:19.370 [main] INFO  com.automation.pages.BasePage - Step 3-B: Scrolling list to find Zimbabwe by content-desc...
-2026-03-02 15:07:19.370 [main] DEBUG com.automation.pages.BasePage - Waiting for element: AppiumBy.androidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).setMaxSearchSwipes(15).scrollIntoView(new UiSelector().descriptionContains("Zimbabwe")) with timeout: 20
-2026-03-02 15:07:19.370 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: AppiumBy.androidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).setMaxSearchSwipes(15).scrollIntoView(new UiSelector().descriptionContains("Zimbabwe"))
-2026-03-02 15:07:42.677 [main] ERROR com.automation.utils.WaitHelper - Element not visible within 20 seconds: AppiumBy.androidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).setMaxSearchSwipes(15).scrollIntoView(new UiSelector().descriptionContains("Zimbabwe"))
-2026-03-02 15:07:42.678 [main] WARN  com.automation.pages.BasePage - Step 3-B UiScrollable/content-desc failed: Expected condition failed: waiting for visibility of element located by AppiumBy.androidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).setMaxSearchSwipes(15).scrollIntoView(new UiSelector().descriptionContains("Zimbabwe")) (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: '4.13.0', revision: 'ba948ece5b*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appium:app: C:\Users\vivek.bharti\OneAp..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\vivek.bharti\OneAp..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: sdk_gphone64_x86_64, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: true, skipServerInstallation: true, udid: emulator-5554}, appium:deviceApiLevel: 35, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.625, appium:platformVersion: 15, appium:skipDeviceInitialization: true, appium:skipServerInstallation: true, appium:statBarHeight: 132, appium:takesScreenshot: true, appium:udid: emulator-5554, appium:viewportRect: {height: 2268, left: 0, top: 132, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 2925d97a-523e-48b6-8f17-fe7d18b78bf2
-2026-03-02 15:07:42.678 [main] INFO  com.automation.pages.BasePage - Step 3-C: Trying XPath for Zimbabwe/+263...
-2026-03-02 15:07:42.679 [main] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //*[contains(@content-desc,'263') or contains(@content-desc,'Zimbabwe') or contains(@text,'Zimbabwe') or contains(@text,'+263')] with timeout: 10
-2026-03-02 15:07:42.679 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //*[contains(@content-desc,'263') or contains(@content-desc,'Zimbabwe') or contains(@text,'Zimbabwe') or contains(@text,'+263')]
-2026-03-02 15:07:52.754 [main] ERROR com.automation.utils.WaitHelper - Element not visible within 10 seconds: By.xpath: //*[contains(@content-desc,'263') or contains(@content-desc,'Zimbabwe') or contains(@text,'Zimbabwe') or contains(@text,'+263')]
-2026-03-02 15:07:52.755 [main] WARN  com.automation.pages.BasePage - Step 3-C XPath fallback failed: Expected condition failed: waiting for visibility of element located by By.xpath: //*[contains(@content-desc,'263') or contains(@content-desc,'Zimbabwe') or contains(@text,'Zimbabwe') or contains(@text,'+263')] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.13.0', revision: 'ba948ece5b*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appium:app: C:\Users\vivek.bharti\OneAp..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\vivek.bharti\OneAp..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: sdk_gphone64_x86_64, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: true, skipServerInstallation: true, udid: emulator-5554}, appium:deviceApiLevel: 35, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.625, appium:platformVersion: 15, appium:skipDeviceInitialization: true, appium:skipServerInstallation: true, appium:statBarHeight: 132, appium:takesScreenshot: true, appium:udid: emulator-5554, appium:viewportRect: {height: 2268, left: 0, top: 132, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 2925d97a-523e-48b6-8f17-fe7d18b78bf2
-2026-03-02 15:07:52.755 [main] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.countrycode.zimbabwe.uiautomator': new UiSelector().resourceId("drop_down_item_ZW")
-2026-03-02 15:07:52.755 [main] DEBUG com.automation.utils.LocatorUtils - Using AndroidUIAutomator locator: new UiSelector().resourceId("drop_down_item_ZW")
-2026-03-02 15:07:52.756 [main] INFO  com.automation.pages.BasePage - Step 3-D: Last resort ù direct resourceId lookup...
-2026-03-02 15:07:52.756 [main] DEBUG com.automation.pages.BasePage - Waiting for element: AppiumBy.androidUIAutomator: new UiSelector().resourceId("drop_down_item_ZW") with timeout: 10
-2026-03-02 15:07:52.756 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: AppiumBy.androidUIAutomator: new UiSelector().resourceId("drop_down_item_ZW")
-2026-03-02 15:08:02.815 [main] ERROR com.automation.utils.WaitHelper - Element not visible within 10 seconds: AppiumBy.androidUIAutomator: new UiSelector().resourceId("drop_down_item_ZW")
-2026-03-02 15:08:02.816 [main] ERROR com.automation.pages.BasePage - Failed to select country code from drawer: Expected condition failed: waiting for visibility of element located by AppiumBy.androidUIAutomator: new UiSelector().resourceId("drop_down_item_ZW") (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.13.0', revision: 'ba948ece5b*'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appium:app: C:\Users\vivek.bharti\OneAp..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\vivek.bharti\OneAp..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: sdk_gphone64_x86_64, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: true, skipServerInstallation: true, udid: emulator-5554}, appium:deviceApiLevel: 35, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.625, appium:platformVersion: 15, appium:skipDeviceInitialization: true, appium:skipServerInstallation: true, appium:statBarHeight: 132, appium:takesScreenshot: true, appium:udid: emulator-5554, appium:viewportRect: {height: 2268, left: 0, top: 132, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 2925d97a-523e-48b6-8f17-fe7d18b78bf2
+2026-03-02 15:17:53.883 [main] INFO  com.automation.utils.PropertyReader - Loaded testdata file: src/test/resources/testdata/testdata.properties
+2026-03-02 15:17:53.883 [main] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.countrycode.dropdown.xpath': //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-03-02 15:17:53.883 [main] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-03-02 15:17:53.883 [main] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')] with timeout: 10
+2026-03-02 15:17:53.883 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-03-02 15:17:54.020 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be clickable: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-03-02 15:17:57.344 [main] INFO  com.automation.pages.BasePage - Clicked on element: By.xpath: //android.widget.ImageView[contains(@content-desc,'Country Code')]
+2026-03-02 15:17:57.344 [main] INFO  com.automation.pages.BasePage - Step 1: Clicked country code dropdown to open bottom drawer
+2026-03-02 15:18:00.350 [main] INFO  com.automation.pages.BasePage - Step 2: Bottom drawer animation complete
+2026-03-02 15:18:00.358 [main] INFO  com.automation.pages.BasePage - Step 3-A: Scrolling list to find dropdown_ZW...
+2026-03-02 15:18:00.358 [main] DEBUG com.automation.pages.BasePage - Waiting for element: AppiumBy.androidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).setMaxSearchSwipes(20).scrollIntoView(new UiSelector().resourceId("dropdown_ZW")) with timeout: 20
+2026-03-02 15:18:00.358 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: AppiumBy.androidUIAutomator: new UiScrollable(new UiSelector().scrollable(true)).setMaxSearchSwipes(20).scrollIntoView(new UiSelector().resourceId("dropdown_ZW"))
+2026-03-02 15:18:01.671 [main] INFO  com.automation.pages.BasePage - Step 3-A: Selected Zimbabwe via UiScrollable (resourceId=dropdown_ZW)
+2026-03-02 15:18:02.681 [main] INFO  com.automation.stepdefinitions.login.LoginSteps - Selected country code from testdata: +263
   When I enter country code from config                                  # com.automation.stepdefinitions.login.LoginSteps.iEnterCountryCodeFromConfig()
-      java.lang.RuntimeException: Unable to select country code +263
-	at com.automation.pages.LoginPage.selectCountryCode(LoginPage.java:141)
-	at com.automation.stepdefinitions.login.LoginSteps.iEnterCountryCodeFromConfig(LoginSteps.java:103)
-	at ?.I enter country code from config(file:///C:/Users/vivek.bharti/OneAppAutomation_VD/src/test/resources/features/login/Login.feature:13)
-Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by AppiumBy.androidUIAutomator: new UiSelector().resourceId("drop_down_item_ZW") (tried for 10 second(s) with 500 milliseconds interval)
+2026-03-02 15:18:02.685 [main] DEBUG com.automation.utils.LocatorUtils - Android locator for key 'login.mobile.xpath': //android.widget.EditText
+2026-03-02 15:18:02.685 [main] DEBUG com.automation.utils.LocatorUtils - Using XPath locator: //android.widget.EditText
+2026-03-02 15:18:02.685 [main] INFO  com.automation.pages.BasePage - Waiting for mobile number field to appear...
+2026-03-02 15:18:02.685 [main] DEBUG com.automation.pages.BasePage - Waiting for element: By.xpath: //android.widget.EditText with timeout: 10
+2026-03-02 15:18:02.686 [main] DEBUG com.automation.utils.WaitHelper - Waiting for element to be visible: By.xpath: //android.widget.EditText
+2026-03-02 15:18:12.761 [main] ERROR com.automation.utils.WaitHelper - Element not visible within 10 seconds: By.xpath: //android.widget.EditText
+2026-03-02 15:18:12.762 [main] ERROR com.automation.pages.BasePage - Failed to enter mobile number: Expected condition failed: waiting for visibility of element located by By.xpath: //android.widget.EditText (tried for 10 second(s) with 500 milliseconds interval)
 Build info: version: '4.13.0', revision: 'ba948ece5b*'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
 Driver info: io.appium.java_client.android.AndroidDriver
 Capabilities {appium:app: C:\Users\vivek.bharti\OneAp..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\vivek.bharti\OneAp..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: sdk_gphone64_x86_64, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: true, skipServerInstallation: true, udid: emulator-5554}, appium:deviceApiLevel: 35, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.625, appium:platformVersion: 15, appium:skipDeviceInitialization: true, appium:skipServerInstallation: true, appium:statBarHeight: 132, appium:takesScreenshot: true, appium:udid: emulator-5554, appium:viewportRect: {height: 2268, left: 0, top: 132, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 2925d97a-523e-48b6-8f17-fe7d18b78bf2
+Session ID: eb8519f1-eb2d-4b0f-a7e5-93662674c82c
+  And I enter mobile number from config                                  # com.automation.stepdefinitions.login.LoginSteps.iEnterMobileNumberFromConfig()
+      java.lang.RuntimeException: Unable to enter mobile number
+	at com.automation.pages.LoginPage.enterMobileNumber(LoginPage.java:246)
+	at com.automation.stepdefinitions.login.LoginSteps.iEnterMobileNumberFromConfig(LoginSteps.java:118)
+	at ?.I enter mobile number from config(file:///C:/Users/vivek.bharti/OneAppAutomation_VD/src/test/resources/features/login/Login.feature:14)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //android.widget.EditText (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:app: C:\Users\vivek.bharti\OneAp..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\vivek.bharti\OneAp..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: sdk_gphone64_x86_64, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: true, skipServerInstallation: true, udid: emulator-5554}, appium:deviceApiLevel: 35, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.625, appium:platformVersion: 15, appium:skipDeviceInitialization: true, appium:skipServerInstallation: true, appium:statBarHeight: 132, appium:takesScreenshot: true, appium:udid: emulator-5554, appium:viewportRect: {height: 2268, left: 0, top: 132, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: eb8519f1-eb2d-4b0f-a7e5-93662674c82c
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
 	at com.automation.utils.WaitHelper.waitForElementToBeVisible(WaitHelper.java:43)
 	at com.automation.pages.BasePage.waitForElement(BasePage.java:201)
-	at com.automation.pages.LoginPage.selectCountryCode(LoginPage.java:114)
-	at com.automation.stepdefinitions.login.LoginSteps.iEnterCountryCodeFromConfig(LoginSteps.java:103)
+	at com.automation.pages.LoginPage.enterMobileNumber(LoginPage.java:199)
+	at com.automation.stepdefinitions.login.LoginSteps.iEnterMobileNumberFromConfig(LoginSteps.java:118)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
@@ -268,28 +244,27 @@ Session ID: 2925d97a-523e-48b6-8f17-fe7d18b78bf2
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 
-2026-03-02 15:08:02.834 [main] ERROR com.automation.hooks.Hooks - Step failed ù scenario: 'Successful login with valid credentials from config' | error: Step failed ù screenshot captured for diagnosis
-  And I enter mobile number from config                                  # com.automation.stepdefinitions.login.LoginSteps.iEnterMobileNumberFromConfig()
+2026-03-02 15:18:12.779 [main] ERROR com.automation.hooks.Hooks - Step failed ù scenario: 'Successful login with valid credentials from config' | error: Step failed ù screenshot captured for diagnosis
   And I tap on continue button                                           # com.automation.stepdefinitions.login.LoginSteps.iTapOnContinueButton()
   And I enter OTP from config                                            # com.automation.stepdefinitions.login.LoginSteps.iEnterOTPFromConfig()
   And I tap on verify button                                             # com.automation.stepdefinitions.login.LoginSteps.iTapOnVerifyButton()
   And I enter PIN from config                                            # com.automation.stepdefinitions.login.LoginSteps.iEnterPINFromConfig()
   And I Tap to Cancel button biometric authentication popup if displayed # com.automation.stepdefinitions.login.LoginSteps.iTapToCancelBiometricPopup()
   Then I should see the home page                                        # com.automation.stepdefinitions.login.LoginSteps.iShouldSeeTheHomePage()
-2026-03-02 15:08:02.848 [main] INFO  com.automation.hooks.Hooks - ========================================
-2026-03-02 15:08:02.848 [main] INFO  com.automation.hooks.Hooks - Scenario status: FAILED
-2026-03-02 15:08:02.848 [main] INFO  com.automation.hooks.Hooks - ========================================
+2026-03-02 15:18:12.795 [main] INFO  com.automation.hooks.Hooks - ========================================
+2026-03-02 15:18:12.796 [main] INFO  com.automation.hooks.Hooks - Scenario status: FAILED
+2026-03-02 15:18:12.796 [main] INFO  com.automation.hooks.Hooks - ========================================
 ? FAILED: Successful login with valid credentials from config
-2026-03-02 15:08:02.849 [main] ERROR com.automation.hooks.Hooks - Scenario failed: Successful login with valid credentials from config
-2026-03-02 15:08:02.849 [main] ERROR com.automation.hooks.Hooks - FAIL FAST: scenario 'Successful login with valid credentials from config' failed ù aborting suite
+2026-03-02 15:18:12.796 [main] ERROR com.automation.hooks.Hooks - Scenario failed: Successful login with valid credentials from config
+2026-03-02 15:18:12.797 [main] ERROR com.automation.hooks.Hooks - FAIL FAST: scenario 'Successful login with valid credentials from config' failed ù aborting suite
 [FAIL FAST] Suite stopped after first failure
-2026-03-02 15:08:02.850 [main] INFO  com.automation.utils.ReportPathManager - Created directory: test-output/screenshots/20260302_150546/login
-2026-03-02 15:08:08.705 [main] INFO  com.automation.utils.ScreenshotUtils - Failure screenshot saved: test-output\screenshots\20260302_150546\login\Successful_login_with_valid_credentials_from_config_150802.png
+2026-03-02 15:18:12.798 [main] INFO  com.automation.utils.ReportPathManager - Created directory: test-output/screenshots/20260302_151647/login
+2026-03-02 15:18:17.054 [main] INFO  com.automation.utils.ScreenshotUtils - Failure screenshot saved: test-output\screenshots\20260302_151647\login\Successful_login_with_valid_credentials_from_config_151812.png
 
-    Embedding Failure Screenshot [image/png 115045 bytes]
+    Embedding Failure Screenshot [image/png 137819 bytes]
 
-? Screenshot: test-output\screenshots\20260302_150546\login\Successful_login_with_valid_credentials_from_config_150802.png
-2026-03-02 15:08:09.566 [main] DEBUG com.automation.hooks.Hooks - Page source at failure:
+? Screenshot: test-output\screenshots\20260302_151647\login\Successful_login_with_valid_credentials_from_config_151812.png
+2026-03-02 15:18:17.907 [main] DEBUG com.automation.hooks.Hooks - Page source at failure:
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <hierarchy index="0" class="hierarchy" rotation="0" width="1080" height="2400">
   <android.widget.FrameLayout index="0" package="com.sasai.sasaipay" class="android.widget.FrameLayout" text="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2400]" displayed="true">
@@ -301,32 +276,27 @@ Session ID: 2925d97a-523e-48b6-8f17-fe7d18b78bf2
               <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2400]" displayed="true">
                 <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2400]" displayed="true">
                   <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2400]" displayed="true">
-                    <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="common_scaffold_pop" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2400]" displayed="true">
-                      <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,132][1080,2211]" displayed="true">
-                        <android.widget.ImageView index="0" package="com.sasai.sasaipay" class="android.widget.ImageView" text="" resource-id="image_logo_sasai" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[42,258][389,321]" displayed="true" />
-                        <android.view.View index="1" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Skip" resource-id="skip" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[880,242][1038,337]" displayed="true" />
-                        <android.view.View index="2" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Login or Create account" resource-id="label_title_login" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[42,468][550,531]" displayed="true" />
-                        <android.view.View index="3" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Your mobile number will be used only for authentication" resource-id="label_title_mobile_authentication" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[42,552][930,599]" displayed="true" />
-                        <android.widget.ImageView index="4" package="com.sasai.sasaipay" class="android.widget.ImageView" text="" content-desc="Country Code *&#10;+91" resource-id="dropdown_IN" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[42,673][388,817]" displayed="true" />
-                        <android.widget.EditText index="5" package="com.sasai.sasaipay" class="android.widget.EditText" text="" resource-id="text_field_[&lt;'label_text_mobile_number_key'&gt;]" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[415,673][1038,812]" displayed="true" hint="Mobile Number" />
-                        <android.view.View index="6" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="term_and_condition" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[42,880][1038,975]" displayed="true">
-                          <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[42,880][1038,975]" displayed="true">
-                            <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="placeholder_text_by_proceeding_accept" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[32,870][491,938]" displayed="true" />
-                            <android.widget.Button index="1" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Terms and Conditions" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[467,870][845,938]" displayed="true" />
-                            <android.view.View index="2" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc=" and " resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[822,870][924,938]" displayed="true" />
-                            <android.widget.Button index="3" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Privacy Policy." resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[32,870][1050,985]" displayed="true" />
-                          </android.view.View>
-                        </android.view.View>
-                        <android.widget.Button index="7" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Submit" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[42,1038][1038,1164]" displayed="true" />
-                        <android.view.View index="8" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="label_referral" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[42,1164][1038,1311]" displayed="true">
-                          <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[329,1248][751,1311]" displayed="true">
-                            <android.widget.Button index="0" package="com.sasai.sasaipay" class="android.widget.Button" text="" content-desc="Apply Referral Code" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[319,1237][762,1321]" displayed="true" />
-                          </android.view.View>
-                        </android.view.View>
+                    <android.widget.ImageView index="0" package="com.sasai.sasaipay" class="android.widget.ImageView" text="" resource-id="search_textfield" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,578][1038,704]" displayed="true" hint="Search your country" />
+                    <android.view.View index="1" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Select Country" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[42,759][313,814]" displayed="true" />
+                    <android.view.View index="2" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,835][1080,2295]" displayed="true">
+                      <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="true" selected="false" bounds="[0,835][1080,2295]" displayed="true">
+                        <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Zimbabwe&#10;+263" resource-id="drop_down_item_ZW" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,835][1080,969]" displayed="true" />
+                        <android.view.View index="1" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Zambia&#10;+260" resource-id="drop_down_item_ZM" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,971][1080,1105]" displayed="true" />
+                        <android.view.View index="2" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="United Kingdom&#10;+44" resource-id="drop_down_item_GB" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1108][1080,1242]" displayed="true" />
+                        <android.view.View index="3" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Uganda&#10;+256" resource-id="drop_down_item_UG" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1244][1080,1378]" displayed="true" />
+                        <android.view.View index="4" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Tanzania United Republic of&#10;+255" resource-id="drop_down_item_TZ" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1381][1080,1515]" displayed="true" />
+                        <android.view.View index="5" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="South Africa&#10;+27" resource-id="drop_down_item_ZA" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1517][1080,1651]" displayed="true" />
+                        <android.view.View index="6" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Somalia&#10;+252" resource-id="drop_down_item_SO" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1654][1080,1788]" displayed="true" />
+                        <android.view.View index="7" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Senegal&#10;+221" resource-id="drop_down_item_SN" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1790][1080,1924]" displayed="true" />
+                        <android.view.View index="8" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Rwanda&#10;+250" resource-id="drop_down_item_RW" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1927][1080,2061]" displayed="true" />
+                        <android.view.View index="9" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Nigeria&#10;+234" resource-id="drop_down_item_NG" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,2063][1080,2197]" displayed="true" />
+                        <android.view.View index="10" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Mozambique&#10;+258" resource-id="drop_down_item_MZ" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,2200][1080,2295]" displayed="true" />
                       </android.view.View>
-                      <android.widget.ImageView index="1" package="com.sasai.sasaipay" class="android.widget.ImageView" text="" content-desc="Help &amp; Support" resource-id="help_support" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,2211][1080,2337]" displayed="true" />
                     </android.view.View>
                   </android.view.View>
+                </android.view.View>
+                <android.view.View index="1" package="com.sasai.sasaipay" class="android.view.View" text="" resource-id="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2400]" displayed="true">
+                  <android.view.View index="0" package="com.sasai.sasaipay" class="android.view.View" text="" content-desc="Scrim" resource-id="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,525]" displayed="true" />
                 </android.view.View>
               </android.view.View>
             </android.view.View>
@@ -336,8 +306,8 @@ Session ID: 2925d97a-523e-48b6-8f17-fe7d18b78bf2
     </android.widget.LinearLayout>
   </android.widget.FrameLayout>
 </hierarchy>
-2026-03-02 15:08:10.368 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report flushed: target/reports/extent/20260302_150546/ExtentReport_20260302_150546.html
-2026-03-02 15:08:11.010 [main] WARN  net.masterthought.cucumber.ReportBuilder - Unexpected error
+2026-03-02 15:18:18.597 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report flushed: target/reports/extent/20260302_151647/ExtentReport_20260302_151647.html
+2026-03-02 15:18:19.290 [main] WARN  net.masterthought.cucumber.ReportBuilder - Unexpected error
 net.masterthought.cucumber.ValidationException: File 'C:\Users\vivek.bharti\OneAppAutomation_VD\target\cucumber-reports\cucumber.json' is not a valid Cucumber report! No content to map due to end-of-input
  at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1]
 	at net.masterthought.cucumber.ReportParser.parseForFeature(ReportParser.java:104) ~[cucumber-reporting-5.8.2.jar:?]
@@ -394,17 +364,17 @@ net.masterthought.cucumber.ValidationException: File 'C:\Users\vivek.bharti\OneA
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) [surefire-booter-3.5.0.jar:3.5.0]
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) [surefire-booter-3.5.0.jar:3.5.0]
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) [surefire-booter-3.5.0.jar:3.5.0]
-2026-03-02 15:08:11.192 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_150546.
-2026-03-02 15:08:11.549 [main] INFO  com.automation.reports.CucumberReportGenerator - Cucumber HTML report generated: C:\Users\vivek.bharti\OneAppAutomation_VD\test-output\cucumber-reports\20260302_150546
-  ? Cucumber HTML Report generated at: C:\Users\vivek.bharti\OneAppAutomation_VD\test-output\cucumber-reports\20260302_150546/cucumber-html-reports/overview-features.html
-2026-03-02 15:08:11.551 [main] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
-2026-03-02 15:08:17.694 [main] INFO  com.automation.reports.EmailReporter - Test report email sent to: vivek.bharti@kellton.com
+2026-03-02 15:18:19.499 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_151647.
+2026-03-02 15:18:20.036 [main] INFO  com.automation.reports.CucumberReportGenerator - Cucumber HTML report generated: C:\Users\vivek.bharti\OneAppAutomation_VD\test-output\cucumber-reports\20260302_151647
+  ? Cucumber HTML Report generated at: C:\Users\vivek.bharti\OneAppAutomation_VD\test-output\cucumber-reports\20260302_151647/cucumber-html-reports/overview-features.html
+2026-03-02 15:18:20.039 [main] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
+2026-03-02 15:18:25.552 [main] INFO  com.automation.reports.EmailReporter - Test report email sent to: vivek.bharti@kellton.com
 ?  Report email sent to: vivek.bharti@kellton.com
-2026-03-02 15:08:18.319 [main] INFO  com.automation.hooks.Hooks - Driver quit successfully
+2026-03-02 15:18:26.449 [main] INFO  com.automation.hooks.Hooks - Driver quit successfully
 
 @smoke @sendmoney @smoke @positive @p2p
 Scenario Outline: Successful P2P money transfer              # src/test/resources/features/sendmoney/SendMoney.feature:34
-2026-03-02 15:08:21.620 [main] WARN  com.automation.hooks.Hooks - [FAIL FAST] Suite aborted ù skipping: Successful P2P money transfer
+2026-03-02 15:18:31.129 [main] WARN  com.automation.hooks.Hooks - [FAIL FAST] Suite aborted ù skipping: Successful P2P money transfer
 [FAIL FAST] Suite aborted ù skipping: Successful P2P money transfer
       org.testng.SkipException: [FAIL FAST] Suite aborted ù skipping: Successful P2P money transfer
 	at com.automation.hooks.Hooks.setUp(Hooks.java:58)
@@ -425,15 +395,15 @@ Scenario Outline: Successful P2P money transfer              # src/test/resource
   And I verify transaction outcome on details page           # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iVerifyTransactionOutcomeOnDetailsPage()
   When I navigate back to home screen from details           # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iNavigateBackToHomeScreenFromDetails()
   Then I should see home screen                              # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeHomeScreen()
-2026-03-02 15:08:21.653 [main] INFO  com.automation.hooks.Hooks - ========================================
-2026-03-02 15:08:21.653 [main] INFO  com.automation.hooks.Hooks - Scenario status: SKIPPED
-2026-03-02 15:08:21.653 [main] INFO  com.automation.hooks.Hooks - ========================================
+2026-03-02 15:18:31.151 [main] INFO  com.automation.hooks.Hooks - ========================================
+2026-03-02 15:18:31.151 [main] INFO  com.automation.hooks.Hooks - Scenario status: SKIPPED
+2026-03-02 15:18:31.151 [main] INFO  com.automation.hooks.Hooks - ========================================
 ? PASSED: Successful P2P money transfer
-2026-03-02 15:08:21.654 [main] INFO  com.automation.hooks.Hooks - Driver quit successfully
+2026-03-02 15:18:31.151 [main] INFO  com.automation.hooks.Hooks - Driver quit successfully
 
 @smoke @sendmoney @smoke @positive @p2p
 Scenario Outline: Successful P2P money transfer              # src/test/resources/features/sendmoney/SendMoney.feature:35
-2026-03-02 15:08:24.693 [main] WARN  com.automation.hooks.Hooks - [FAIL FAST] Suite aborted ù skipping: Successful P2P money transfer
+2026-03-02 15:18:34.189 [main] WARN  com.automation.hooks.Hooks - [FAIL FAST] Suite aborted ù skipping: Successful P2P money transfer
 [FAIL FAST] Suite aborted ù skipping: Successful P2P money transfer
       org.testng.SkipException: [FAIL FAST] Suite aborted ù skipping: Successful P2P money transfer
 	at com.automation.hooks.Hooks.setUp(Hooks.java:58)
@@ -454,15 +424,15 @@ Scenario Outline: Successful P2P money transfer              # src/test/resource
   And I verify transaction outcome on details page           # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iVerifyTransactionOutcomeOnDetailsPage()
   When I navigate back to home screen from details           # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iNavigateBackToHomeScreenFromDetails()
   Then I should see home screen                              # com.automation.stepdefinitions.sendmoney.SendMoneySteps.iShouldSeeHomeScreen()
-2026-03-02 15:08:24.724 [main] INFO  com.automation.hooks.Hooks - ========================================
-2026-03-02 15:08:24.724 [main] INFO  com.automation.hooks.Hooks - Scenario status: SKIPPED
-2026-03-02 15:08:24.724 [main] INFO  com.automation.hooks.Hooks - ========================================
+2026-03-02 15:18:34.212 [main] INFO  com.automation.hooks.Hooks - ========================================
+2026-03-02 15:18:34.212 [main] INFO  com.automation.hooks.Hooks - Scenario status: SKIPPED
+2026-03-02 15:18:34.212 [main] INFO  com.automation.hooks.Hooks - ========================================
 ? PASSED: Successful P2P money transfer
-2026-03-02 15:08:24.724 [main] INFO  com.automation.hooks.Hooks - Driver quit successfully
+2026-03-02 15:18:34.213 [main] INFO  com.automation.hooks.Hooks - Driver quit successfully
 
 @smoke @logout @smoke @positive @logout @profile
 Scenario: User logout from profile menu               # src/test/resources/features/logout/Logout.feature:11
-2026-03-02 15:08:27.873 [main] WARN  com.automation.hooks.Hooks - [FAIL FAST] Suite aborted ù skipping: User logout from profile menu
+2026-03-02 15:18:37.455 [main] WARN  com.automation.hooks.Hooks - [FAIL FAST] Suite aborted ù skipping: User logout from profile menu
 [FAIL FAST] Suite aborted ù skipping: User logout from profile menu
       org.testng.SkipException: [FAIL FAST] Suite aborted ù skipping: User logout from profile menu
 	at com.automation.hooks.Hooks.setUp(Hooks.java:58)
@@ -473,59 +443,59 @@ Scenario: User logout from profile menu               # src/test/resources/featu
   And I verify logout confirmation popup is displayed # com.automation.stepdefinitions.logout.LogoutSteps.iVerifyLogoutConfirmationPopupIsDisplayed()
   And I click on logout anyway button                 # com.automation.stepdefinitions.logout.LogoutSteps.iClickOnLogoutAnywayButton()
   Then I should see the login page                    # com.automation.stepdefinitions.login.LoginSteps.iShouldSeeTheLoginPage()
-2026-03-02 15:08:27.885 [main] INFO  com.automation.hooks.Hooks - ========================================
-2026-03-02 15:08:27.885 [main] INFO  com.automation.hooks.Hooks - Scenario status: SKIPPED
-2026-03-02 15:08:27.885 [main] INFO  com.automation.hooks.Hooks - ========================================
+2026-03-02 15:18:37.470 [main] INFO  com.automation.hooks.Hooks - ========================================
+2026-03-02 15:18:37.471 [main] INFO  com.automation.hooks.Hooks - Scenario status: SKIPPED
+2026-03-02 15:18:37.471 [main] INFO  com.automation.hooks.Hooks - ========================================
 ? PASSED: User logout from profile menu
-2026-03-02 15:08:27.885 [main] INFO  com.automation.hooks.Hooks - Driver quit successfully
-2026-03-02 15:08:31.054 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report flushed: target/reports/extent/20260302_150546/ExtentReport_20260302_150546.html
-2026-03-02 15:08:31.355 [main] INFO  net.masterthought.cucumber.ReportParser - File 'C:\Users\vivek.bharti\OneAppAutomation_VD\target\cucumber-reports\cucumber.json' contains 1 feature(s)
-2026-03-02 15:08:31.362 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_150546.
-2026-03-02 15:08:31.504 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_150546.
-2026-03-02 15:08:31.616 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_150546.
-2026-03-02 15:08:31.705 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_150546.
-2026-03-02 15:08:31.818 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_150546.
-2026-03-02 15:08:31.915 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_150546.
-2026-03-02 15:08:32.018 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_150546.
-2026-03-02 15:08:32.126 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_150546.
-2026-03-02 15:08:32.220 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_150546.
-2026-03-02 15:08:32.339 [main] INFO  com.automation.reports.CucumberReportGenerator - Cucumber HTML report generated: C:\Users\vivek.bharti\OneAppAutomation_VD\test-output\cucumber-reports\20260302_150546
-  ? Cucumber HTML Report generated at: C:\Users\vivek.bharti\OneAppAutomation_VD\test-output\cucumber-reports\20260302_150546/cucumber-html-reports/overview-features.html
+2026-03-02 15:18:37.471 [main] INFO  com.automation.hooks.Hooks - Driver quit successfully
+2026-03-02 15:18:40.654 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report flushed: target/reports/extent/20260302_151647/ExtentReport_20260302_151647.html
+2026-03-02 15:18:40.949 [main] INFO  net.masterthought.cucumber.ReportParser - File 'C:\Users\vivek.bharti\OneAppAutomation_VD\target\cucumber-reports\cucumber.json' contains 1 feature(s)
+2026-03-02 15:18:40.956 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_151647.
+2026-03-02 15:18:41.097 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_151647.
+2026-03-02 15:18:41.216 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_151647.
+2026-03-02 15:18:41.407 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_151647.
+2026-03-02 15:18:41.599 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_151647.
+2026-03-02 15:18:41.833 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_151647.
+2026-03-02 15:18:42.205 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_151647.
+2026-03-02 15:18:42.588 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_151647.
+2026-03-02 15:18:42.762 [main] INFO  net.masterthought.cucumber.generators.AbstractPage - Could not parse build number: 20260302_151647.
+2026-03-02 15:18:42.979 [main] INFO  com.automation.reports.CucumberReportGenerator - Cucumber HTML report generated: C:\Users\vivek.bharti\OneAppAutomation_VD\test-output\cucumber-reports\20260302_151647
+  ? Cucumber HTML Report generated at: C:\Users\vivek.bharti\OneAppAutomation_VD\test-output\cucumber-reports\20260302_151647/cucumber-html-reports/overview-features.html
 =========================================
   TEST SUITE COMPLETED  
 =========================================
 Reports Generated:
-  ? Extent Report:   target/reports/extent/20260302_150546/ExtentReport_20260302_150546.html
-  ? Cucumber Report: test-output/cucumber-reports/20260302_150546/cucumber-html-reports/overview-features.html
-  ? Allure Results:  target/reports/allure/20260302_150546/allure-results
+  ? Extent Report:   target/reports/extent/20260302_151647/ExtentReport_20260302_151647.html
+  ? Cucumber Report: test-output/cucumber-reports/20260302_151647/cucumber-html-reports/overview-features.html
+  ? Allure Results:  target/reports/allure/20260302_151647/allure-results
 =========================================
 To view Allure report, run:
-  allure serve target/reports/allure/20260302_150546/allure-results
+  allure serve target/reports/allure/20260302_151647/allure-results
 =========================================
-2026-03-02 15:08:32.344 [main] INFO  com.automation.listeners.TestSuiteListener - Suite finished: Appium Automation Suite
-2026-03-02 15:08:32.493 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report flushed: target/reports/extent/20260302_150546/ExtentReport_20260302_150546.html
-2026-03-02 15:08:32.495 [main] INFO  com.automation.listeners.TestSuiteListener - Suite Summary ù Passed: 3 | Failed: 1 | Total: 4
-2026-03-02 15:08:32.497 [main] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
-2026-03-02 15:08:36.711 [main] INFO  com.automation.reports.EmailReporter - Test report email sent to: vivek.bharti@kellton.com
+2026-03-02 15:18:42.983 [main] INFO  com.automation.listeners.TestSuiteListener - Suite finished: Appium Automation Suite
+2026-03-02 15:18:43.068 [main] INFO  com.automation.reports.ExtentReportManager - Extent Report flushed: target/reports/extent/20260302_151647/ExtentReport_20260302_151647.html
+2026-03-02 15:18:43.068 [main] INFO  com.automation.listeners.TestSuiteListener - Suite Summary ù Passed: 3 | Failed: 1 | Total: 4
+2026-03-02 15:18:43.070 [main] INFO  com.automation.utils.PropertyReader - Configuration properties loaded successfully
+2026-03-02 15:18:47.766 [main] INFO  com.automation.reports.EmailReporter - Test report email sent to: vivek.bharti@kellton.com
 ?  Report email sent to: vivek.bharti@kellton.com
-[ERROR] Tests run: 4, Failures: 1, Errors: 0, Skipped: 3, Time elapsed: 174.5 s <<< FAILURE! -- in TestSuite
-[ERROR] com.automation.runners.LoginTestRunner.runScenario["Successful login with valid credentials from config", "EcoCash Login Functionality"](1) -- Time elapsed: 151.3 s <<< FAILURE!
-java.lang.RuntimeException: Unable to select country code +263
-	at com.automation.pages.LoginPage.selectCountryCode(LoginPage.java:141)
-	at com.automation.stepdefinitions.login.LoginSteps.iEnterCountryCodeFromConfig(LoginSteps.java:103)
-	at ?.I enter country code from config(file:///C:/Users/vivek.bharti/OneAppAutomation_VD/src/test/resources/features/login/Login.feature:13)
-Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by AppiumBy.androidUIAutomator: new UiSelector().resourceId("drop_down_item_ZW") (tried for 10 second(s) with 500 milliseconds interval)
+[ERROR] Tests run: 4, Failures: 1, Errors: 0, Skipped: 3, Time elapsed: 124.1 s <<< FAILURE! -- in TestSuite
+[ERROR] com.automation.runners.LoginTestRunner.runScenario["Successful login with valid credentials from config", "EcoCash Login Functionality"](1) -- Time elapsed: 99.28 s <<< FAILURE!
+java.lang.RuntimeException: Unable to enter mobile number
+	at com.automation.pages.LoginPage.enterMobileNumber(LoginPage.java:246)
+	at com.automation.stepdefinitions.login.LoginSteps.iEnterMobileNumberFromConfig(LoginSteps.java:118)
+	at ?.I enter mobile number from config(file:///C:/Users/vivek.bharti/OneAppAutomation_VD/src/test/resources/features/login/Login.feature:14)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //android.widget.EditText (tried for 10 second(s) with 500 milliseconds interval)
 Build info: version: '4.13.0', revision: 'ba948ece5b*'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.1'
 Driver info: io.appium.java_client.android.AndroidDriver
 Capabilities {appium:app: C:\Users\vivek.bharti\OneAp..., appium:appActivity: com.sasai.sasaipay.MainActi..., appium:appPackage: com.sasai.sasaipay, appium:autoGrantPermissions: true, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {app: C:\Users\vivek.bharti\OneAp..., appActivity: com.sasai.sasaipay.MainActi..., appPackage: com.sasai.sasaipay, autoGrantPermissions: true, automationName: UiAutomator2, deviceName: sdk_gphone64_x86_64, fullReset: false, newCommandTimeout: 300, noReset: true, platformName: ANDROID, platformVersion: 15, skipDeviceInitialization: true, skipServerInstallation: true, udid: emulator-5554}, appium:deviceApiLevel: 35, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_x86_64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 420, appium:deviceScreenSize: 1080x2400, appium:deviceUDID: emulator-5554, appium:fullReset: false, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:newCommandTimeout: 300, appium:noReset: true, appium:pixelRatio: 2.625, appium:platformVersion: 15, appium:skipDeviceInitialization: true, appium:skipServerInstallation: true, appium:statBarHeight: 132, appium:takesScreenshot: true, appium:udid: emulator-5554, appium:viewportRect: {height: 2268, left: 0, top: 132, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 2925d97a-523e-48b6-8f17-fe7d18b78bf2
+Session ID: eb8519f1-eb2d-4b0f-a7e5-93662674c82c
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
 	at com.automation.utils.WaitHelper.waitForElementToBeVisible(WaitHelper.java:43)
 	at com.automation.pages.BasePage.waitForElement(BasePage.java:201)
-	at com.automation.pages.LoginPage.selectCountryCode(LoginPage.java:114)
-	at com.automation.stepdefinitions.login.LoginSteps.iEnterCountryCodeFromConfig(LoginSteps.java:103)
+	at com.automation.pages.LoginPage.enterMobileNumber(LoginPage.java:199)
+	at com.automation.stepdefinitions.login.LoginSteps.iEnterMobileNumberFromConfig(LoginSteps.java:118)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)
@@ -581,15 +551,15 @@ Session ID: 2925d97a-523e-48b6-8f17-fe7d18b78bf2
 [INFO] Results:
 [INFO] 
 [ERROR] Failures: 
-[ERROR]   LoginTestRunner.runScenario ╗ Runtime Unable to select country code +263
+[ERROR]   LoginTestRunner.runScenario ╗ Runtime Unable to enter mobile number
 [INFO] 
 [ERROR] Tests run: 4, Failures: 1, Errors: 0, Skipped: 3
 [INFO] 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  03:11 min
-[INFO] Finished at: 2026-03-02T15:08:37+05:30
+[INFO] Total time:  02:23 min
+[INFO] Finished at: 2026-03-02T15:18:48+05:30
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.0:test (default-test) on project OneAppAutomation: There are test failures.
 [ERROR] 
