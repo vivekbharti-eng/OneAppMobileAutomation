@@ -1,6 +1,7 @@
 package com.automation.pages;
 
 import com.automation.utils.LocatorUtils;
+import com.automation.utils.PropertyReader;
 import com.automation.utils.WaitHelper;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -411,6 +412,9 @@ public class SendMoneyPage extends BasePage {
                 logger.warn("XPath contact search failed for {}. Using coordinate clickGesture fallback.", mobileNumber);
                 int[] yPositions = {550, 650, 750, 600};
                 boolean tapped = false;
+                // Determine device UDID for ADB fallback
+                String adbUdid = PropertyReader.getConfigProperty("android.emulator.udid");
+                if (adbUdid == null || adbUdid.isBlank()) adbUdid = "emulator-5554";
                 for (int yPos : yPositions) {
                     try {
                         ((AndroidDriver) driver).executeScript("mobile: clickGesture",
@@ -433,7 +437,20 @@ public class SendMoneyPage extends BasePage {
                             tapped = true;
                             break;
                         } catch (Exception piEx) {
-                            logger.warn("PointerInput at y={} also failed: {}", yPos, piEx.getMessage());
+                            logger.warn("PointerInput at y={} also failed: {}. Trying ADB...", yPos, piEx.getMessage());
+                            // ADB raw input tap — works even when UA2 instrumentation is dead
+                            try {
+                                String finalUdid = adbUdid;
+                                Process adbTap = Runtime.getRuntime().exec(
+                                    new String[]{"adb", "-s", finalUdid, "shell", "input", "tap", "540", String.valueOf(yPos)});
+                                int exitCode = adbTap.waitFor();
+                                logger.info("ADB input tap at (540, {}) exit={}", yPos, exitCode);
+                                sleep(2000);
+                                tapped = true;
+                                break;
+                            } catch (Exception adbEx) {
+                                logger.warn("ADB tap at y={} failed: {}", yPos, adbEx.getMessage());
+                            }
                         }
                     }
                 }
@@ -524,6 +541,21 @@ public class SendMoneyPage extends BasePage {
     public void enterAmount(String amount) {
         try {
             logger.info("Looking for amount field...");
+
+            // Wait for UA2 to be ready (may have been recovering after contact selection).
+            // Without this, the 15s XPath wait returns instantly (7ms) if UA2 is dead.
+            for (int hc = 0; hc < 5; hc++) {
+                try {
+                    ((AndroidDriver) driver).isKeyboardShown(); // lightweight UA2 ping
+                    logger.info("UA2 alive before enterAmount (attempt {})", hc + 1);
+                    break;
+                } catch (Exception hcEx) {
+                    if (hc < 4) {
+                        logger.warn("UA2 not ready before enterAmount, attempt={}, waiting 2s...", hc + 1);
+                        sleep(2000);
+                    }
+                }
+            }
 
             // Locate the field by exact resource-id XPath (confirmed from page source).
             By locator = LocatorUtils.getLocator(AMOUNT_FIELD);
