@@ -338,8 +338,10 @@ public class Hooks {
             // Quit driver
             DriverManager.quitDriver();
             logger.info("Driver quit successfully");
-            // Brief cooldown so Appium cleans up the session before the next scenario starts
-            try { Thread.sleep(3000); } catch (InterruptedException ignored) {}
+            // Brief cooldown so Appium cleans up the session before the next scenario starts.
+            // The emulator can briefly show "adb shell dumpsys power → exit 255" (offline)
+            // right after a session is quit; DriverFactory retry handles it but more wait helps.
+            try { Thread.sleep(5000); } catch (InterruptedException ignored) {}
         }
     }
 }

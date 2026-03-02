@@ -59,32 +59,62 @@ public class DriverFactory {
             logger.info("[SWITCH] Running on BROWSERSTACK");
         }
 
-        try {
-            // Determine execution type from resolved target
-            if ("browserstack".equals(target)) {
-                driver = createBrowserStackDriver(platform);
-            } else {
-                // Local execution
-                if (platform.equalsIgnoreCase("android")) {
-                    driver = createLocalAndroidDriver();
-                } else if (platform.equalsIgnoreCase("ios")) {
-                    driver = createLocalIOSDriver();
+        // Retry driver init up to 3 times — the emulator can briefly go offline
+        // between Appium sessions (adb shell dumpsys power → exit 255), causing the
+        // first init attempt to fail. Waiting and retrying resolves this reliably.
+        int maxAttempts = 3;
+        Exception lastException = null;
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+            try {
+                // Determine execution type from resolved target
+                if ("browserstack".equals(target)) {
+                    driver = createBrowserStackDriver(platform);
                 } else {
-                    throw new RuntimeException("Invalid platform specified: " + platform);
+                    // Local execution
+                    if (platform.equalsIgnoreCase("android")) {
+                        driver = createLocalAndroidDriver();
+                    } else if (platform.equalsIgnoreCase("ios")) {
+                        driver = createLocalIOSDriver();
+                    } else {
+                        throw new RuntimeException("Invalid platform specified: " + platform);
+                    }
+                }
+
+                // Set implicit wait
+                int implicitWait = Integer.parseInt(PropertyReader.getConfigProperty("implicit.wait"));
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
+
+                logger.info("Driver initialized successfully (attempt {})", attempt);
+                return driver;
+
+            } catch (Exception e) {
+                lastException = e;
+                String msg = e.getMessage() != null ? e.getMessage() : "";
+                boolean isAdbError = msg.contains("dumpsys power") || msg.contains("adb") ||
+                                     msg.contains("255") || msg.contains("offline") ||
+                                     msg.contains("still authorizing") || msg.contains("UiAutomator2");
+                if (attempt < maxAttempts && isAdbError) {
+                    logger.warn("Driver init attempt {} failed (ADB/emulator issue). Waiting 5s before retry... Error: {}",
+                        attempt, msg.length() > 200 ? msg.substring(0, 200) : msg);
+                    try {
+                        // Force ADB server restart to recover from emulator offline state
+                        Runtime.getRuntime().exec(new String[]{"adb", "kill-server"}).waitFor();
+                        Thread.sleep(2000);
+                        Runtime.getRuntime().exec(new String[]{"adb", "start-server"}).waitFor();
+                        Thread.sleep(3000);
+                        logger.info("ADB server restarted before driver init retry {}", attempt + 1);
+                    } catch (Exception restartEx) {
+                        logger.warn("ADB restart failed: {}", restartEx.getMessage());
+                        try { Thread.sleep(5000); } catch (InterruptedException ignored) {}
+                    }
+                } else {
+                    // Non-ADB error or last attempt — fail immediately
+                    logger.error("Failed to initialize driver (attempt {}): {}", attempt, msg);
+                    throw new RuntimeException("Driver initialization failed", e);
                 }
             }
-            
-            // Set implicit wait
-            int implicitWait = Integer.parseInt(PropertyReader.getConfigProperty("implicit.wait"));
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
-            
-            logger.info("Driver initialized successfully");
-            return driver;
-            
-        } catch (Exception e) {
-            logger.error("Failed to initialize driver: " + e.getMessage());
-            throw new RuntimeException("Driver initialization failed", e);
         }
+        throw new RuntimeException("Driver initialization failed after " + maxAttempts + " attempts", lastException);
     }
     
     /**
