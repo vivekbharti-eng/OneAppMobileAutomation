@@ -8,8 +8,12 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 /**
  * Runner for Login feature — executes FIRST in the suite
@@ -41,6 +45,24 @@ public class LoginTestRunner extends AbstractTestNGCucumberTests {
     @BeforeSuite
     public void beforeSuite() {
         SuiteState.reset(); // clear any leftover abort flag from a previous run
+
+        // ── Device readiness check ──────────────────────────────────────────
+        String target = PropertyReader.getExecutionTarget();
+        if ("virtual".equalsIgnoreCase(target)) {
+            String udid = PropertyReader.getProperty("android.emulator.udid", "emulator-5554");
+            ensureEmulatorReady(udid);
+        } else if ("real".equalsIgnoreCase(target)) {
+            String udid = PropertyReader.getProperty("android.real.udid", "");
+            if (!udid.isEmpty()) {
+                boolean found = isDeviceConnected(udid);
+                if (!found) {
+                    throw new SkipException("[DEVICE CHECK] Real device '" + udid + "' not connected via ADB. Connect the device and retry.");
+                }
+                logger.info("[DEVICE CHECK] Real device '{}' is connected.", udid);
+            }
+        }
+        // ────────────────────────────────────────────────────────────────────
+
         ReportPathManager.initializeReportPaths();
         ExtentReportManager.initReport();
         System.out.println(ANSI_CYAN + ANSI_BOLD + "=========================================" + ANSI_RESET);
@@ -49,7 +71,6 @@ public class LoginTestRunner extends AbstractTestNGCucumberTests {
 
         // Uninstall app once at suite start so Login flow does a fresh install.
         // SendMoney and Logout then reuse the installed app (noReset=true keeps state).
-        String target = PropertyReader.getExecutionTarget();
         if (!"browserstack".equalsIgnoreCase(target)) {
             String appPackage = PropertyReader.getProperty("android.appPackage", "com.sasai.sasaipay");
             String udid = "virtual".equalsIgnoreCase(target)
@@ -68,6 +89,74 @@ public class LoginTestRunner extends AbstractTestNGCucumberTests {
             }
         }
     }
+
+    // ── Helpers ─────────────────────────────────────────────────────────────
+
+    /** Returns true if the given UDID appears in 'adb devices' output. */
+    private boolean isDeviceConnected(String udid) {
+        try {
+            Process proc = Runtime.getRuntime().exec(new String[]{"adb", "devices"});
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    if (line.startsWith(udid) && line.contains("device")) {
+                        return true;
+                    }
+                }
+            }
+            proc.waitFor();
+        } catch (Exception e) {
+            logger.warn("[DEVICE CHECK] adb devices check failed: {}", e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * Waits up to 90 seconds for the emulator to appear in 'adb devices'.
+     * If not found after waiting, attempts to launch it via 'emulator -avd <name>'.
+     * Throws SkipException (stops suite) if device is still absent after all retries.
+     */
+    private void ensureEmulatorReady(String udid) {
+        final int waitSeconds = 90;
+        final int pollInterval = 5;
+
+        // First quick check
+        if (isDeviceConnected(udid)) {
+            logger.info("[DEVICE CHECK] Emulator '{}' is already running.", udid);
+            return;
+        }
+
+        // Try launching the emulator
+        String avdName = PropertyReader.getProperty("android.emulator.deviceName", "Pixel_8_API_35");
+        logger.warn("[DEVICE CHECK] Emulator '{}' not found — attempting to launch AVD '{}'...", udid, avdName);
+        System.out.println(ANSI_CYAN + "[Suite Setup] Emulator not running — starting AVD '" + avdName + "'..." + ANSI_RESET);
+        try {
+            // Start emulator in background
+            new ProcessBuilder("emulator", "-avd", avdName, "-no-snapshot-load")
+                    .redirectErrorStream(true)
+                    .start();
+        } catch (Exception e) {
+            logger.warn("[DEVICE CHECK] Could not launch emulator: {}", e.getMessage());
+        }
+
+        // Wait for device to appear
+        for (int elapsed = 0; elapsed < waitSeconds; elapsed += pollInterval) {
+            try { Thread.sleep(pollInterval * 1000L); } catch (InterruptedException ignored) {}
+            if (isDeviceConnected(udid)) {
+                // Wait a few more seconds for ADB to be fully ready
+                try { Thread.sleep(5000); } catch (InterruptedException ignored) {}
+                logger.info("[DEVICE CHECK] Emulator '{}' is now ready.", udid);
+                System.out.println(ANSI_GREEN + "[Suite Setup] Emulator '" + udid + "' is ready." + ANSI_RESET);
+                return;
+            }
+            logger.info("[DEVICE CHECK] Waiting for emulator '{}' ... {}s elapsed", udid, elapsed + pollInterval);
+        }
+
+        // Still not found after waiting
+        throw new SkipException("[DEVICE CHECK] Emulator '" + udid + "' not available after " + waitSeconds + "s. Start the emulator and retry.");
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
 
     @Override
     @DataProvider(parallel = false)

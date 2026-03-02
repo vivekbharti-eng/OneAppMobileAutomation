@@ -90,6 +90,13 @@
             <version>${log4j.version}</version>
         </dependency>
 
+        <!-- SLF4J -> Log4j2 bridge (fixes 'No SLF4J providers found' warning) -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
         <!-- Commons IO -->
         <dependency>
             <groupId>commons-io</groupId>
