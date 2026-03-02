@@ -354,74 +354,83 @@ public class SendMoneyPage extends BasePage {
 
     public void waitForContactAndSelect(String mobileNumber) {
         try {
-            // Dismiss keyboard first — do NOT use XPath here.
-            // Root cause: executing any XPath query (even a simple one) causes UiAutomator2
-            // instrumentation to crash on the 3rd+ Appium session, because the view XML dump
-            // for this screen OOMs/crashes the process. All XPath attempts have been removed.
-            // Instead, we use ADB 'input tap' FIRST (requires no UA2 instrumentation) to select
-            // the contact result, keeping UA2 alive for the subsequent amount entry step.
+            // Dismiss keyboard — UA2 may or may not be alive; hideKeyboard is lightweight.
             try { ((AndroidDriver) driver).hideKeyboard(); } catch (Exception ignored) {}
-            sleep(3500); // wait for contact list to fully render after keyboard hides
+            sleep(3500); // allow contact list to fully render after keyboard dismissal
 
-            logger.info("Selecting contact result for: {} using ADB input tap (XPath-free)", mobileNumber);
+            logger.info("Selecting contact result for: {} (XPath-free approach)", mobileNumber);
 
-            // Determine device UDID for ADB commands
+            // STRATEGY: Avoid XPath entirely.
+            // XPath triggers a full UI XML tree dump which crashes UA2 in later sessions.
+            // Use 'mobile: clickGesture' (coordinate tap via UA2 dispatch, NOT XML dump).
+            // If UA2 is already dead, fall back to 'adb shell input tap' (OS-level touch).
+            //
+            // Contact result row position on Pixel 8 1080×2268 emulator (API 35):
+            //   Status bar: ~132px. App nav: ~88px. Search bar: ~100px.
+            //   Contact list starts at physical y≈340. First row height ≈100px. Center ≈390.
+            //   We try multiple y values to account for variations in keyboard/nav layout.
+            int[] yPositions = {390, 430, 470, 510, 550};
+
             String adbUdid = PropertyReader.getConfigProperty("android.emulator.udid");
             if (adbUdid == null || adbUdid.isBlank()) adbUdid = "emulator-5554";
 
-            // ADB 'input tap' — works completely independently of UA2 instrumentation.
-            // Contact result row (first result) is at approximately x=540, y=550-650 on
-            // a Pixel 8 emulator (1080x2268) after the search keyboard is dismissed.
-            int[] yPositions = {550, 600, 650, 500, 700};
-            boolean tapped = false;
+            boolean selected = false;
             for (int yPos : yPositions) {
-                try {
-                    Process adbTap = Runtime.getRuntime().exec(
-                        new String[]{"adb", "-s", adbUdid, "shell", "input", "tap", "540", String.valueOf(yPos)});
-                    int exitCode = adbTap.waitFor();
-                    if (exitCode == 0) {
-                        logger.info("ADB input tap dispatched at (540, {}) exit=0 — contact selected", yPos);
-                        sleep(2000); // wait for app to navigate to amount screen
-                        tapped = true;
-                        break; // assume first successful ADB tap at lowest y selected the result
-                    } else {
-                        logger.warn("ADB input tap at y={} exit={}", yPos, exitCode);
-                    }
-                } catch (Exception adbEx) {
-                    logger.warn("ADB tap at y={} failed: {}", yPos, adbEx.getMessage());
-                }
-            }
-
-            if (!tapped) {
-                // ADB failed entirely — try Appium mobile:clickGesture as last resort.
-                // This risks UA2 crash but it's the only remaining option.
-                logger.warn("All ADB taps failed. Attempting mobile:clickGesture at (540, 580)...");
+                // First try: mobile:clickGesture (UA2 coordinate dispatch, no XML dump).
+                boolean gestureOk = false;
                 try {
                     ((AndroidDriver) driver).executeScript("mobile: clickGesture",
-                        java.util.Map.of("x", 540, "y", 580));
-                    logger.info("clickGesture dispatched at (540, 580)");
-                    sleep(2000);
+                        java.util.Map.of("x", 540, "y", yPos));
+                    logger.info("clickGesture dispatched at (540, {})", yPos);
+                    gestureOk = true;
                 } catch (Exception gestureEx) {
-                    logger.warn("clickGesture also failed: {}", gestureEx.getMessage());
-                    // Last resort: PointerInput
+                    logger.warn("clickGesture at y={} failed (UA2 likely dead): {}", yPos, gestureEx.getMessage());
+                }
+
+                if (!gestureOk) {
+                    // UA2 dead — use ADB input tap (OS-level, no UA2 needed).
                     try {
-                        PointerInput f = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-                        Sequence s = new Sequence(f, 0);
-                        s.addAction(f.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), 540, 580));
-                        s.addAction(f.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-                        s.addAction(f.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-                        driver.perform(Arrays.asList(s));
-                        logger.info("PointerInput tap dispatched at (540, 580)");
-                        sleep(2000);
-                    } catch (Exception piEx) {
-                        logger.warn("PointerInput also failed: {}", piEx.getMessage());
+                        Process p = Runtime.getRuntime().exec(
+                            new String[]{"adb", "-s", adbUdid, "shell", "input", "tap", "540", String.valueOf(yPos)});
+                        int code = p.waitFor();
+                        logger.info("ADB input tap (540, {}) exit={}", yPos, code);
+                    } catch (Exception adbEx) {
+                        logger.warn("ADB tap at y={} failed: {}", yPos, adbEx.getMessage());
+                        continue;
                     }
+                }
+
+                // Wait for the app to navigate — then check if keyboard appeared
+                // (amount entry field auto-focuses and shows keyboard on contact selection).
+                sleep(1500);
+                try {
+                    boolean kb = ((AndroidDriver) driver).isKeyboardShown();
+                    if (kb) {
+                        logger.info("Keyboard appeared after tap at y={} — contact selected, amount page active", yPos);
+                        selected = true;
+                        break;
+                    } else {
+                        logger.debug("Keyboard not shown after y={} tap, trying next position...", yPos);
+                    }
+                } catch (Exception kbEx) {
+                    // UA2 died during isKeyboardShown — we tapped but can't verify.
+                    // Break out and let enterAmount determine if we succeeded.
+                    logger.warn("isKeyboardShown threw after y={}: {} — UA2 may have crashed; proceeding...",
+                        yPos, kbEx.getMessage());
+                    selected = true; // assume tap worked; enterAmount will verify
+                    break;
                 }
             }
 
-            logger.info("waitForContactAndSelect complete for: {} (tapped={})", mobileNumber, tapped);
-            // Return — the amount entry screen should now be active.
-            // enterAmount will verify by finding the amount EditText.
+            if (!selected) {
+                logger.warn("No y position confirmed contact selection — attempting final ADB tap at y=430...");
+                try {
+                    Runtime.getRuntime().exec(new String[]{"adb", "-s", adbUdid, "shell", "input", "tap", "540", "430"}).waitFor();
+                    sleep(2000);
+                } catch (Exception ignored) {}
+            }
+
+            logger.info("waitForContactAndSelect complete for: {} (selected={})", mobileNumber, selected);
         } catch (Exception e) {
             logger.error("waitForContactAndSelect failed for: " + mobileNumber);
             throw new RuntimeException("Contact '" + mobileNumber + "' not visible in search results after typing", e);
