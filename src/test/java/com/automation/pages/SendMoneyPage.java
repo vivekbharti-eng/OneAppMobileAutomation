@@ -353,39 +353,77 @@ public class SendMoneyPage extends BasePage {
 
     public void waitForContactAndSelect(String mobileNumber) {
         try {
-            sleep(2000); // wait for search results to populate
+            // Step 0: Ensure keyboard is fully dismissed before searching for contact elements.
+            // UIAutomator queries + open keyboard = UiAutomator2 instrumentation crash.
+            for (int k = 0; k < 3; k++) {
+                try {
+                    if (((AndroidDriver) driver).isKeyboardShown()) {
+                        ((AndroidDriver) driver).hideKeyboard();
+                        logger.info("Keyboard dismissed before contact search (attempt " + (k+1) + ")");
+                        sleep(800);
+                    } else {
+                        break;
+                    }
+                } catch (Exception ignored) { break; }
+            }
 
-            // Strategy 1: UIAutomator — simple descriptionContains, no regex (resourceIdMatches is crash-prone)
-            // Only run if the contact list appears to be loaded.
+            sleep(2500); // wait for search results list to fully render
+
+            // Strategy: XPath ONLY — no UIAutomator (UIAutomator crashes when keyboard was recently open)
             WebElement contact = null;
+
+            // Pass 1: strict match on content-desc containing the exact number
+            By xpath1 = By.xpath(
+                "//*[contains(@content-desc,'" + mobileNumber + "') and @clickable='true' and not(contains(@resource-id,'search'))]" +
+                " | //*[starts-with(@resource-id,'contact_item_') and contains(@content-desc,'" + mobileNumber + "')]"
+            );
             try {
-                By uiAuto = AppiumBy.androidUIAutomator(
-                    "new UiSelector().descriptionContains(\"" + mobileNumber + "\").clickable(true)"
-                );
-                contact = WaitHelper.waitForElementToBeVisible(uiAuto, 5);
-                logger.info("Contact found via UIAutomator descriptionContains: " + mobileNumber);
-            } catch (Exception ignored) {
-                logger.warn("UIAutomator contact search failed, falling back to XPath");
-                // Brief pause to allow UiAutomator2 server to stabilise after timeout
-                try { Thread.sleep(2000); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
+                contact = WaitHelper.waitForElementToBeVisible(xpath1, 8);
+                logger.info("Contact found via XPath (content-desc): " + mobileNumber);
+            } catch (Exception e1) {
+                logger.warn("XPath content-desc search failed: " + e1.getMessage());
             }
 
-            // Strategy 2: XPath fallback — exclude search_textfield to avoid re-tapping the input field
+            // Pass 2: text-based match
             if (contact == null) {
-                By xpathFallback = By.xpath(
-                    (
-                        "//*[starts-with(@resource-id,'contact_item_') and contains(@content-desc,'%s')] | " +
-                            "//*[@clickable='true' and contains(@content-desc,'%s') and not(@resource-id='search_textfield')] | " +
-                            "//*[@clickable='true' and contains(@text,'%s') and not(@resource-id='search_textfield')]").formatted(
-                        mobileNumber, mobileNumber, mobileNumber)
+                By xpath2 = By.xpath(
+                    "//*[contains(@text,'" + mobileNumber + "') and @clickable='true' and not(contains(@resource-id,'search'))]"
                 );
-                contact = WaitHelper.waitForElementToBeVisible(xpathFallback, 10);
-                logger.info("Contact found via XPath fallback: " + mobileNumber);
+                try {
+                    contact = WaitHelper.waitForElementToBeVisible(xpath2, 8);
+                    logger.info("Contact found via XPath (text): " + mobileNumber);
+                } catch (Exception e2) {
+                    logger.warn("XPath text search failed: " + e2.getMessage());
+                }
             }
 
-            // Coordinate-based tap — reliable for React Native touch targets
+            // Pass 3: find first clickable item below the search bar (positional fallback)
+            if (contact == null) {
+                logger.warn("Number-based XPath failed — tapping first clickable list item below search bar");
+                // Search bar is typically in top ~20% of screen; contact results are below it.
+                // Device screen height = 2268 viewport pixels (statBarHeight=132 offset)
+                // Tap at x=540 (centre), y=600 (below search bar ~200px, first result)
+                logger.info("Falling back to coordinate tap at first contact result position (540, 600)");
+                PointerInput f2 = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                Sequence t2 = new Sequence(f2, 0);
+                t2.addAction(f2.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), 540, 600));
+                t2.addAction(f2.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                t2.addAction(f2.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                driver.perform(Arrays.asList(t2));
+                logger.info("Tapped at coordinates (540, 600) as contact result fallback");
+                // Wait for keyboard to confirm amount screen is active
+                sleep(3000);
+                return;
+            }
+
+            // Coordinate-based tap for reliability on React Native touch targets
             int cx = contact.getLocation().getX() + contact.getSize().getWidth() / 2;
             int cy = contact.getLocation().getY() + contact.getSize().getHeight() / 2;
+            // Guard: cy must be below the search bar (y > 200) to avoid re-tapping the input
+            if (cy < 200) {
+                logger.warn("Contact element y=" + cy + " is too high (inside search bar area) — adjusting to 600");
+                cy = 600;
+            }
             logger.info("Tapping search result contact at (" + cx + "," + cy + ")");
             PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
             Sequence tap = new Sequence(finger, 0);
@@ -394,24 +432,20 @@ public class SendMoneyPage extends BasePage {
             tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
             driver.perform(Arrays.asList(tap));
 
-            // Wait for the soft keyboard to appear — it confirms the amount EditText
-            // is focused and ready to receive input. Poll up to 8 s.
+            // Wait for keyboard to appear — confirms amount field is focused
             logger.info("Waiting for keyboard to appear after tapping contact...");
             long kbDeadline = System.currentTimeMillis() + 8_000;
             boolean keyboardUp = false;
             while (System.currentTimeMillis() < kbDeadline) {
                 try {
-                    if (((AndroidDriver) driver).isKeyboardShown()) {
-                        keyboardUp = true;
-                        break;
-                    }
+                    if (((AndroidDriver) driver).isKeyboardShown()) { keyboardUp = true; break; }
                 } catch (Exception ignored) {}
                 sleep(300);
             }
             if (keyboardUp) {
-                logger.info("Keyboard is visible — amount field is focused and ready for input");
+                logger.info("Keyboard visible — amount field focused and ready");
             } else {
-                logger.warn("Keyboard did not appear within 8 s — will attempt to type anyway");
+                logger.warn("Keyboard did not appear within 8s — will attempt to type anyway");
             }
             logger.info("Tapped search result for: " + mobileNumber);
         } catch (Exception e) {
