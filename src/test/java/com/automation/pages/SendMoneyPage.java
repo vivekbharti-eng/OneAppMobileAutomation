@@ -103,7 +103,40 @@ public class SendMoneyPage extends BasePage {
     public void tapSendMoneyOnPayPage() {
         try {
             By locator = LocatorUtils.getLocator(SEND_MONEY_BUTTON);
-            waitForElement(locator, 15);
+
+            // Quick check — is Send Money already visible?
+            if (!isElementDisplayed(locator, 5)) {
+                logger.warn("'Send Money' not immediately visible — attempting to navigate to Pay tab...");
+                // Try clicking Pay tab in bottom navigation bar
+                By payTab = By.xpath(
+                    "//*[@content-desc='Pay' or @text='Pay' or @resource-id='pay_tab']" +
+                    " | //android.widget.TextView[@text='Pay']" +
+                    " | //*[contains(@content-desc,'Pay') and @clickable='true']"
+                );
+                try {
+                    if (isElementDisplayed(payTab, 4)) {
+                        click(payTab);
+                        logger.info("Clicked Pay tab — waiting for Send Money to appear...");
+                        sleep(2000);
+                    } else {
+                        // Fallback: try clicking the Home tab first to reset navigation state
+                        By homeTab = By.xpath(
+                            "//*[@content-desc='Home' or @text='Home' or @resource-id='home_tab']" +
+                            " | //android.widget.TextView[@text='Home']"
+                        );
+                        if (isElementDisplayed(homeTab, 3)) {
+                            click(homeTab);
+                            sleep(1500);
+                            logger.info("Clicked Home tab to reset navigation");
+                        }
+                    }
+                } catch (Exception navEx) {
+                    logger.warn("Tab navigation attempt failed: " + navEx.getMessage());
+                }
+            }
+
+            // Now wait for and tap Send Money
+            waitForElement(locator, 20);
             click(locator);
             sleep(2000); // wait for bottom drawer animation
             dismissTermsAndConditionsIfPresent(); // handle T&C on virtual device
