@@ -365,11 +365,12 @@ public class SendMoneyPage extends BasePage {
             // Use 'mobile: clickGesture' (coordinate tap via UA2 dispatch, NOT XML dump).
             // If UA2 is already dead, fall back to 'adb shell input tap' (OS-level touch).
             //
-            // Contact result row position on Pixel 8 1080×2268 emulator (API 35):
-            //   Status bar: ~132px. App nav: ~88px. Search bar: ~100px.
-            //   Contact list starts at physical y≈340. First row height ≈100px. Center ≈390.
-            //   We try multiple y values to account for variations in keyboard/nav layout.
-            int[] yPositions = {390, 430, 470, 510, 550};
+            // Contact result row position on Pixel 8 1080×2400 emulator (API 35):
+            //   From page-source captured at failure: contact element bounds=[26,526][1054,702]
+            //   Contact centre x=540, y=614. Try slight variants for robustness.
+            //   NOTE: y=390 (previous attempt) hit the search bar — keyboard appeared but stayed
+            //   on contact search screen. Correct range is y=550-680.
+            int[] yPositions = {614, 580, 640, 560, 660, 700};
 
             String adbUdid = PropertyReader.getConfigProperty("android.emulator.udid");
             if (adbUdid == null || adbUdid.isBlank()) adbUdid = "emulator-5554";
@@ -400,32 +401,18 @@ public class SendMoneyPage extends BasePage {
                     }
                 }
 
-                // Wait for the app to navigate — then check if keyboard appeared
-                // (amount entry field auto-focuses and shows keyboard on contact selection).
-                sleep(1500);
-                try {
-                    boolean kb = ((AndroidDriver) driver).isKeyboardShown();
-                    if (kb) {
-                        logger.info("Keyboard appeared after tap at y={} — contact selected, amount page active", yPos);
-                        selected = true;
-                        break;
-                    } else {
-                        logger.debug("Keyboard not shown after y={} tap, trying next position...", yPos);
-                    }
-                } catch (Exception kbEx) {
-                    // UA2 died during isKeyboardShown — we tapped but can't verify.
-                    // Break out and let enterAmount determine if we succeeded.
-                    logger.warn("isKeyboardShown threw after y={}: {} — UA2 may have crashed; proceeding...",
-                        yPos, kbEx.getMessage());
-                    selected = true; // assume tap worked; enterAmount will verify
-                    break;
-                }
+                // Wait for navigation — tap at y=614 (contact centre) navigates to amount page (~1-2s)
+                // NOTE: do NOT rely on isKeyboardShown() to detect success. The search bar at top
+                // also shows keyboard when tapped (false positive). Simply sleep and let enterAmount verify.
+                sleep(2000);
+                selected = true;
+                break; // always break after first successful tap — the contact is at y=614
             }
 
             if (!selected) {
-                logger.warn("No y position confirmed contact selection — attempting final ADB tap at y=430...");
+                logger.warn("All taps failed — attempting ADB tap at y=614 as last resort...");
                 try {
-                    Runtime.getRuntime().exec(new String[]{"adb", "-s", adbUdid, "shell", "input", "tap", "540", "430"}).waitFor();
+                    Runtime.getRuntime().exec(new String[]{"adb", "-s", adbUdid, "shell", "input", "tap", "540", "614"}).waitFor();
                     sleep(2000);
                 } catch (Exception ignored) {}
             }
