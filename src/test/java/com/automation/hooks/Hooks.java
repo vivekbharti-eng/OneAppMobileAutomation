@@ -113,6 +113,30 @@ public class Hooks {
                 Runtime.getRuntime().exec(new String[]{"adb", "-s", udidForKill, "shell", "am", "force-stop", "io.appium.uiautomator2.server.test"}).waitFor();
                 Thread.sleep(1000);
                 logger.info("Killed stale UiAutomator2 server processes on device: " + udidForKill);
+
+                // Wait for device to be fully online before driver init.
+                // The emulator can briefly go 'offline' between Appium sessions — adb forward
+                // will fail with "device offline" if we don't wait here.
+                logger.info("Waiting for device ADB shell to be ready before driver init...");
+                boolean deviceReady = false;
+                for (int attempt = 0; attempt < 20; attempt++) {
+                    try {
+                        Process echo = Runtime.getRuntime().exec(
+                            new String[]{"adb", "-s", udidForKill, "shell", "echo", "ping"});
+                        java.io.BufferedReader echoReader = new java.io.BufferedReader(
+                            new java.io.InputStreamReader(echo.getInputStream()));
+                        String response = echoReader.readLine();
+                        if ("ping".equalsIgnoreCase(response != null ? response.trim() : "")) {
+                            deviceReady = true;
+                            logger.info("Device ADB shell ready after {}s", attempt);
+                            break;
+                        }
+                    } catch (Exception ignored2) {}
+                    Thread.sleep(1000);
+                }
+                if (!deviceReady) {
+                    logger.warn("Device ADB shell not confirmed ready — proceeding anyway");
+                }
             } catch (Exception ignored) {
                 logger.debug("UiAutomator2 server cleanup skipped: " + ignored.getMessage());
             }
