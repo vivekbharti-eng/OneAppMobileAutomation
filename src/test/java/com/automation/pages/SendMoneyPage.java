@@ -194,8 +194,16 @@ public class SendMoneyPage extends BasePage {
             ((AndroidDriver) driver).executeScript("mobile: type",
                     java.util.Map.of("text", mobileNumber));
             sleep(500);
-            // Dismiss keyboard without adding any extra character
-            try { ((AndroidDriver) driver).hideKeyboard(); } catch (Exception ignored) {}
+            // Dismiss keyboard via ADB keyevent ESCAPE (111) — avoids calling UA2 hideKeyboard()
+            // which can crash the instrumentation while React Native contact list is rendering.
+            try {
+                String udid = PropertyReader.getConfigProperty("android.emulator.udid");
+                if (udid == null || udid.isBlank()) udid = "emulator-5554";
+                Runtime.getRuntime().exec(
+                    new String[]{"adb", "-s", udid, "shell", "input", "keyevent", "111"}).waitFor();
+            } catch (Exception kbEx) {
+                logger.warn("ADB keyboard dismiss failed: {}", kbEx.getMessage());
+            }
             sleep(2500); // wait for search results list to load
             logger.info("Searched for mobile number: " + mobileNumber);
         } catch (Exception e) {
@@ -354,8 +362,16 @@ public class SendMoneyPage extends BasePage {
 
     public void waitForContactAndSelect(String mobileNumber) {
         try {
-            // Dismiss keyboard — UA2 may or may not be alive; hideKeyboard is lightweight.
-            try { ((AndroidDriver) driver).hideKeyboard(); } catch (Exception ignored) {}
+            // Dismiss keyboard via ADB — DO NOT call UA2 hideKeyboard() here.
+            // UA2 crashes when called while React Native contact list is rendering.
+            try {
+                String udidKb = PropertyReader.getConfigProperty("android.emulator.udid");
+                if (udidKb == null || udidKb.isBlank()) udidKb = "emulator-5554";
+                Runtime.getRuntime().exec(
+                    new String[]{"adb", "-s", udidKb, "shell", "input", "keyevent", "111"}).waitFor();
+            } catch (Exception kbEx) {
+                logger.warn("ADB keyboard dismiss (pre-select) failed: {}", kbEx.getMessage());
+            }
             sleep(3500); // allow contact list to fully render after keyboard dismissal
 
             logger.info("Selecting contact result for: {} (XPath-free approach)", mobileNumber);
