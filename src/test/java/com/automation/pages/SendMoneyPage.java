@@ -417,10 +417,9 @@ public class SendMoneyPage extends BasePage {
                     }
                 }
 
-                // Wait for navigation — tap at y=614 (contact centre) navigates to amount page (~1-2s)
-                // NOTE: do NOT rely on isKeyboardShown() to detect success. The search bar at top
-                // also shows keyboard when tapped (false positive). Simply sleep and let enterAmount verify.
-                sleep(2000);
+                // Wait for React Native navigation to amount page to complete.
+                // UA2 crashes during this screen transition — give it 6 s to respawn.
+                sleep(6000);
                 selected = true;
                 break; // always break after first successful tap — the contact is at y=614
             }
@@ -498,31 +497,52 @@ public class SendMoneyPage extends BasePage {
         try {
             logger.info("Looking for amount field...");
 
-            // Wait for UA2 to be ready (may have been recovering after contact selection).
-            // Without this, the 15s XPath wait returns instantly (7ms) if UA2 is dead.
-            for (int hc = 0; hc < 5; hc++) {
+            // UA2 crashes during the React Native navigation from contact list to amount page.
+            // Wait up to 30 s for UA2 to fully stabilize (require 2 consecutive successful pings).
+            String adbUdidAmt = PropertyReader.getConfigProperty("android.emulator.udid");
+            if (adbUdidAmt == null || adbUdidAmt.isBlank()) adbUdidAmt = "emulator-5554";
+
+            int consecutiveOk = 0;
+            for (int hc = 0; hc < 15; hc++) {
                 try {
-                    ((AndroidDriver) driver).isKeyboardShown(); // lightweight UA2 ping
-                    logger.info("UA2 alive before enterAmount (attempt {})", hc + 1);
-                    break;
+                    ((AndroidDriver) driver).isKeyboardShown(); // lightweight UA2 ping (no XML dump)
+                    consecutiveOk++;
+                    logger.info("UA2 ping OK before enterAmount (attempt {}, consecutiveOk={})", hc + 1, consecutiveOk);
+                    if (consecutiveOk >= 2) break; // stable — proceed
+                    sleep(1500); // gap between consecutive pings
                 } catch (Exception hcEx) {
-                    if (hc < 4) {
-                        logger.warn("UA2 not ready before enterAmount, attempt={}, waiting 2s...", hc + 1);
-                        sleep(2000);
-                    }
+                    consecutiveOk = 0; // reset on any failure
+                    logger.warn("UA2 not ready before enterAmount, attempt={}, waiting 3s...", hc + 1);
+                    sleep(3000);
                 }
             }
 
-            // Locate the field by exact resource-id XPath (confirmed from page source).
-            By locator = LocatorUtils.getLocator(AMOUNT_FIELD);
-            WebElement amtField = WaitHelper.waitForElementToBeVisible(locator, 15);
-            logger.info("Amount field found — keyboard already open, typing now");
+            WebElement amtField = null;
+            if (consecutiveOk >= 2) {
+                // UA2 stable — use UIAutomator selector (direct node lookup, NO full XML dump).
+                // XPath triggers dumpWindowHierarchy → complex React Native tree → UA2 crash.
+                By uiaLocator = AppiumBy.androidUIAutomator(
+                    "new UiSelector().className(\"android.widget.EditText\").instance(0)");
+                try {
+                    amtField = WaitHelper.waitForElementToBeVisible(uiaLocator, 10);
+                    logger.info("Amount field found via UIAutomator selector");
+                } catch (Exception uiaEx) {
+                    logger.warn("UIAutomator selector for amount field failed: {}", uiaEx.getMessage());
+                }
+            }
 
-            // Keyboard is already shown (confirmed in waitForContactAndSelect).
-            // Type directly — React Native onChangeText fires per character.
-            amtField.clear();
-            amtField.sendKeys(amount);
-            logger.info("Typed '" + amount + "' into amount field");
+            if (amtField != null) {
+                // Field found via UIAutomator — type with sendKeys.
+                amtField.clear();
+                amtField.sendKeys(amount);
+                logger.info("Typed '{}' into amount field via UIAutomator", amount);
+            } else {
+                // Fallback: field is auto-focused on the amount page, use ADB input text.
+                logger.warn("Amount field not found via UIAutomator — using ADB input text fallback");
+                Runtime.getRuntime().exec(
+                    new String[]{"adb", "-s", adbUdidAmt, "shell", "input", "text", amount}).waitFor();
+                logger.info("Typed '{}' via ADB input text", amount);
+            }
 
             // Poll Continue until enabled (up to 10 s) to confirm amount accepted.
             By continueLocator = LocatorUtils.getLocator(CONTINUE_BUTTON);
